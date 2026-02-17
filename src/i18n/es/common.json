@@ -1,0 +1,32 @@
+{
+  "noResults": "Sin resultados",
+  "menu": {
+    "open": "Abrir menú"
+  },
+  "actions": "Acciones",
+  "search": "Buscar",
+  "deactivate": "Desactivar",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "accept": "Aceptar",
+  "edit": "Editar",
+  "details": "Detalles",
+  "isActive": {
+    "true": "Activo",
+    "false": "Inactivo"
+  },
+  "reset": "Restablecer",
+  "add": "Añadir",
+  "retry": "Reintentar",
+  "remove": "Remover",
+  "dropFiles": {
+    "selectedFiles": "Archivos seleccionados",
+    "dropHelper": "Suelta los archivos aquí",
+    "cleanAll": "Limpiar todos"
+  },
+  "max": "Máximo",
+  "min": "Mínimo",
+  "files": "Archivos",
+  "eachOne": "Cada uno",
+  "notifications": "Notificaciones"
+}

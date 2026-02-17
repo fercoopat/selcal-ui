@@ -1,0 +1,14 @@
+{
+  "min-size-1": "Debe tener al menos 1 elemento",
+  "min-1-char": "Debe tener al menos 1 caracter",
+  "min-8-char": "Debe tener al menos 8 caracter",
+  "min-0-num": "El valor mínimo es 0",
+  "required": "Requerido",
+  "same-old-password": "La nueva contraseña debe ser diferente a la actual",
+  "confirm-password": "Las contraseñas no coinciden",
+  "no-white-spaces": "No puede contener espacios en blanco",
+  "general-error": {
+    "title": "Error",
+    "message": "No se ha podido realizar esta acción. Por favor inténtelo más tarde."
+  }
+}

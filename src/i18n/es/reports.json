@@ -1,0 +1,32 @@
+{
+  "title": "Datos generales",
+  "issues": {
+    "totalIssues": "Incidencias totales",
+    "openIssues": "Incidencias abiertas",
+    "closedIssues": "Incidencias cerradas"
+  },
+  "projects": {
+    "title": "Proyectos"
+  },
+  "avgResolutionTime": {
+    "title": "Tiempo de resolución promedio (h)"
+  },
+  "issuesByStatus": {
+    "title": "Incidencias por estado"
+  },
+  "issuesByPriority": {
+    "title": "Incidencias por prioridad"
+  },
+  "issuesByProject": {
+    "title": "Incidencias por proyecto"
+  },
+  "avgResolutionTimeByPriority": {
+    "title": "Tiempo de resolución promedio por prioridad (h)"
+  },
+  "issuesResolvedOverTime": {
+    "title": "Incidencias resueltas a lo largo del tiempo"
+  },
+  "closureRate": {
+    "title": "Porciento de cierres"
+  }
+}

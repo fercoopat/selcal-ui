@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "email": "Correo electrónico",
+    "firstName": "Nombre(s)",
+    "lastName": "Apellido(s)",
+    "fullName": "Nombre",
+    "role": "Rol",
+    "password": "Contraseña",
+    "avatar": "Avatar",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña"
+  },
+  "add": "Añadir usuario",
+  "successCreate": "Usuario añadido satisfactoriamente",
+  "deactivate": {
+    "title": "Desactivar usuario",
+    "message": "¿Está seguro que desea desactivar el usuario seleccionado?"
+  },
+  "successUpdate": "Se ha actualizado el usuario satisfactoriamente",
+  "successPasswordUpdate": "Se ha actualizado la contraseña satisfactoriamente",
+  "successDeactivate": "El usuario se ha desactivado satisfactoriamente",
+  "editRole": {
+    "title": "Editar rol"
+  },
+  "tabs": {
+    "general": {
+      "title": "General"
+    },
+    "security": {
+      "title": "Seguridad"
+    }
+  },
+  "account": "Perfil",
+  "notifications": {
+    "subtitle": "Aquí se listan todas las notificaciones del usuario"
+  }
+}

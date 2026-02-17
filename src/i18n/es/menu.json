@@ -1,0 +1,13 @@
+{
+  "general": {
+    "title": "General",
+    "dashboard": "Dashboard",
+    "projects": "Proyectos",
+    "issues": "Incidencias"
+  },
+  "security": {
+    "title": "Seguridad",
+    "users": "Usuarios",
+    "roles": "Roles"
+  }
+}

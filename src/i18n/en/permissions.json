@@ -1,0 +1,19 @@
+{
+  "ADMIN": "Administrador",
+  "roles_create": "Crear Roles",
+  "roles_read": "Ver Roles",
+  "roles_update": "Actualizar Roles",
+  "roles_delete": "Eliminar Roles",
+  "users_create": "Crear Usuarios",
+  "users_read": "Ver Usuarios",
+  "users_update": "Actualizar Usuarios",
+  "users_delete": "Eliminar Usuarios",
+  "projects_create": "Crear Proyectos",
+  "projects_read": "Ver Proyectos",
+  "projects_update": "Actualizar Proyectos",
+  "projects_delete": "Eliminar Proyectos",
+  "issues_create": "Crear Incidencias",
+  "issues_read": "Ver Incidencias",
+  "issues_update": "Actualizar Incidencias",
+  "issues_delete": "Eliminar Incidencias"
+}

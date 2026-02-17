@@ -1,0 +1,42 @@
+{
+  "fields": {
+    "name": "Nombre",
+    "description": "Descripción",
+    "identifier": "Identificador",
+    "startDate": "Fecha de inicio",
+    "endDate": "Fecha de fin",
+    "author": "Autor",
+    "members": "Miembros",
+    "issues": "Incidencias"
+  },
+  "deactivate": {
+    "title": "Desactivar proyecto",
+    "message": "¿Está seguro que desea desactivar el proyecto seleccionado?"
+  },
+  "successCreate": "Se ha añadido un nuevo proyecto satisfactoriamente",
+  "successUpdate": "Se ha actualizado el proyecto satisfactoriamente",
+  "successDeactivate": "El proyecto se ha desactivado satisfactoriamente",
+  "add": "Adicionar proyecto",
+  "newProject": {
+    "title": "Adicionar nuevo proyecto"
+  },
+  "tabs": {
+    "general": {
+      "title": "General",
+      "subtitle": "Información general"
+    },
+    "members": {
+      "title": "Miembros",
+      "subtitle": "Listado de miembros"
+    },
+    "issues": {
+      "title": "Incidencias",
+      "subtitle": "Listado de incidencias"
+    }
+  },
+  "addMembers": {
+    "fields": {
+      "userIds": "Añadir miembros"
+    }
+  }
+}
