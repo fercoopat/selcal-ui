@@ -14,7 +14,7 @@ export const useRemoveComment = ({ issueId, onSuccess }: Params) => {
 
   const { error, isPending, mutate } = useMutation({
     mutationFn: (commentId: string | undefined) =>
-      CommentsService.remove(commentId),
+      CommentsService.remove(issueId, commentId),
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({

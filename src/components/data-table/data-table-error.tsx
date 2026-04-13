@@ -23,7 +23,7 @@ const DataTableError = ({
     <div
       className={`flex flex-col items-center justify-center p-8 ${className}`}
     >
-      <Alert variant="destructive" className="w-full max-w-md">
+      <Alert variant="error" className="w-full max-w-md">
         <AlertCircleIcon className="h-4 w-4" />
         <AlertTitle>{t(title)}</AlertTitle>
 

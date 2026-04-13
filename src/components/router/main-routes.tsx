@@ -3,6 +3,7 @@ import type { RouteObject } from "react-router";
 
 import { MainLayout } from "@/components/layouts";
 import { PageLoader } from "@/components/loaders";
+import { calibrationRoutes } from "@/modules/calibrations/routes/index.tsx";
 import { dashboardRoutes } from "@/modules/dashboard/routes";
 import { issuesRoutes } from "@/modules/issues/routes";
 import { projectsRoutes } from "@/modules/projects/routes";
@@ -20,6 +21,7 @@ export const mainRoutes: RouteObject[] = [
       ...issuesRoutes,
       ...projectsRoutes,
       ...securityRoutes,
+      ...calibrationRoutes,
     ],
   },
 ];

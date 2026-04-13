@@ -79,6 +79,21 @@ class CommentsService extends ApiService {
     return data;
   }
 
+  async findOne(
+    issueId: string | undefined,
+    commentId: string | undefined,
+  ): Promise<Comment | undefined> {
+    if (!issueId || !commentId) {
+      throw new Error("Issue ID and Comment ID are necessary to find one comment");
+    }
+
+    const { data } = await ApiClient.get<Comment>(
+      this.getPath(`/${issueId}/comments/${commentId}`),
+    );
+
+    return data;
+  }
+
   async remove(
     issueId: string | undefined,
     commentId: string | undefined,

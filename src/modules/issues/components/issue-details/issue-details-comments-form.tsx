@@ -72,7 +72,7 @@ const IssueDetailsCommentsForm = () => {
     // error: errorLoadComment,
     comment,
     isLoading: isLoadingComment,
-  } = useFindOneComment(editValue ?? "");
+  } = useFindOneComment(issue?.id, editValue ?? "");
 
   const form = useCreateIssueCommentForm({
     issue,

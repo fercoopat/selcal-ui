@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { PROJECTS_QUERIES } from "@/modules/projects/constants/projects-queries";
 import { ProjectsService } from "@/modules/projects/services";
 
-export const useFindOneProject = (projectId: string | null) => {
+export const useFindOneProject = (projectId: string | null | undefined) => {
   const { data, error, isLoading } = useQuery({
     queryFn: () => ProjectsService.findOne(projectId ?? ""),
     queryKey: PROJECTS_QUERIES.findOne(projectId ?? ""),
