@@ -5,6 +5,7 @@ export interface User extends CommonFields {
   email: string;
   firstName: string;
   lastName: string;
+  lastLogin?: string;
   role: Role;
   avatar?: string;
 }

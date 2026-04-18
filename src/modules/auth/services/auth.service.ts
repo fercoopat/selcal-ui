@@ -2,6 +2,7 @@ import type { RequestConfig } from "@/config/api";
 import { ApiClient } from "@/lib/api-client";
 import type { AuthLoginResponse } from "@/modules/auth/interfaces/login.interface";
 import type { LoginPayload } from "@/modules/auth/schemas/login.schema";
+import type { RegisterPayload } from "@/modules/auth/schemas/register.schema";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
 import { ApiService } from "@/shared/services/api.service";
 
@@ -18,22 +19,33 @@ class AuthService extends ApiService {
     return data;
   }
 
+  async register(payload: RegisterPayload, config?: RequestConfig) {
+    const { data } = await ApiClient.post<AuthLoginResponse>(
+      this.getPath("/register"),
+      payload,
+      config,
+    );
+
+    return data;
+  }
+
   async getCurrentUser(config?: RequestConfig) {
     const { data } = await ApiClient.get<User>(this.getPath("/me"), config);
 
     return data;
   }
 
+  async refreshToken(refreshToken: string) {
+    const { data } = await ApiClient.post<AuthLoginResponse>(
+      this.getPath("/refresh"),
+      { refreshToken },
+    );
+
+    return data;
+  }
+
   logout() {
     return ApiClient.post<void>(this.getPath("/logout"));
-  }
-
-  refreshToken(refreshToken: string) {
-    return ApiClient.post(this.getPath("/refresh"), { refreshToken });
-  }
-
-  verifyToken() {
-    return ApiClient.get(this.getPath("/verify"));
   }
 }
 

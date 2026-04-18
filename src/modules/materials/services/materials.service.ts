@@ -56,6 +56,8 @@ class MaterialsServiceClass {
         return this.getSquareProfiles();
       case "hexagonal":
         return this.getHexagonalProfiles();
+      default:
+        return [];
     }
   }
 

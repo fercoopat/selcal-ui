@@ -1,12 +1,13 @@
-import { useFormContext } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { calibrationInputSchema } from "@/modules/calibrations/schemas/calibration-input.schema";
 import type { CalibrationInputPayload } from "@/modules/calibrations/schemas";
 
-export const useCalibrationWizardForm = () => {
-  const context = useFormContext<CalibrationInputPayload>();
-  
-  if (!context) {
-    throw new Error("useCalibrationWizardForm must be used within a FormContainer");
-  }
-
-  return context;
-};
+export const useCalibrationWizardForm = () =>
+  useForm<CalibrationInputPayload>({
+    resolver: zodResolver(calibrationInputSchema),
+    defaultValues: {
+      maxElongation: 1.3,
+    },
+  });

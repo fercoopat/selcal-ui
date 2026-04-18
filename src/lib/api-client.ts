@@ -7,6 +7,7 @@ import {
   redirectToLogin,
   saveAuthTokens,
 } from "@/modules/auth/helpers/auth.helpers";
+import { CookiesService } from "@/lib/cookies";
 
 export interface AuthTokens {
   accessToken: string;
@@ -20,16 +21,12 @@ ApiClient.interceptors.request.use(
     config = addAuthHeader(config);
     return config;
   },
-
-  (error) => {
-    return Promise.reject(error);
-  },
+  (error) => Promise.reject(error),
 );
 
 ApiClient.interceptors.response.use(
   (response) => {
     saveAuthTokens(response);
-
     return response;
   },
 
@@ -40,54 +37,75 @@ ApiClient.interceptors.response.use(
 
     const status = error.response?.status;
 
-    // Token expirado (401)
+    // Token expired (401) — attempt refresh once
     if (status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      try {
-        // todo: refresh token handle
-        // const newToken = await handleTokenRefresh();
-        // originalRequest.headers.Authorization = `Bearer ${newToken}`;
-        // return ApiClient(originalRequest);
-      } catch {
-        clearAuthData();
+      const refreshToken = CookiesService.get<string>("refreshToken");
 
-        redirectToLogin();
+      if (refreshToken) {
+        try {
+          const { data } = await axios.post(
+            `${API_CONFIG.baseURL}/auth/refresh`,
+            { refreshToken },
+            { withCredentials: true },
+          );
 
-        return Promise.reject(
-          new Error("Session expired. Please login again."),
-        );
+          CookiesService.setAuthToken(data.accessToken);
+
+          if (data.refreshToken) {
+            CookiesService.set("refreshToken", data.refreshToken, {
+              expires: 30,
+            });
+          }
+
+          if (originalRequest.headers) {
+            originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+          }
+
+          return ApiClient(originalRequest);
+        } catch {
+          clearAuthData();
+          redirectToLogin();
+          return Promise.reject(new Error("Session expired. Please login again."));
+        }
       }
+
+      clearAuthData();
+      redirectToLogin();
+      return Promise.reject(new Error("Session expired. Please login again."));
     }
 
-    // Acceso prohibido (403)
+    // Forbidden (403)
     if (status === 403) {
       window.dispatchEvent(new CustomEvent("auth:forbidden"));
-
       return Promise.reject(
         new Error("You don't have permission to access this resource."),
       );
     }
 
-    // Error del servidor (500+)
+    // Server error (500+)
     if (status && status >= 500) {
       return Promise.reject(new Error("Server error. Please try again later."));
     }
 
-    // Error de validación (422)
-    if (status === 422) {
-      const validationErrors = (error.response?.data as { errors?: ApiError[] })
-        ?.errors;
-
-      if (validationErrors) {
-        return Promise.reject({
-          message: "Validation failed",
-          errors: validationErrors,
-        });
-      }
+    // Validation error (400)
+    if (status === 400) {
+      const message = (error.response?.data as { message?: string | string[] })
+        ?.message;
+      return Promise.reject({ status: 400, message });
     }
 
-    // Error genérico
+    // Conflict (409)
+    if (status === 409) {
+      return Promise.reject({ status: 409, message: "This record already exists." });
+    }
+
+    // Rate limit (429)
+    if (status === 429) {
+      return Promise.reject({ status: 429, message: "Too many requests, please wait." });
+    }
+
     const errorMessage =
       (error.response?.data as Error)?.message ||
       error.message ||

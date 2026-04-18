@@ -5,9 +5,8 @@ import {
   MultiSelectContent,
   MultiSelectItem,
 } from "@/components/ui/multi-select";
-import {
-  useFindNonAdminUsers
-} from "@/modules/security/users/hooks/use-find-all-users";
+import type { User } from "@/modules/security/users/interfaces/user.interface";
+import { useFindNonAdminUsers } from "@/modules/security/users/hooks/use-find-all-users";
 import { joinText } from "@/shared/utils/text.utils";
 
 type Props = {
@@ -18,6 +17,7 @@ type Props = {
   required?: boolean;
   disabled?: boolean;
 };
+
 const UserSelect = ({ multiple = false, ...props }: Props) => {
   const { users, isLoading } = useFindNonAdminUsers();
 
@@ -25,9 +25,9 @@ const UserSelect = ({ multiple = false, ...props }: Props) => {
     return (
       <FormMultiselectField disabled={isLoading ?? props?.disabled} {...props}>
         <MultiSelectContent>
-          {users?.map((user) => (
-            <MultiSelectItem key={user?.id} value={user?.id ?? ""}>
-              {joinText([user?.firstName, user?.lastName])}
+          {users?.map((user: User) => (
+            <MultiSelectItem key={user.id} value={user.id}>
+              {joinText([user.firstName, user.lastName])}
             </MultiSelectItem>
           ))}
         </MultiSelectContent>
@@ -37,13 +37,14 @@ const UserSelect = ({ multiple = false, ...props }: Props) => {
 
   return (
     <FormSelectField
-      options={users}
-      getOptionValue={(option) => option?.id ?? ""}
-      renderOption={(item) => (
+      options={users ?? []}
+      getOptionValue={(option: User | undefined) => option?.id ?? ""}
+      renderOption={(item: User | undefined) => (
         <div>{joinText([item?.firstName, item?.lastName])}</div>
       )}
       {...props}
     />
   );
 };
+
 export default memo(UserSelect);

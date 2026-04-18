@@ -2,12 +2,20 @@
   "general": {
     "title": "General",
     "dashboard": "Dashboard",
-    "projects": "Proyectos",
-    "issues": "Incidencias"
+    "calibrations": "Calibrations",
+    "rollingMills": "Rolling Mills",
+    "materialGrades": "Material Grades",
+    "chemicalElements": "Chemical Elements"
   },
   "security": {
-    "title": "Seguridad",
-    "users": "Usuarios",
+    "title": "Security",
+    "users": "Users",
     "roles": "Roles"
+  },
+  "settings": {
+    "title": "Settings",
+    "millTypes": "Mill Types",
+    "profileTypes": "Profile Types",
+    "passGeometryTypes": "Pass Geometry Types"
   }
 }

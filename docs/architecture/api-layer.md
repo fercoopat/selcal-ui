@@ -5,248 +5,215 @@
 ```
 ApiClient (Axios instance with interceptors)
   └── ApiService (abstract base class)
-       └── AuthService, ProjectsService, CalibrationsService, etc.
+       ├── CrudService<TEntity, TPayload> (generic CRUD — extends ApiService)
+       │    └── CalibrationsService, PassesService, RollingMillsService, ...
+       └── AuthService, UsersService, RolesService (custom endpoints)
             └── Wrapped in custom hooks (useFindAllX, useCreateX, etc.)
 ```
 
+---
+
 ## ApiClient (`@/lib/api-client.ts`)
 
-The Axios instance with configured interceptors:
+Axios instance with two interceptors.
 
 ### Request Interceptor
-- Automatically attaches `Authorization: Bearer <token>` header via `addAuthHeader()`.
-- Token retrieved from cookies service (`@/lib/cookies.ts`).
+Attaches `Authorization: Bearer <token>` via `addAuthHeader()`. Token read from cookies (`@/lib/cookies.ts`).
 
 ### Response Interceptor
-- **200/201**: Saves auth tokens from login responses via `saveAuthTokens()`.
-- **401**: Redirects to login page (session expired / unauthorized).
-- **403**: Dispatches forbidden event.
-- **422**: Handles validation errors.
-- **500+**: Handles server errors.
 
-> **TODO**: Token refresh logic is currently stubbed. See `// todo: refresh token handle` comment in api-client.ts.
+| Status | Behavior |
+|--------|----------|
+| 200/201 | Saves `accessToken` + `refreshToken` from auth responses via `saveAuthTokens()` |
+| 401 (first time) | Attempts token refresh via `POST /auth/refresh` with stored `refreshToken`, retries original request |
+| 401 (after retry) | Clears all auth data, redirects to login |
+| 403 | Dispatches `auth:forbidden` custom event |
+| 400 | Rejects with `{ status: 400, message }` for field-level error mapping |
+| 409 | Rejects with `{ status: 409, message: "This record already exists." }` |
+| 429 | Rejects with `{ status: 429, message: "Too many requests, please wait." }` |
+| 500+ | Rejects with generic server error message |
+
+---
 
 ## ApiService Base Class (`@/shared/services/api.service.ts`)
 
-Abstract base class that all feature services extend:
+Abstract base for all services. Provides `getPath(suffix?)` to build endpoint URLs from `basePath`.
 
 ```typescript
 export abstract class ApiService {
-  protected api = apiClient; // The Axios instance
+  constructor(private basePath: string) {}
 
-  constructor(protected basePath: string) {}
-
-  // Builds full path from base path
-  protected getPath(path: string): string {
-    return `${this.basePath}${path}`;
+  getPath(path?: string): string {
+    if (!path) return this.basePath;
+    return this.basePath + path;
   }
 }
 ```
 
-### Service Implementation Pattern
+---
+
+## CrudService (`@/shared/services/crud.service.ts`)
+
+Generic service for modules that only need standard CRUD. **Use this instead of writing a new class** when the module maps to `GET /`, `GET /:id`, `POST /`, `PATCH /:id`, `DELETE /:id`.
 
 ```typescript
-import { ApiService } from "@/shared/services";
-import type { Project, SearchParams, SearchResponse } from "@/shared/interfaces";
-
-const BASE_PATH = "/projects";
-
-export class ProjectsService extends ApiService {
-  async findAll(params: SearchParams): Promise<SearchResponse<Project>> {
-    return this.api.get<SearchResponse<Project>>(this.getPath(BASE_PATH), { params });
-  }
-
-  async findOne(id: string): Promise<Project> {
-    return this.api.get<Project>(this.getPath(`${BASE_PATH}/${id}`));
-  }
-
-  async create(data: CreateProjectPayload): Promise<Project> {
-    return this.api.post<Project>(this.getPath(BASE_PATH), data);
-  }
-
-  async update(id: string, data: UpdateProjectPayload): Promise<Project> {
-    return this.api.put<Project>(this.getPath(`${BASE_PATH}/${id}`), data);
-  }
-
-  async remove(id: string): Promise<void> {
-    return this.api.delete(this.getPath(`${BASE_PATH}/${id}`));
-  }
+export class CrudService<TEntity, TPayload> extends ApiService {
+  async findAll(): Promise<TEntity[]>
+  async findOne(id: string): Promise<TEntity>
+  async create(payload: TPayload): Promise<TEntity>
+  async update(id: string, payload: Partial<TPayload>): Promise<TEntity>
+  async delete(id: string): Promise<TEntity>
 }
-
-// Singleton export
-export default new ProjectsService(BASE_PATH);
 ```
+
+### Usage
+```typescript
+// src/modules/rolling-mills/services/rolling-mills.service.ts
+import { CrudService } from "@/shared/services";
+import type { RollingMill } from "@/modules/rolling-mills/interfaces";
+import type { CreateRollingMillPayload } from "@/modules/rolling-mills/schemas";
+
+export const RollingMillsService = new CrudService<
+  RollingMill,
+  CreateRollingMillPayload
+>("/rolling-mills");
+```
+
+### When to extend `ApiService` directly
+Only when the module has endpoints beyond standard CRUD:
+
+```typescript
+// AuthService — login, register, refresh, me, logout
+class AuthService extends ApiService {
+  async login(payload: LoginPayload) { ... }
+  async register(payload: RegisterPayload) { ... }
+  async refreshToken(refreshToken: string) { ... }
+  async getCurrentUser() { ... }
+  async logout() { ... }
+}
+```
+
+---
+
+## Service Export Convention
+
+All services use **named exports**:
+
+```typescript
+// ✅ Named export (CrudService instances)
+export const RollingMillsService = new CrudService<...>("/rolling-mills");
+
+// Barrel re-exports the named export
+// src/modules/rolling-mills/services/index.ts
+export { RollingMillsService } from "./rolling-mills.service";
+```
+
+Hooks always import from the barrel:
+```typescript
+import { RollingMillsService } from "@/modules/rolling-mills/services";
+```
+
+---
 
 ## React Query Hook Pattern
 
-Every service method is wrapped in a custom hook:
+Every service method is wrapped in a custom hook in `hooks/index.ts`.
 
-### Query Hooks (Read Operations)
-
+### Query Hooks (reads)
 ```typescript
-import { useQuery } from "@tanstack/react-query";
-import { PROJECTS_QUERIES } from "../constants";
-import projectsService from "../services/projects.service";
-
-export const useFindAllProjects = () => {
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: PROJECTS_QUERIES.findAll,
-    queryFn: () => projectsService.findAll({}),
+export const useFindAllRollingMills = () =>
+  useQuery({
+    queryKey: ROLLING_MILLS_QUERIES.findAll,
+    queryFn: () => RollingMillsService.findAll(),
   });
+```
 
-  return {
-    projects: data?.data ?? [],
-    isLoading,
-    error,
-    refetch,
-  };
-};
-
-export const useFindOneProject = (id: string) => {
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: PROJECTS_QUERIES.findOne(id),
-    queryFn: () => projectsService.findOne(id),
-    enabled: !!id,
+### Mutation Hooks (writes)
+```typescript
+export const useCreateRollingMill = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: CreateRollingMillPayload) =>
+      RollingMillsService.create(payload),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ROLLING_MILLS_QUERIES.all });
+      toast.success("Laminador creado exitosamente");
+    },
+    onError: () => toast.error("Error al crear el laminador"),
   });
-
-  return {
-    project: data ?? null,
-    isLoading,
-    error,
-    refetch,
-  };
 };
 ```
 
-### Mutation Hooks (Write Operations)
+**Rules:**
+- Always invalidate using `QUERIES.all` (not `findAll`) so all related queries refresh.
+- Always show `toast.success` on success and `toast.error` on error.
+- Use `void queryClient.invalidateQueries(...)` (not `await`) to avoid blocking.
 
-```typescript
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
-import { PROJECTS_QUERIES } from "../constants";
-import projectsService from "../services/projects.service";
-
-export const useCreateProject = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: (data: CreateProjectPayload) => projectsService.create(data),
-    onSuccess: () => {
-      toast.success("Project created successfully");
-      queryClient.invalidateQueries({ queryKey: PROJECTS_QUERIES.findAll });
-    },
-    onError: (error: Error) => {
-      toast.error(`Failed to create project: ${error.message}`);
-    },
-  });
-};
-
-export const useDeleteProject = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: (id: string) => projectsService.remove(id),
-    onSuccess: () => {
-      toast.success("Project deleted successfully");
-      queryClient.invalidateQueries({ queryKey: PROJECTS_QUERIES.findAll });
-    },
-    onError: (error: Error) => {
-      toast.error(`Failed to delete project: ${error.message}`);
-    },
-  });
-};
-```
+---
 
 ## Query Keys Pattern
 
-Query keys are defined as constants in module `constants/`:
-
 ```typescript
-export const PROJECTS_QUERIES = {
-  findAll: ["projects:find-all"] as const,
-  findOne: (id: string) => ["projects:find-one", id] as const,
-  dropdownOptions: ["projects:dropdown-options"] as const,
-};
+export const ROLLING_MILLS_QUERIES = {
+  all: ["rolling-mills"] as const,           // used for invalidation
+  findAll: ["rolling-mills", "list"] as const,
+  findOne: (id: string) => ["rolling-mills", "details", id] as const,
+} as const;
 ```
 
-### Guidelines
-- Use namespace prefix: `MODULE_QUERIES`.
-- Use `as const` for type safety.
-- Dynamic keys use functions: `findOne: (id) => ["projects:find-one", id]`.
+**Always invalidate `QUERIES.all`** in mutations — this invalidates both `findAll` and `findOne` queries in one call.
 
-## Path Constants Pattern
+---
+
+## Settings Modules (Lookup Tables)
+
+Mill Types, Profile Types, and Pass Geometry Types are reference data. Their hooks sort by `sortOrder` ascending:
 
 ```typescript
-export const PROJECT_PATHS = {
-  basePath: "/projects",
-  listPath: "/projects/list",
-  detailsPath: (id: string) => `/projects/${id}`,
-  createPath: "/projects/create",
-};
+export const useFindAllMillTypes = () =>
+  useQuery({
+    queryKey: MILL_TYPES_QUERIES.findAll,
+    queryFn: () => MillTypesService.findAll(),
+    select: (data) => [...data].sort((a, b) => a.sortOrder - b.sortOrder),
+  });
 ```
 
-Service classes use their own `basePath` constructor parameter, but path constants are useful for routing and navigation.
+---
 
-## API Configuration (`@/config/api.ts`)
+## Authentication Flow
 
-Axios base configuration:
-- `baseURL`: From `VITE_BACKEND_URL` environment variable.
-- `timeout`: Configured timeout value.
-- Type exports for API response shapes.
+1. On app load: call `GET /auth/me` to validate stored `accessToken` and hydrate user session.
+2. If `GET /auth/me` returns 401: interceptor automatically attempts `POST /auth/refresh`.
+3. If refresh succeeds: retry original request with new token.
+4. If refresh fails: clear all tokens, redirect to `/auth/signin`.
+5. Tokens stored in cookies via `CookiesService` (`accessToken` + `refreshToken`).
 
-## Proxy Configuration (Vite)
+---
 
-Development proxy is configured in `vite.config.ts`:
+## Error Handling in Components
 
 ```typescript
-server: {
-  proxy: {
-    "/api": {
-      target: env.VITE_BACKEND_URL,
-      changeOrigin: true,
-      secure: false,
-      rewrite: (path) => path.replace(/^\/api/, ""),
-    },
-  },
-},
-```
+// In mutations — errors are handled by the hook (toast)
+const { mutate, isPending } = useCreateCalibration();
+mutate(payload); // toast shown automatically on error
 
-This means `/api/projects` in development proxies to `VITE_BACKEND_URL/projects`.
-
-## Error Handling
-
-### In Mutations
-All mutations use `sonner` toast notifications:
-```typescript
-onError: (error: Error) => {
-  toast.error(`Failed to create project: ${error.message}`);
+// For 400 field errors — map message array to form fields
+onError: (error) => {
+  if (error.status === 400) {
+    // error.message is string | string[]
+    showFieldErrors(error.message);
+  }
 }
 ```
 
-### In Queries
-The `DataTable` component handles loading/error states:
-```tsx
-<DataTable
-  columns={columns}
-  data={data}
-  isLoading={isLoading}
-  error={error}
-  onRetry={() => refetch()}
-/>
-```
+---
 
 ## Environment Variables
 
-Backend URL is configured via `VITE_BACKEND_URL` in `.env`:
 ```bash
-VITE_BACKEND_URL=https://api.example.com
+VITE_BACKEND_URL=http://localhost:3000  # Backend base URL
 ```
 
-Access via `@/config/envs.ts` (never use `import.meta.env` directly in components).
+Access via `@/config/envs.ts` — never use `import.meta.env` directly in components.
 
-## Security
-
-- **JWT tokens** stored in cookies, auto-attached via interceptor.
-- **CSRF**: Backend handles CSRF; frontend only manages auth tokens.
-- **No secrets** in frontend code. All sensitive config via environment variables.
-- **Token refresh**: Currently stubbed (TODO item).
+In development, Vite proxies `/api/*` to `VITE_BACKEND_URL`. In production, `ApiClient.baseURL` is set to `VITE_BACKEND_URL` directly.

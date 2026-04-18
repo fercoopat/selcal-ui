@@ -36,7 +36,7 @@ pnpm preview          # Preview production build
 - Use `z.infer<typeof schema>` for payload types derived from Zod schemas.
 
 ### 2. Component Patterns
-- **All components are memoized**: `export default memo(ComponentName)` or via `genericMemo` HOC.
+- **Memoize components with props**: `export default memo(ComponentName)` or via `genericMemo` HOC. Do **not** wrap no-prop components in `memo()` — there are no props to compare, so it provides zero benefit.
 - **Barrel exports**: Every directory must have an `index.ts` re-exporting its contents.
 - **Page components are thin**: Call hooks, pass data to presentational components.
 - Use shadcn/ui primitives from `@/components/ui/`.
@@ -58,6 +58,28 @@ Each feature module in `src/modules/<feature>/` follows:
 components/  constants/  contexts/  helpers/  hooks/
 interfaces/  pages/       routes/    schemas/  services/
 ```
+
+#### File Naming Conventions (per directory)
+
+**`constants/`** — one file per concern, all re-exported from `index.ts`:
+- `module-name.queries.ts` — React Query key objects (e.g., `MODULE_QUERIES`)
+- `module-name-paths.ts` — route path constants (e.g., `MODULE_PATHS`)
+- `module-name.permissions.ts` — permission constants referencing `AUTH_PERMISSIONS`
+
+**`schemas/`** — one file per operation, all re-exported from `index.ts`:
+- `entity-name-create.schema.ts` — Zod schema + `CreateXPayload` type
+- `entity-name-input.schema.ts` — additional input schemas (e.g., wizard inputs)
+
+**`interfaces/`** — one file per entity, all re-exported from `index.ts`:
+- `entity-name.interface.ts` — TypeScript interfaces extending `CommonFields`
+
+**`hooks/`** — one file per hook, all re-exported from `index.ts`:
+- `use-find-all-modules.ts`
+- `use-find-one-module.ts`
+- `use-create-module.ts`
+- `use-update-module.ts`
+- `use-delete-module.ts`
+- `use-create-module-form.ts` (form hooks)
 
 ### 6. Internationalization
 - Default language: **Spanish** (`es`). Supported: `en`, `es`.
@@ -127,7 +149,7 @@ src/
 1. **Never use `any`** — Use `unknown` with type guards, or derive types from Zod schemas via `z.infer`.
 2. **Never modify files in `@/components/ui/`** — These are shadcn/ui generated files. Compose, don't edit.
 3. **Never import between modules directly** — Use shared services, `@/shared/`, or `@/components/` for cross-cutting concerns.
-4. **Never skip memoization** — Every component must be wrapped in `memo()` or `genericMemo`.
+4. **Never skip memoization on components with props** — Every component that receives props must be wrapped in `memo()` or `genericMemo`. Do **not** wrap no-prop components in `memo()` — it provides zero benefit.
 5. **Never hardcode translation strings** — Always use `t("namespace:key")` with keys in `src/i18n/{lang}/`.
 6. **Never use `import.meta.env` directly in components** — Use `getEnv()` from `@/config/envs.ts`.
 7. **Never create barrel exports without `index.ts`** — Every directory with multiple exports needs one.

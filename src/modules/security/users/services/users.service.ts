@@ -8,26 +8,19 @@ const USERS_SERVICE_BASE_PATH = "/users" as const;
 
 class UsersService extends ApiService {
   async findAll() {
-    const { data } = await ApiClient.get<Array<User | undefined>>(
-      this.getPath(),
-    );
+    const { data } = await ApiClient.get<User[]>(this.getPath());
 
     return data;
   }
 
-  async findNonAdminUsers() {
-    const { data } = await ApiClient.get<Array<User | undefined>>(
-      this.getPath("/public"),
-    );
+  async findPublic() {
+    const { data } = await ApiClient.get<User[]>(this.getPath("/public"));
 
     return data;
   }
 
   async create(payload: CreateUserPayload) {
-    const { data } = await ApiClient.post<User | undefined>(
-      this.getPath(),
-      payload,
-    );
+    const { data } = await ApiClient.post<User>(this.getPath(), payload);
 
     return data;
   }
@@ -35,7 +28,7 @@ class UsersService extends ApiService {
   async update<T>(userId: string | undefined, payload: T) {
     if (!userId) throw new Error("User ID is required to update");
 
-    const { data } = await ApiClient.patch<User | undefined>(
+    const { data } = await ApiClient.patch<User>(
       this.getPath(`/${userId}`),
       payload,
     );
@@ -44,25 +37,19 @@ class UsersService extends ApiService {
   }
 
   async findOne(userId: string | undefined) {
-    if (!userId) throw new Error("User ID is required to deactivate");
+    if (!userId) throw new Error("User ID is required to find one");
 
-    const { data } = await ApiClient.get<User | undefined>(
-      this.getPath(`/${userId}`),
-    );
+    const { data } = await ApiClient.get<User>(this.getPath(`/${userId}`));
 
     return data;
   }
 
-  async activate(userId: string | undefined) {
-    if (!userId) throw new Error("User ID is required to activate");
+  async delete(userId: string | undefined) {
+    if (!userId) throw new Error("User ID is required to delete");
 
-    await ApiClient.post(this.getPath(`/${userId}/activate`));
-  }
+    const { data } = await ApiClient.delete<User>(this.getPath(`/${userId}`));
 
-  async deactivate(userId: string | undefined) {
-    if (!userId) throw new Error("User ID is required to deactivate");
-
-    await ApiClient.post(this.getPath(`/${userId}/deactivate`));
+    return data;
   }
 
   async updatePassword(
@@ -71,10 +58,26 @@ class UsersService extends ApiService {
   ) {
     if (!userId) throw new Error("User ID is required to update user password");
 
-    const { data } = await ApiClient.patch<User | undefined>(
+    const { data } = await ApiClient.patch<User>(
       this.getPath(`/${userId}/update-password`),
       payload,
     );
+
+    return data;
+  }
+
+  async deactivate(userId: string | undefined) {
+    if (!userId) throw new Error("User ID is required to deactivate");
+
+    const { data } = await ApiClient.patch<User>(
+      this.getPath(`/${userId}/deactivate`),
+    );
+
+    return data;
+  }
+
+  async findNonAdminUsers() {
+    const { data } = await ApiClient.get<User[]>(this.getPath("/non-admins"));
 
     return data;
   }

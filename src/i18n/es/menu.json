@@ -2,12 +2,20 @@
   "general": {
     "title": "General",
     "dashboard": "Dashboard",
-    "projects": "Proyectos",
-    "issues": "Incidencias"
+    "calibrations": "Calibraciones",
+    "rollingMills": "Laminadores",
+    "materialGrades": "Grados de Material",
+    "chemicalElements": "Elementos Químicos"
   },
   "security": {
     "title": "Seguridad",
     "users": "Usuarios",
     "roles": "Roles"
+  },
+  "settings": {
+    "title": "Configuración",
+    "millTypes": "Tipos de Laminador",
+    "profileTypes": "Tipos de Perfil",
+    "passGeometryTypes": "Tipos de Geometría de Pase"
   }
 }

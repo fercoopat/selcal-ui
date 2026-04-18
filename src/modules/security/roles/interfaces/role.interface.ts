@@ -4,4 +4,5 @@ export interface Role extends CommonFields {
   name: string;
   description: string;
   permissions: string[];
+  isSystemRole: boolean;
 }

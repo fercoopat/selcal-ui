@@ -12,15 +12,15 @@ export const addAuthHeader = (config: RequestConfig) => {
 };
 
 export const saveAuthTokens = (response: ApiResponse<AuthLoginResponse>) => {
-  const { accessToken, user } = response.data || {};
+  const { accessToken, refreshToken, user } = response.data || {};
 
   if (accessToken) {
     CookiesService.setAuthToken(accessToken);
   }
 
-  // if (refreshToken) {
-  //   CookiesService.set("refreshToken", refreshToken, { expires: 30 });
-  // }
+  if (refreshToken) {
+    CookiesService.set("refreshToken", refreshToken, { expires: 30 });
+  }
 
   if (user) {
     CookiesService.setUserData(user);
@@ -28,24 +28,6 @@ export const saveAuthTokens = (response: ApiResponse<AuthLoginResponse>) => {
 
   return response;
 };
-
-// export const handleTokenRefresh = async (): Promise<string> => {
-//   const refreshToken = CookiesService.get("refreshToken");
-//   if (!refreshToken) {
-//     throw new Error("No refresh token available");
-//   }
-//   try {
-//     const response = await AuthService.refreshToken(refreshToken);
-//     if (response.data.accessToken) {
-//       CookiesService.setAuthToken(response.data.accessToken);
-//       return response.data.accessToken;
-//     }
-//     throw new Error("No access token in refresh response");
-//   } catch (error) {
-//     clearAuthData();
-//     throw error;
-//   }
-// };
 
 export const clearAuthData = () => {
   CookiesService.removeAuthToken();

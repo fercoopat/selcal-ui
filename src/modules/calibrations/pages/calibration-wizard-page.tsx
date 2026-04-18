@@ -1,14 +1,16 @@
 import { FormProvider } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+
 import { useCalibrationWizardForm } from "@/modules/calibrations/hooks/use-calibration-wizard-form";
 import CalibrationWizard from "@/modules/calibrations/components/calibration-wizard";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CalibrationsService } from "@/modules/calibrations/services";
 import { CALIBRATIONS_QUERIES } from "@/modules/calibrations/constants";
-import { toast } from "sonner";
 import type { CalibrationInputPayload } from "@/modules/calibrations/schemas";
 
 const CalibrationWizardPage = () => {
   const queryClient = useQueryClient();
+  const form = useCalibrationWizardForm();
 
   const calculateMutation = useMutation({
     mutationFn: (payload: CalibrationInputPayload) =>
@@ -27,11 +29,9 @@ const CalibrationWizardPage = () => {
     },
   });
 
-  const form = useCalibrationWizardForm();
-
-  const onSubmit = (data: CalibrationInputPayload) => {
+  const onSubmit = form.handleSubmit((data) => {
     calculateMutation.mutate(data);
-  };
+  });
 
   return (
     <FormProvider {...form}>
