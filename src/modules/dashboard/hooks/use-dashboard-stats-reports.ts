@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { REPORTS_QUERIES } from "@/modules/dashboard/constants/reports.queries";
+import { REPORTS_QUERIES } from "@/modules/dashboard/constants/dashboard.queries";
 import { ReportsService } from "@/modules/dashboard/services";
 
 export const useDashboardStatsReports = () => {

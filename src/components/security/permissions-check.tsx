@@ -1,7 +1,7 @@
 import { memo } from "react";
 
 import { useCurrentUser } from "@/modules/auth/hooks/use-current-user";
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth-permissions";
+import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 
 type Props = {
   children: React.ReactNode;

@@ -78,54 +78,7 @@ export default memo(ProjectsListPage);
 
 ## Form Patterns
 
-### FormContainer Wrapper
-
-All forms use the `FormContainer` component which provides `FormProvider` + `<form>` with `handleSubmit`:
-
-```tsx
-import { FormContainer } from "@/components/forms/form-container";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createProjectSchema, type CreateProjectPayload } from "../schemas";
-
-const CreateProjectForm = () => {
-  const form = useForm<CreateProjectPayload>({
-    resolver: zodResolver(createProjectSchema),
-    defaultValues: {
-      name: "",
-      description: "",
-    },
-  });
-
-  const onSubmit = form.handleSubmit(async (data) => {
-    // mutation logic
-  });
-
-  return (
-    <FormContainer form={form} onSubmit={onSubmit}>
-      <FormFieldInput control={form.control} name="name" label="Project Name" />
-      <FormFieldTextarea
-        control={form.control}
-        name="description"
-        label="Description"
-      />
-      <LoadingButton type="submit" loading={form.formState.isSubmitting}>
-        Create
-      </LoadingButton>
-    </FormContainer>
-  );
-};
-```
-
-### Form Field Components
-
-Use the form field wrappers from `@/components/forms/`:
-- `FormFieldInput` - Text inputs
-- `FormFieldTextarea` - Textareas
-- `FormFieldSelect` - Select dropdowns
-- `FormFieldDate` - Date pickers
-- `FormFieldMultiSelect` - Multi-select
-- `FormFieldFiles` - File uploads
+See [`docs/standards/forms.md`](forms.md) for the full form standard (FormContainer, field components, schema pattern).
 
 ## Data Table Pattern
 

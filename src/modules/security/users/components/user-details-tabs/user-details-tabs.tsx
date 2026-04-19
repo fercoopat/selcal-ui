@@ -4,7 +4,7 @@ import { useDetailsTabs, type DetailsTab } from "@/hooks/use-details-tabs";
 import {
   USER_DETAILS_TAB,
   type UserDetailsTab,
-} from "@/modules/security/users/constants/users-paths";
+} from "@/modules/security/users/constants/users.paths";
 
 const UserDetailsGeneralTab = lazy(
   () =>

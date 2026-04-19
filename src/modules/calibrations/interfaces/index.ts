@@ -1,1 +1,17 @@
-export * from "./calibration.interface";
+export type {
+  CalibrationStatus,
+  Calibration,
+  ProfileType,
+  SteelGrade,
+  SteelProfile,
+  RoundProfile,
+  SquareProfile,
+  HexagonalProfile,
+  Profile,
+  Billet,
+  TargetProfile,
+  CalibrationInput,
+  PassResult,
+  CalibrationResult,
+  SimulationComparison,
+} from "./calibration.interface";

@@ -1,0 +1,11 @@
+import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
+
+export const MILL_TYPES_PERMISSIONS = {
+  READ: AUTH_PERMISSIONS.MILL_TYPES_READ,
+  CREATE: AUTH_PERMISSIONS.MILL_TYPES_CREATE,
+  UPDATE: AUTH_PERMISSIONS.MILL_TYPES_UPDATE,
+  DELETE: AUTH_PERMISSIONS.MILL_TYPES_DELETE,
+} as const;
+
+export type MillTypesPermission =
+  (typeof MILL_TYPES_PERMISSIONS)[keyof typeof MILL_TYPES_PERMISSIONS];

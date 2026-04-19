@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
-import { USERS_QUERIES } from "@/modules/security/users/constants/users-queries";
+import { USERS_QUERIES } from "@/modules/security/users/constants/users.queries";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
 import { UsersService } from "@/modules/security/users/services";
 

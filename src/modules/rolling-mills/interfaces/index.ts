@@ -1,1 +1,1 @@
-export * from "./rolling-mill.interface";
+export type { RollingMill } from "./rolling-mill.interface";

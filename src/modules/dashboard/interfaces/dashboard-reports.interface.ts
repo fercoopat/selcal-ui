@@ -1,5 +1,3 @@
-import type { IssueStatus } from '@/modules/issues/constants/issue-status';
-
 export interface DashboardReports {
   totalIssues: number;
   openIssues: number;
@@ -23,7 +21,7 @@ export interface IssuesByPriority {
 export interface IssuesByProject {
   projectName: string;
   count: number;
-  status: IssueStatus
+  status: string;
 }
 
 export interface IssuesByStatus {

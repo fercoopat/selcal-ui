@@ -1,3 +1,3 @@
-import { lazy } from 'react';
+import { lazy } from "react";
 
-export const MillTypesListPage = lazy(()=>import('./mill-types-list.page'));
+export const MillTypesListPage = lazy(() => import("./mill-types-list-page"));

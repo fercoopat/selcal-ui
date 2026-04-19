@@ -5,13 +5,13 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
-import { PROFILE_KEY } from "@/modules/auth/constants/auth-queries";
-import { USERS_QUERIES } from "@/modules/security/users/constants/users-queries";
+import { PROFILE_KEY } from "@/modules/auth/constants/auth.queries";
+import { USERS_QUERIES } from "@/modules/security/users/constants/users.queries";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
 import {
   updateUserPasswordSchema,
   type UpdateUserPasswordPayload,
-} from "@/modules/security/users/schemas/update-user-password.schema";
+} from "@/modules/security/users/schemas/user-update-password.schema";
 import { UsersService } from "@/modules/security/users/services";
 
 const defaultValues: UpdateUserPasswordPayload = {

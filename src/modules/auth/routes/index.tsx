@@ -3,12 +3,12 @@ import type { RouteObject } from "react-router";
 
 import { AuthLayout } from "@/components/layouts";
 import { PageLoader } from "@/components/loaders";
-import { AUTH_PATHS } from "@/modules/auth/constants/auth-paths";
+import { AUTH_PATHS } from "@/modules/auth/constants/auth.paths";
 import { SigninPage, SignupPage } from "@/modules/auth/pages";
 
 export const authRoutes: RouteObject[] = [
   {
-    path: AUTH_PATHS.BASE_PATH,
+    path: AUTH_PATHS.BASE,
     element: (
       <Suspense fallback={<PageLoader size="screen" />}>
         <AuthLayout />
@@ -16,11 +16,11 @@ export const authRoutes: RouteObject[] = [
     ),
     children: [
       {
-        path: AUTH_PATHS.signinPath,
+        path: AUTH_PATHS.SIGNIN,
         Component: SigninPage,
       },
       {
-        path: AUTH_PATHS.signupPath,
+        path: AUTH_PATHS.SIGNUP,
         Component: SignupPage,
       },
     ],

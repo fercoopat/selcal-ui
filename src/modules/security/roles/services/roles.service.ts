@@ -1,6 +1,6 @@
 import { ApiClient } from "@/lib/api-client";
 import type { Role } from "@/modules/security/roles/interfaces/role.interface";
-import type { CreateRolePayload } from "@/modules/security/roles/schemas/create-role.schema";
+import type { CreateRolePayload } from "@/modules/security/roles/schemas/role-create.schema";
 import { ApiService } from "@/shared/services/api.service";
 
 const ROLES_SERVICE_BASE_PATH = "/security/roles" as const;

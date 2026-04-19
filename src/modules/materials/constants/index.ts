@@ -1,1 +1,9 @@
-export * from "./profiles";
+export {
+  STEEL_GRADES,
+  ROUND_PROFILES,
+  SQUARE_PROFILES,
+  HEXAGONAL_PROFILES,
+  getProfilesByType,
+  PROFILE_TYPES,
+  STEEL_GRADE_OPTIONS,
+} from "./materials.data";

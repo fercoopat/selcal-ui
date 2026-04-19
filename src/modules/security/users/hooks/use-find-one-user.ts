@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { USERS_QUERIES } from "@/modules/security/users/constants/users-queries";
+import { USERS_QUERIES } from "@/modules/security/users/constants/users.queries";
 import { UsersService } from "@/modules/security/users/services";
 
 export const useFindOneUser = (userId: string | null) => {

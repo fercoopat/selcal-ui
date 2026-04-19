@@ -4,8 +4,8 @@ import { Link } from "react-router";
 
 import { IconButton } from "@/components/buttons";
 import { ConfirmDialog } from "@/components/dialogs";
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth-permissions";
-import { USERS_PATHS } from "@/modules/security/users/constants/users-paths";
+import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
+import { USERS_PATHS } from "@/modules/security/users/constants/users.paths";
 import { useDeactivateUser } from "@/modules/security/users/hooks/use-deactivate-user";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
 

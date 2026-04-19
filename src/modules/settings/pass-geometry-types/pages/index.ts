@@ -1,3 +1,3 @@
-import { lazy } from 'react';
+import { lazy } from "react";
 
-export const PassGeometryTypesListPage = lazy(()=>import('./pass-geometry-types-list.page'));
+export const PassGeometryTypesListPage = lazy(() => import("./pass-geometry-types-list-page"));

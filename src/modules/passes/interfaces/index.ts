@@ -1,1 +1,1 @@
-export * from "./pass.interface";
+export type { Pass } from "./pass.interface";

@@ -9,7 +9,7 @@ import { dashboardRoutes } from "@/modules/dashboard/routes";
 import { materialGradesRoutes } from "@/modules/material-grades/routes";
 import { ROLLING_MILLS_ROUTES } from "@/modules/rolling-mills/routes";
 import { SECURITY_ROUTES } from "@/modules/security/shared/routes";
-import { settingsRoutes } from "@/modules/settings/shared/routes";
+import { SETTINGS_ROUTES } from "@/modules/settings/shared/routes";
 
 export const mainRoutes: RouteObject[] = [
   {
@@ -25,7 +25,7 @@ export const mainRoutes: RouteObject[] = [
       ...materialGradesRoutes,
       ...chemicalElementsRoutes,
       ...SECURITY_ROUTES,
-      ...settingsRoutes,
+      ...SETTINGS_ROUTES,
     ],
   },
 ];

@@ -8,9 +8,9 @@ import { useAuth } from "@/modules/auth/contexts/auth-context";
 import {
   loginSchema,
   type LoginPayload,
-} from "@/modules/auth/schemas/login.schema";
+} from "@/modules/auth/schemas/auth-login.schema";
 import { AuthService } from "@/modules/auth/services";
-import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard-paths";
+import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
 
 const defaultValues: LoginPayload = {
   email: "",

@@ -9,15 +9,15 @@ import {
 } from "lucide-react";
 import { useMemo } from "react";
 
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth-permissions";
+import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
-import { CALIBRATIONS_PATHS } from "@/modules/calibrations/constants/calibrations-paths";
-import { CHEMICAL_ELEMENTS_PATHS } from "@/modules/chemical-elements/constants/chemical-elements-paths";
-import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard-paths";
-import { MATERIAL_GRADES_PATHS } from "@/modules/material-grades/constants/material-grades-paths";
-import { ROLLING_MILLS_PATHS } from "@/modules/rolling-mills/constants/rolling-mills-paths";
-import { SECURITY_PATHS } from "@/modules/security/shared/constants/security-paths";
-import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings-paths";
+import { CALIBRATIONS_PATHS } from "@/modules/calibrations/constants/calibrations.paths";
+import { CHEMICAL_ELEMENTS_PATHS } from "@/modules/chemical-elements/constants/chemical-elements.paths";
+import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
+import { MATERIAL_GRADES_PATHS } from "@/modules/material-grades/constants/material-grades.paths";
+import { ROLLING_MILLS_PATHS } from "@/modules/rolling-mills/constants/rolling-mills.paths";
+import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
+import { SETTINGS_PATHS } from '@/modules/settings/shared/constants/settings.paths';
 
 type MenuItem = {
   title: string;
@@ -85,19 +85,19 @@ const MENU_SECTIONS: Record<string, MenuSection> = {
       millTypes: {
         icon: SettingsIcon,
         title: "menu:settings.millTypes",
-        url: SETTINGS_PATHS.millTypesPath,
+        url: SETTINGS_PATHS.MILL_TYPES,
         permissions: [AUTH_PERMISSIONS.MILL_TYPES_READ],
       },
       profileTypes: {
         icon: SettingsIcon,
         title: "menu:settings.profileTypes",
-        url: SETTINGS_PATHS.profileTypesPath,
+        url: SETTINGS_PATHS.PROFILE_TYPES,
         permissions: [AUTH_PERMISSIONS.PROFILE_TYPES_READ],
       },
       passGeometryTypes: {
         icon: SettingsIcon,
         title: "menu:settings.passGeometryTypes",
-        url: SETTINGS_PATHS.passGeometryTypesPath,
+        url: SETTINGS_PATHS.PASS_GEOMETRY_TYPES,
         permissions: [AUTH_PERMISSIONS.PASS_GEOMETRY_TYPES_READ],
       },
     },

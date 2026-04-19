@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 import { CookiesService } from "@/lib/cookies";
 import { AuthService } from "@/modules/auth/services";
-import { PROFILE_KEY } from "@/modules/auth/constants/auth-queries";
+import { PROFILE_KEY } from "@/modules/auth/constants/auth.queries";
 
 type Params = {
   onSuccess?: () => void;

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { CookiesService } from "@/lib/cookies";
-import { PROFILE_KEY } from "@/modules/auth/constants/auth-queries";
+import { PROFILE_KEY } from "@/modules/auth/constants/auth.queries";
 import { AuthService } from "@/modules/auth/services";
 
 export const useCurrentUser = () => {

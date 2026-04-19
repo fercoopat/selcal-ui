@@ -1,4 +1,4 @@
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth-permissions";
+import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 
 export const CHEMICAL_ELEMENTS_PERMISSIONS = {
   READ: AUTH_PERMISSIONS.CHEMICAL_ELEMENTS_READ,

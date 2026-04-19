@@ -1,6 +1,6 @@
 import { type ApiResponse, type RequestConfig } from "@/config/api";
 import { CookiesService } from "@/lib/cookies";
-import { AUTH_PATHS } from "@/modules/auth/constants/auth-paths";
+import { AUTH_PATHS } from "@/modules/auth/constants/auth.paths";
 import type { AuthLoginResponse } from "@/modules/auth/interfaces/login.interface";
 
 export const addAuthHeader = (config: RequestConfig) => {
@@ -41,6 +41,6 @@ export const clearAuthData = () => {
 
 export const redirectToLogin = () => {
   if (typeof window !== "undefined") {
-    window.location.href = AUTH_PATHS.signinPath;
+    window.location.href = AUTH_PATHS.SIGNIN;
   }
 };

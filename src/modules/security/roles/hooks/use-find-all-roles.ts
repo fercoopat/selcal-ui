@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { ROLES_QUERIES } from "@/modules/security/roles/constants/roles-queries";
+import { ROLES_QUERIES } from "@/modules/security/roles/constants/roles.queries";
 import { RolesService } from "@/modules/security/roles/services";
 
 export const useFindAllRoles = () => {

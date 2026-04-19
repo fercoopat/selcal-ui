@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Field, FieldError } from "@/components/ui/field";
 import { cn } from "@/lib/utils";
-import { formatFileSize } from "@/modules/comments/helpers/files.helpers";
+import { formatFileSize } from "@/shared/helpers/files.helpers";
 
 const ACCEPT_FILES = {
   "image/*": [".jpg", ".jpeg", ".png", ".gif", ".webp"],

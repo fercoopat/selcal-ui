@@ -1,4 +1,4 @@
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth-permissions";
+import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 
 export const MATERIAL_GRADES_PERMISSIONS = {
   READ: AUTH_PERMISSIONS.MATERIAL_GRADES_READ,

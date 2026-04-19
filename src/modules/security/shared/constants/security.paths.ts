@@ -1,5 +1,5 @@
-import { ROLES_PATHS } from "@/modules/security/roles/constants/roles-paths";
-import { USERS_PATHS } from "@/modules/security/users/constants/users-paths";
+import { ROLES_PATHS } from "@/modules/security/roles/constants/roles.paths";
+import { USERS_PATHS } from "@/modules/security/users/constants/users.paths";
 
 const BASE_PATH = "/security";
 

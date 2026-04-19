@@ -26,7 +26,7 @@ import {
   MultiSelectItem,
 } from "@/components/ui/multi-select";
 import { cn } from "@/lib/utils";
-import { PERMISSIONS_MAP } from "@/modules/security/shared/constants/permissions-map";
+import { PERMISSIONS_MAP } from "@/modules/security/shared/constants/security.permissions";
 
 const ROLE_FORM_ID = "role-form" as const;
 

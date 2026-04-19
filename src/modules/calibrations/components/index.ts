@@ -1,1 +1,1 @@
-export * from "./calibration-wizard";
+export { default as CalibrationWizard } from "./calibration-wizard";

@@ -7,7 +7,7 @@ import { CardContent, CardFooter } from "@/components/ui/card";
 import { FieldGroup } from "@/components/ui/field";
 import { useUserDetails } from "@/modules/security/users/contexts/user-details-context";
 import { useUpdateUserForm } from "@/modules/security/users/hooks/use-update-user-form";
-import { createUserSchema } from "@/modules/security/users/schemas/create-user.schema";
+import { createUserSchema } from "@/modules/security/users/schemas/user-create.schema";
 
 const UPDATE_GENERAL_USER_INFO_FORM_ID =
   "update-general-user-info-form" as const;

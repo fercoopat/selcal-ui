@@ -3,7 +3,7 @@ import { t } from "i18next";
 
 import { PermissionsCheck } from "@/components/security";
 import { UsersListRowActions } from "@/modules/security/users/components/users-list-row-actions";
-import { USERS_PERMISSIONS } from "@/modules/security/users/constants/users-permissions";
+import { USERS_PERMISSIONS } from "@/modules/security/users/constants/users.permissions";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
 import { joinText } from "@/shared/utils/text.utils";
 

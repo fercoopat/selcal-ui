@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router";
 
 import { IconButton } from "@/components/buttons";
 import { ConfirmDialog } from "@/components/dialogs";
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth-permissions";
+import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 import { useDeactivateRole } from "@/modules/security/roles/hooks/use-deactivate-role";
 import type { Role } from "@/modules/security/roles/interfaces/role.interface";
 

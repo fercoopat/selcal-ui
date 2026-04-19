@@ -1,7 +1,7 @@
 import { ApiClient } from "@/lib/api-client";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
-import type { CreateUserPayload } from "@/modules/security/users/schemas/create-user.schema";
-import type { UpdateUserPasswordPayload } from "@/modules/security/users/schemas/update-user-password.schema";
+import type { CreateUserPayload } from "@/modules/security/users/schemas/user-create.schema";
+import type { UpdateUserPasswordPayload } from "@/modules/security/users/schemas/user-update-password.schema";
 import { ApiService } from "@/shared/services/api.service";
 
 const USERS_SERVICE_BASE_PATH = "/users" as const;

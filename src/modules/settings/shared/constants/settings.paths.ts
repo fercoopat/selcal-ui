@@ -1,5 +1,6 @@
-import { MILL_TYPES_PATHS } from '@/modules/settings/mill-types/constants/mill-types.paths';
-import { PASS_GEOMETRY_TYPES_PATHS } from '@/modules/settings/pass-geometry-types/constants/pass-geometry-types.paths';
+import { MILL_TYPES_PATHS } from "@/modules/settings/mill-types/constants/mill-types.paths";
+import { PASS_GEOMETRY_TYPES_PATHS } from "@/modules/settings/pass-geometry-types/constants/pass-geometry-types.paths";
+import { PROFILE_TYPES_PATHS } from "@/modules/settings/profile-types/constants/profile-types.paths";
 
 const BASE_PATH = "/settings";
 
@@ -9,4 +10,6 @@ export const SETTINGS_PATHS = {
   MILL_TYPES: MILL_TYPES_PATHS.LIST,
 
   PASS_GEOMETRY_TYPES: PASS_GEOMETRY_TYPES_PATHS.LIST,
+
+  PROFILE_TYPES: PROFILE_TYPES_PATHS.LIST,
 } as const;

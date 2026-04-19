@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
-import { ROLES_QUERIES } from "@/modules/security/roles/constants/roles-queries";
+import { ROLES_QUERIES } from "@/modules/security/roles/constants/roles.queries";
 import type { Role } from "@/modules/security/roles/interfaces/role.interface";
 import { RolesService } from "@/modules/security/roles/services";
 

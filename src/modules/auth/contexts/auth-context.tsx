@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useMemo } from "react";
 
 import { useCurrentUser } from "@/modules/auth/hooks/use-current-user";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth-permissions";
+import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 
 interface AuthContextValue {
   error: Error | null;

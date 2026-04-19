@@ -1,7 +1,7 @@
 import type { RouteObject } from "react-router";
 
 
-import { ROLLING_MILLS_PATHS } from "@/modules/rolling-mills/constants/rolling-mills-paths";
+import { ROLLING_MILLS_PATHS } from "@/modules/rolling-mills/constants/rolling-mills.paths";
 import { RollingMillsListPage } from '@/modules/rolling-mills/pages';
 
 

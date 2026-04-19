@@ -1,8 +1,8 @@
 import type { RequestConfig } from "@/config/api";
 import { ApiClient } from "@/lib/api-client";
 import type { AuthLoginResponse } from "@/modules/auth/interfaces/login.interface";
-import type { LoginPayload } from "@/modules/auth/schemas/login.schema";
-import type { RegisterPayload } from "@/modules/auth/schemas/register.schema";
+import type { LoginPayload } from "@/modules/auth/schemas/auth-login.schema";
+import type { RegisterPayload } from "@/modules/auth/schemas/auth-register.schema";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
 import { ApiService } from "@/shared/services/api.service";
 

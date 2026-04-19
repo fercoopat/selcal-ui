@@ -1,1 +1,1 @@
-export * from "./material-grade.interface";
+export type { MaterialGrade } from "./material-grade.interface";

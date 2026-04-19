@@ -1,1 +1,1 @@
-export * from "./chemical-element.interface";
+export type { ChemicalElement } from "./chemical-element.interface";

@@ -27,9 +27,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
 import { useLogout } from "@/modules/auth/hooks/use-logout";
-import { NotificationsSheet } from "@/modules/notifications/components/notifications-sheet";
-import { useShowNotificationsSearchParam } from "@/modules/notifications/hooks/use-show-notifications-search-param";
-import { USERS_PATHS } from "@/modules/security/users/constants/users-paths";
+import { USERS_PATHS } from "@/modules/security/users/constants/users.paths";
 import { joinText } from "@/shared/utils/text.utils";
 
 const NavUserInfo = () => {
@@ -64,8 +62,6 @@ const NavUser = () => {
   const { isLoading, logout } = useLogout();
 
   const { currentUser: user } = useAuth();
-
-  const { onToggleNotifications } = useShowNotificationsSearchParam();
 
   const handleLogout = useCallback(() => {
     logout();
@@ -115,7 +111,7 @@ const NavUser = () => {
                   </Link>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem onClick={onToggleNotifications}>
+                <DropdownMenuItem>
                   <BellIcon />
                   {t("common:notifications")}
                 </DropdownMenuItem>
@@ -132,8 +128,6 @@ const NavUser = () => {
           </DropdownMenu>
         </SidebarMenuItem>
       </SidebarMenu>
-
-      <NotificationsSheet />
     </>
   );
 };
