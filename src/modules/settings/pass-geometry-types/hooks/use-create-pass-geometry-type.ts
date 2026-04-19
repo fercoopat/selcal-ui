@@ -3,7 +3,7 @@ import { toast } from "sonner";
 
 import { PASS_GEOMETRY_TYPES_QUERIES } from "@/modules/settings/pass-geometry-types/constants";
 import { PassGeometryTypesService } from "@/modules/settings/pass-geometry-types/services";
-import type { CreateSettingsEntityPayload } from "@/modules/settings/schemas";
+import type { CreateSettingsEntityPayload } from "@/modules/settings/shared/schemas";
 
 export const useCreatePassGeometryType = () => {
   const queryClient = useQueryClient();

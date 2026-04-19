@@ -1,7 +1,7 @@
 const BASE_PATH = "/auth";
 
 export const AUTH_PATHS = {
-  basePath: BASE_PATH,
+  BASE_PATH: BASE_PATH,
 
   signinPath: `${BASE_PATH}/signin`,
 

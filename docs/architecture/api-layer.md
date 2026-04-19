@@ -37,15 +37,15 @@ Attaches `Authorization: Bearer <token>` via `addAuthHeader()`. Token read from 
 
 ## ApiService Base Class (`@/shared/services/api.service.ts`)
 
-Abstract base for all services. Provides `getPath(suffix?)` to build endpoint URLs from `basePath`.
+Abstract base for all services. Provides `getPath(suffix?)` to build endpoint URLs from `BASE_PATH`.
 
 ```typescript
 export abstract class ApiService {
-  constructor(private basePath: string) {}
+  constructor(private BASE_PATH: string) {}
 
   getPath(path?: string): string {
-    if (!path) return this.basePath;
-    return this.basePath + path;
+    if (!path) return this.BASE_PATH;
+    return this.BASE_PATH + path;
   }
 }
 ```

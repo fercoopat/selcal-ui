@@ -1,6 +1,6 @@
 import { CrudService } from "@/shared/services";
 import type { SettingsEntity } from "@/modules/settings/interfaces";
-import type { CreateSettingsEntityPayload } from "@/modules/settings/schemas";
+import type { CreateSettingsEntityPayload } from "@/modules/settings/shared/schemas";
 
 export const MillTypesService = new CrudService<
   SettingsEntity,

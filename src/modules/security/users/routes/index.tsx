@@ -3,18 +3,12 @@ import type { RouteObject } from "react-router";
 import { USERS_PATHS } from "@/modules/security/users/constants/users-paths";
 import { UserDetailsPage, UsersListPage } from "@/modules/security/users/pages";
 
-export const usersRoutes: RouteObject[] = [
+export const USERS_ROUTES: RouteObject[] = [
   {
-    path: USERS_PATHS.basePath,
-    // element: (
-    //   <ModuleLayout
-    //     path={USERS_PATHS.basePath}
-    //     notFoundRedirectTo={USERS_PATHS.basePath}
-    //   />
-    // ),
+    path: USERS_PATHS.BASE_PATH,
     children: [
       {
-        path: USERS_PATHS.basePath,
+        path: USERS_PATHS.BASE_PATH,
         Component: UsersListPage,
       },
 

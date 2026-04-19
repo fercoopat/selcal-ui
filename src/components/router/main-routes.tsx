@@ -7,9 +7,9 @@ import { calibrationRoutes } from "@/modules/calibrations/routes";
 import { chemicalElementsRoutes } from "@/modules/chemical-elements/routes";
 import { dashboardRoutes } from "@/modules/dashboard/routes";
 import { materialGradesRoutes } from "@/modules/material-grades/routes";
-import { rollingMillsRoutes } from "@/modules/rolling-mills/routes";
-import { securityRoutes } from "@/modules/security/shared/routes";
-import { settingsRoutes } from "@/modules/settings/routes";
+import { ROLLING_MILLS_ROUTES } from "@/modules/rolling-mills/routes";
+import { SECURITY_ROUTES } from "@/modules/security/shared/routes";
+import { settingsRoutes } from "@/modules/settings/shared/routes";
 
 export const mainRoutes: RouteObject[] = [
   {
@@ -21,10 +21,10 @@ export const mainRoutes: RouteObject[] = [
     children: [
       ...dashboardRoutes,
       ...calibrationRoutes,
-      ...rollingMillsRoutes,
+      ...ROLLING_MILLS_ROUTES,
       ...materialGradesRoutes,
       ...chemicalElementsRoutes,
-      ...securityRoutes,
+      ...SECURITY_ROUTES,
       ...settingsRoutes,
     ],
   },

@@ -1,18 +1,12 @@
-import { lazy } from "react";
 import type { RouteObject } from "react-router";
 
 import { CALIBRATIONS_PATHS } from "@/modules/calibrations/constants/calibrations-paths";
+import { CalibrationDetailPage, CalibrationsListPage } from '@/modules/calibrations/pages';
 
-const CalibrationsListPage = lazy(
-  () => import("@/modules/calibrations/pages/calibrations-list-page"),
-);
-const CalibrationDetailPage = lazy(
-  () => import("@/modules/calibrations/pages/calibration-detail-page"),
-);
 
 export const calibrationRoutes: RouteObject[] = [
   {
-    path: CALIBRATIONS_PATHS.basePath,
+    path: CALIBRATIONS_PATHS.LIST,
     children: [
       { index: true, Component: CalibrationsListPage },
       { path: ":id", Component: CalibrationDetailPage },

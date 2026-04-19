@@ -5,7 +5,7 @@ import { DashboardPage } from "@/modules/dashboard/pages";
 
 export const dashboardRoutes: RouteObject[] = [
   {
-    path: DASHBOARD_PATHS.basePath,
+    path: DASHBOARD_PATHS.BASE_PATH,
     Component: DashboardPage,
   },
 ];

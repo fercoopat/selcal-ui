@@ -3,7 +3,7 @@ import { toast } from "sonner";
 
 import { MILL_TYPES_QUERIES } from "@/modules/settings/mill-types/constants";
 import { MillTypesService } from "@/modules/settings/mill-types/services";
-import type { CreateSettingsEntityPayload } from "@/modules/settings/schemas";
+import type { CreateSettingsEntityPayload } from "@/modules/settings/shared/schemas";
 
 export const useCreateMillType = () => {
   const queryClient = useQueryClient();

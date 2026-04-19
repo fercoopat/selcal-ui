@@ -3,7 +3,7 @@ import { toast } from "sonner";
 
 import { PROFILE_TYPES_QUERIES } from "@/modules/settings/profile-types/constants";
 import { ProfileTypesService } from "@/modules/settings/profile-types/services";
-import type { CreateSettingsEntityPayload } from "@/modules/settings/schemas";
+import type { CreateSettingsEntityPayload } from "@/modules/settings/shared/schemas";
 
 export const useCreateProfileType = () => {
   const queryClient = useQueryClient();

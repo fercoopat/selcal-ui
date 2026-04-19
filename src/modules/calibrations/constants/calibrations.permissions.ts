@@ -9,3 +9,5 @@ export const CALIBRATIONS_PERMISSIONS = {
 
 export type CalibrationsPermission =
   (typeof CALIBRATIONS_PERMISSIONS)[keyof typeof CALIBRATIONS_PERMISSIONS];
+
+export const CALIBRATIONS_PERMISSIONS_VALUES = Object.values(CALIBRATIONS_PERMISSIONS)

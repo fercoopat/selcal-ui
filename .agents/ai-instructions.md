@@ -144,7 +144,7 @@ export const FEATURE_QUERIES = {
 ```typescript
 // src/modules/<feature>/constants/<feature>-paths.ts
 export const FEATURE_PATHS = {
-  basePath: "/feature",
+  BASE_PATH: "/feature",
   detailPath: (id: string) => `/feature/${id}`,
 } as const;
 ```
@@ -236,7 +236,7 @@ const FeatureListPage = lazy(() => import("@/modules/<feature>/pages/<feature>-l
 
 export const featureRoutes: RouteObject[] = [
   {
-    path: FEATURE_PATHS.basePath,
+    path: FEATURE_PATHS.BASE_PATH,
     children: [
       { index: true, Component: FeatureListPage },
     ],
@@ -403,7 +403,7 @@ export { default as FeaturePage } from "./feature-page";
 4. `services/<feature>.service.ts` — `CrudService` instance (or `ApiService` subclass for custom endpoints).
 5. `services/index.ts` — barrel: `export { FeatureService } from "./..."`.
 6. `constants/<feature>-queries.ts` — `FEATURE_QUERIES` with `all`, `findAll`, `findOne`.
-7. `constants/<feature>-paths.ts` — `FEATURE_PATHS` with `basePath`.
+7. `constants/<feature>-paths.ts` — `FEATURE_PATHS` with `BASE_PATH`.
 8. `hooks/index.ts` — React Query wrappers.
 9. `pages/<feature>-list-page.tsx` + `pages/index.ts` — memo'd page + barrel.
 10. `routes/index.tsx` — lazy `RouteObject[]`.

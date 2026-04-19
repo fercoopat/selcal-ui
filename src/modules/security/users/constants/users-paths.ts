@@ -19,7 +19,7 @@ export type UserDetailsTab =
   (typeof USER_DETAILS_TAB)[keyof typeof USER_DETAILS_TAB];
 
 export const USERS_PATHS = {
-  basePath: SECURITY_USERS_BASE_PATH,
+  BASE_PATH: SECURITY_USERS_BASE_PATH,
 
   listTabPath: (tab: UserListTab = USER_LIST_TAB.ALL) =>
     `${SECURITY_USERS_BASE_PATH}/${tab}`,

@@ -1,19 +1,19 @@
 import { type RouteObject } from "react-router";
 
 import { ModuleLayout } from "@/components/layouts";
-import { rolesRoutes } from "@/modules/security/roles/routes";
+import { ROLES_ROUTES } from "@/modules/security/roles/routes";
 import { SECURITY_PATHS } from "@/modules/security/shared/constants/security-paths";
-import { usersRoutes } from "@/modules/security/users/routes";
+import { USERS_ROUTES } from "@/modules/security/users/routes";
 
-export const securityRoutes: RouteObject[] = [
+export const SECURITY_ROUTES: RouteObject[] = [
   {
-    path: SECURITY_PATHS.basePath,
+    path: SECURITY_PATHS.BASE_PATH,
     element: (
       <ModuleLayout
-        path={SECURITY_PATHS.basePath}
+        path={SECURITY_PATHS.BASE_PATH}
         notFoundRedirectTo={SECURITY_PATHS.usersPath}
       />
     ),
-    children: [...rolesRoutes, ...usersRoutes],
+    children: [...ROLES_ROUTES, ...USERS_ROUTES],
   },
 ];

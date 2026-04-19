@@ -21,7 +21,7 @@ const AccessControl = () => {
 
   if (isAuthRoute) {
     if (isAuthenticated) {
-      return <Navigate to={DASHBOARD_PATHS.basePath} replace />;
+      return <Navigate to={DASHBOARD_PATHS.BASE_PATH} replace />;
     }
 
     return <Outlet />;

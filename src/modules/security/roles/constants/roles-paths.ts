@@ -11,8 +11,8 @@ export const ROLE_LIST_TAB = {
 export type RoleListTab = (typeof ROLE_LIST_TAB)[keyof typeof ROLE_LIST_TAB];
 
 export const ROLES_PATHS = {
-  basePath: SECURITY_ROLES_BASE_PATH,
+  LIST: SECURITY_ROLES_BASE_PATH,
 
-  listTabPath: (tab: RoleListTab = ROLE_LIST_TAB.ALL) =>
+  LIST_TAB: (tab: RoleListTab = ROLE_LIST_TAB.ALL) =>
     `${SECURITY_ROLES_BASE_PATH}/${tab}`,
 } as const;

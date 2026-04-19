@@ -8,7 +8,7 @@ import { SigninPage, SignupPage } from "@/modules/auth/pages";
 
 export const authRoutes: RouteObject[] = [
   {
-    path: AUTH_PATHS.basePath,
+    path: AUTH_PATHS.BASE_PATH,
     element: (
       <Suspense fallback={<PageLoader size="screen" />}>
         <AuthLayout />

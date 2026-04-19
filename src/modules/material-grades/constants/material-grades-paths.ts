@@ -1,4 +1,5 @@
 export const MATERIAL_GRADES_PATHS = {
-  basePath: "/material-grades",
-  detailPath: (id: string) => `/material-grades/${id}`,
+  LIST: "/material-grades",
+
+  DETAILS: (id: string) => `/material-grades/${id}`,
 } as const;

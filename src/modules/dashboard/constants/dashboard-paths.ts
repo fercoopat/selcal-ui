@@ -1,5 +1,5 @@
 const BASE_PATH = "/";
 
 export const DASHBOARD_PATHS = {
-  basePath: BASE_PATH,
+  BASE_PATH: BASE_PATH,
 } as const;

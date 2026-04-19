@@ -1,4 +1,5 @@
 export const PASSES_PATHS = {
-  basePath: "/passes",
+  BASE_PATH: "/passes",
+
   detailPath: (id: string) => `/passes/${id}`,
 } as const;

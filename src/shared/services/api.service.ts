@@ -1,13 +1,13 @@
 export abstract class ApiService {
-  private basePath: string;
+  private BASE_PATH: string;
 
-  constructor(basePath: string) {
-    this.basePath = basePath;
+  constructor(BASE_PATH: string) {
+    this.BASE_PATH = BASE_PATH;
   }
 
   getPath(path?: string): string {
-    if (!path) return this.basePath;
+    if (!path) return this.BASE_PATH;
 
-    return this.basePath + path;
+    return this.BASE_PATH + path;
   }
 }

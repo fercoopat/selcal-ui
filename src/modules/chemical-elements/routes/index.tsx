@@ -1,18 +1,11 @@
-import { lazy } from "react";
 import type { RouteObject } from "react-router";
 
 import { CHEMICAL_ELEMENTS_PATHS } from "@/modules/chemical-elements/constants/chemical-elements-paths";
-
-const ChemicalElementsListPage = lazy(
-  () =>
-    import(
-      "@/modules/chemical-elements/pages/chemical-elements-list-page"
-    ),
-);
+import { ChemicalElementsListPage } from "@/modules/chemical-elements/pages";
 
 export const chemicalElementsRoutes: RouteObject[] = [
   {
-    path: CHEMICAL_ELEMENTS_PATHS.basePath,
+    path: CHEMICAL_ELEMENTS_PATHS.LIST,
     children: [{ index: true, Component: ChemicalElementsListPage }],
   },
 ];

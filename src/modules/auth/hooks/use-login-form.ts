@@ -31,7 +31,7 @@ export const useLoginForm = () => {
 
     onSuccess: async () => {
       await refetchUser();
-      navigate(DASHBOARD_PATHS.basePath, { replace: true });
+      navigate(DASHBOARD_PATHS.BASE_PATH, { replace: true });
     },
   });
 

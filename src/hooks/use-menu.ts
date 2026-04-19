@@ -1,7 +1,7 @@
 import {
   FlaskConicalIcon,
-  LayoutDashboardIcon,
   LayersIcon,
+  LayoutDashboardIcon,
   SettingsIcon,
   ShieldIcon,
   UsersIcon,
@@ -17,7 +17,7 @@ import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard-paths";
 import { MATERIAL_GRADES_PATHS } from "@/modules/material-grades/constants/material-grades-paths";
 import { ROLLING_MILLS_PATHS } from "@/modules/rolling-mills/constants/rolling-mills-paths";
 import { SECURITY_PATHS } from "@/modules/security/shared/constants/security-paths";
-import { SETTINGS_PATHS } from "@/modules/settings/constants/settings-paths";
+import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings-paths";
 
 type MenuItem = {
   title: string;
@@ -48,32 +48,57 @@ const MENU_SECTIONS: Record<string, MenuSection> = {
       dashboard: {
         icon: LayoutDashboardIcon,
         title: "menu:general.dashboard",
-        url: DASHBOARD_PATHS.basePath,
+        url: DASHBOARD_PATHS.BASE_PATH,
         exact: true,
       },
       calibrations: {
         icon: LayersIcon,
         title: "menu:general.calibrations",
-        url: CALIBRATIONS_PATHS.basePath,
+        url: CALIBRATIONS_PATHS.LIST,
         permissions: [AUTH_PERMISSIONS.CALIBRATIONS_READ],
       },
       rollingMills: {
         icon: LayersIcon,
         title: "menu:general.rollingMills",
-        url: ROLLING_MILLS_PATHS.basePath,
+        url: ROLLING_MILLS_PATHS.BASE_PATH,
         permissions: [AUTH_PERMISSIONS.ROLLING_MILLS_READ],
       },
       materialGrades: {
         icon: FlaskConicalIcon,
         title: "menu:general.materialGrades",
-        url: MATERIAL_GRADES_PATHS.basePath,
+        url: MATERIAL_GRADES_PATHS.LIST,
         permissions: [AUTH_PERMISSIONS.MATERIAL_GRADES_READ],
       },
       chemicalElements: {
         icon: FlaskConicalIcon,
         title: "menu:general.chemicalElements",
-        url: CHEMICAL_ELEMENTS_PATHS.basePath,
+        url: CHEMICAL_ELEMENTS_PATHS.LIST,
         permissions: [AUTH_PERMISSIONS.CHEMICAL_ELEMENTS_READ],
+      },
+    },
+  },
+
+  settings: {
+    title: "menu:settings.title",
+    permissions: [AUTH_PERMISSIONS.ADMIN],
+    items: {
+      millTypes: {
+        icon: SettingsIcon,
+        title: "menu:settings.millTypes",
+        url: SETTINGS_PATHS.millTypesPath,
+        permissions: [AUTH_PERMISSIONS.MILL_TYPES_READ],
+      },
+      profileTypes: {
+        icon: SettingsIcon,
+        title: "menu:settings.profileTypes",
+        url: SETTINGS_PATHS.profileTypesPath,
+        permissions: [AUTH_PERMISSIONS.PROFILE_TYPES_READ],
+      },
+      passGeometryTypes: {
+        icon: SettingsIcon,
+        title: "menu:settings.passGeometryTypes",
+        url: SETTINGS_PATHS.passGeometryTypesPath,
+        permissions: [AUTH_PERMISSIONS.PASS_GEOMETRY_TYPES_READ],
       },
     },
   },
@@ -91,36 +116,6 @@ const MENU_SECTIONS: Record<string, MenuSection> = {
         icon: UsersIcon,
         title: "menu:security.users",
         url: SECURITY_PATHS.usersPath,
-      },
-    },
-  },
-
-  settings: {
-    title: "menu:settings.title",
-    permissions: [AUTH_PERMISSIONS.ADMIN],
-    items: {
-      settings: {
-        icon: SettingsIcon,
-        title: "menu:settings.title",
-        url: SETTINGS_PATHS.basePath,
-        defaultOpen: true,
-        items: [
-          {
-            title: "menu:settings.millTypes",
-            url: SETTINGS_PATHS.millTypesPath,
-            permissions: [AUTH_PERMISSIONS.MILL_TYPES_READ],
-          },
-          {
-            title: "menu:settings.profileTypes",
-            url: SETTINGS_PATHS.profileTypesPath,
-            permissions: [AUTH_PERMISSIONS.PROFILE_TYPES_READ],
-          },
-          {
-            title: "menu:settings.passGeometryTypes",
-            url: SETTINGS_PATHS.passGeometryTypesPath,
-            permissions: [AUTH_PERMISSIONS.PASS_GEOMETRY_TYPES_READ],
-          },
-        ],
       },
     },
   },

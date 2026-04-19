@@ -46,7 +46,7 @@ All constant definitions for the module:
 ```typescript
 // modules/projects/constants/projects-paths.ts
 export const PROJECT_PATHS = {
-  basePath: "/projects",
+  BASE_PATH: "/projects",
   listPath: "/projects/list",
   detailsPath: (id: string) => `/projects/${id}`,
   createPath: "/projects/create",
