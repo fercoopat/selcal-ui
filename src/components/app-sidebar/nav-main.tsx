@@ -47,19 +47,16 @@ const NavMain = () => {
               {Object.entries(section.items).map(([key, item]) => {
                 if (!item?.items?.length) {
                   return (
-                    <SidebarMenuItem
-                      key={key}
-                      
-                    >
+                    <SidebarMenuItem key={key}>
                       <SidebarMenuButton
                         asChild
                         tooltip={t(item.title)}
                         onClick={handleClick}
                         className={cn({
-                        "bg-primary/50 hover:bg-primary/20": item?.exact
-                          ? pathname === item.url
-                          : pathname.includes(item.url),
-                      })}
+                          "bg-primary/50 hover:bg-primary/20": item?.exact
+                            ? pathname === item.url
+                            : pathname.includes(item.url),
+                        })}
                       >
                         <Link to={item.url}>
                           <item.icon />

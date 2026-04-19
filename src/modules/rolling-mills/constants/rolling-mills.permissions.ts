@@ -1,11 +1,11 @@
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
-
 export const ROLLING_MILLS_PERMISSIONS = {
-  READ: AUTH_PERMISSIONS.ROLLING_MILLS_READ,
-  CREATE: AUTH_PERMISSIONS.ROLLING_MILLS_CREATE,
-  UPDATE: AUTH_PERMISSIONS.ROLLING_MILLS_UPDATE,
-  DELETE: AUTH_PERMISSIONS.ROLLING_MILLS_DELETE,
+  READ: "rolling_mills.read",
+  CREATE: "rolling_mills.create",
+  UPDATE: "rolling_mills.update",
+  DELETE: "rolling_mills.delete",
 } as const;
 
 export type RollingMillsPermission =
   (typeof ROLLING_MILLS_PERMISSIONS)[keyof typeof ROLLING_MILLS_PERMISSIONS];
+
+export const ROLLING_MILLS_PERMISSIONS_VALUES = Object.values(ROLLING_MILLS_PERMISSIONS);

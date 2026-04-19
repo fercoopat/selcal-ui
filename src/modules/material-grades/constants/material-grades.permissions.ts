@@ -1,11 +1,11 @@
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
-
 export const MATERIAL_GRADES_PERMISSIONS = {
-  READ: AUTH_PERMISSIONS.MATERIAL_GRADES_READ,
-  CREATE: AUTH_PERMISSIONS.MATERIAL_GRADES_CREATE,
-  UPDATE: AUTH_PERMISSIONS.MATERIAL_GRADES_UPDATE,
-  DELETE: AUTH_PERMISSIONS.MATERIAL_GRADES_DELETE,
+  READ: "material_grades.read",
+  CREATE: "material_grades.create",
+  UPDATE: "material_grades.update",
+  DELETE: "material_grades.delete",
 } as const;
 
 export type MaterialGradesPermission =
   (typeof MATERIAL_GRADES_PERMISSIONS)[keyof typeof MATERIAL_GRADES_PERMISSIONS];
+
+export const MATERIAL_GRADES_PERMISSIONS_VALUES = Object.values(MATERIAL_GRADES_PERMISSIONS);

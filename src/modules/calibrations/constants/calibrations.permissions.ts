@@ -1,13 +1,11 @@
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
-
 export const CALIBRATIONS_PERMISSIONS = {
-  READ: AUTH_PERMISSIONS.CALIBRATIONS_READ,
-  CREATE: AUTH_PERMISSIONS.CALIBRATIONS_CREATE,
-  UPDATE: AUTH_PERMISSIONS.CALIBRATIONS_UPDATE,
-  DELETE: AUTH_PERMISSIONS.CALIBRATIONS_DELETE,
+  READ: "calibrations.read",
+  CREATE: "calibrations.create",
+  UPDATE: "calibrations.update",
+  DELETE: "calibrations.delete",
 } as const;
 
 export type CalibrationsPermission =
   (typeof CALIBRATIONS_PERMISSIONS)[keyof typeof CALIBRATIONS_PERMISSIONS];
 
-export const CALIBRATIONS_PERMISSIONS_VALUES = Object.values(CALIBRATIONS_PERMISSIONS)
+export const CALIBRATIONS_PERMISSIONS_VALUES = Object.values(CALIBRATIONS_PERMISSIONS);

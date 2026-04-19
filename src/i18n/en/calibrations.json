@@ -1,0 +1,38 @@
+{
+  "title": "Calibrations",
+  "wizard": {
+    "title": "Calibration Wizard",
+    "description": "Design steel rolling calibrations for simple profiles",
+    "billetData": "Billet Data",
+    "targetProfile": "Target Profile",
+    "calculate": "Calculate Calibration",
+    "fields": {
+      "initialHeight": "Initial Height (mm)",
+      "initialWidth": "Initial Width (mm)",
+      "initialTemperature": "Initial Temperature (°C)",
+      "steelGrade": "Steel Grade",
+      "steelGradePlaceholder": "Select a steel grade",
+      "initialArea": "Initial Area (mm²)",
+      "maxElongation": "Max Elongation per Pass",
+      "profileType": "Profile Type",
+      "profileTypePlaceholder": "Select profile type",
+      "targetDiameter": "Target Diameter (mm)",
+      "targetSide": "Target Side (mm)",
+      "targetFlatDistance": "Target Flat Distance (mm)",
+      "finalTemperature": "Final Temperature (°C)"
+    },
+    "results": {
+      "title": "Calculation Results",
+      "totalPasses": "Total Passes",
+      "totalPower": "Total Power (kW)",
+      "finalArea": "Final Area (mm²)",
+      "totalElongation": "Total Elongation"
+    },
+    "successCalculate": "Calibration calculated successfully",
+    "successCalculateDescription": "Total passes: {{totalPasses}}, Total power: {{totalPower}} kW",
+    "errorCalculate": "Failed to calculate calibration"
+  },
+  "detail": {
+    "title": "Calibration {{id}}"
+  }
+}

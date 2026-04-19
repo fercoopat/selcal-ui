@@ -1,8 +1,8 @@
 export const USERS_PERMISSIONS = {
-  CREATE: "users_create",
-  READ: "users_read",
-  UPDATE: "users_update",
-  DELETE: "users_delete",
+  READ: "users.read",
+  CREATE: "users.create",
+  UPDATE: "users.update",
+  DELETE: "users.delete",
 } as const;
 
 export type UsersPermission =

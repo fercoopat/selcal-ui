@@ -1,11 +1,11 @@
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
-
 export const PASSES_PERMISSIONS = {
-  READ: AUTH_PERMISSIONS.PASSES_READ,
-  CREATE: AUTH_PERMISSIONS.PASSES_CREATE,
-  UPDATE: AUTH_PERMISSIONS.PASSES_UPDATE,
-  DELETE: AUTH_PERMISSIONS.PASSES_DELETE,
+  READ: "passes.read",
+  CREATE: "passes.create",
+  UPDATE: "passes.update",
+  DELETE: "passes.delete",
 } as const;
 
 export type PassesPermission =
   (typeof PASSES_PERMISSIONS)[keyof typeof PASSES_PERMISSIONS];
+
+export const PASSES_PERMISSIONS_VALUES = Object.values(PASSES_PERMISSIONS);

@@ -1,19 +1,81 @@
 {
-  "ADMIN": "Administrador",
-  "roles_create": "Crear Roles",
-  "roles_read": "Ver Roles",
-  "roles_update": "Actualizar Roles",
-  "roles_delete": "Eliminar Roles",
-  "users_create": "Crear Usuarios",
-  "users_read": "Ver Usuarios",
-  "users_update": "Actualizar Usuarios",
-  "users_delete": "Eliminar Usuarios",
-  "projects_create": "Crear Proyectos",
-  "projects_read": "Ver Proyectos",
-  "projects_update": "Actualizar Proyectos",
-  "projects_delete": "Eliminar Proyectos",
-  "issues_create": "Crear Incidencias",
-  "issues_read": "Ver Incidencias",
-  "issues_update": "Actualizar Incidencias",
-  "issues_delete": "Eliminar Incidencias"
+  "ADMIN": "Administrator",
+  "roles": {
+    "read": "View roles",
+    "create": "Create roles",
+    "update": "Update roles",
+    "delete": "Delete roles"
+  },
+  "users": {
+    "read": "View users",
+    "create": "Create users",
+    "update": "Update users",
+    "delete": "Delete users"
+  },
+  "calibrations": {
+    "read": "View calibrations",
+    "create": "Create calibrations",
+    "update": "Update calibrations",
+    "delete": "Delete calibrations"
+  },
+  "passes": {
+    "read": "View passes",
+    "create": "Create passes",
+    "update": "Update passes",
+    "delete": "Delete passes"
+  },
+  "rolling_mills": {
+    "read": "View rolling mills",
+    "create": "Create rolling mills",
+    "update": "Update rolling mills",
+    "delete": "Delete rolling mills"
+  },
+  "stands": {
+    "read": "View stands",
+    "create": "Create stands",
+    "update": "Update stands",
+    "delete": "Delete stands"
+  },
+  "material_grades": {
+    "read": "View material grades",
+    "create": "Create material grades",
+    "update": "Update material grades",
+    "delete": "Delete material grades"
+  },
+  "chemical_elements": {
+    "read": "View chemical elements",
+    "create": "Create chemical elements",
+    "update": "Update chemical elements",
+    "delete": "Delete chemical elements"
+  },
+  "material_compositions": {
+    "read": "View material compositions",
+    "create": "Create material compositions",
+    "update": "Update material compositions",
+    "delete": "Delete material compositions"
+  },
+  "files": {
+    "read": "View files",
+    "create": "Upload files",
+    "update": "Update files",
+    "delete": "Delete files"
+  },
+  "mill_types": {
+    "read": "View mill types",
+    "create": "Create mill types",
+    "update": "Update mill types",
+    "delete": "Delete mill types"
+  },
+  "profile_types": {
+    "read": "View profile types",
+    "create": "Create profile types",
+    "update": "Update profile types",
+    "delete": "Delete profile types"
+  },
+  "pass_geometry_types": {
+    "read": "View pass geometry types",
+    "create": "Create pass geometry types",
+    "update": "Update pass geometry types",
+    "delete": "Delete pass geometry types"
+  }
 }

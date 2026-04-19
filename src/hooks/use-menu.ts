@@ -11,13 +11,20 @@ import { useMemo } from "react";
 
 import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
+import { CALIBRATIONS_PERMISSIONS } from "@/modules/calibrations/constants";
 import { CALIBRATIONS_PATHS } from "@/modules/calibrations/constants/calibrations.paths";
+import { CHEMICAL_ELEMENTS_PERMISSIONS } from "@/modules/chemical-elements/constants";
 import { CHEMICAL_ELEMENTS_PATHS } from "@/modules/chemical-elements/constants/chemical-elements.paths";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
+import { MATERIAL_GRADES_PERMISSIONS } from "@/modules/material-grades/constants";
 import { MATERIAL_GRADES_PATHS } from "@/modules/material-grades/constants/material-grades.paths";
+import { ROLLING_MILLS_PERMISSIONS } from "@/modules/rolling-mills/constants";
 import { ROLLING_MILLS_PATHS } from "@/modules/rolling-mills/constants/rolling-mills.paths";
 import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
-import { SETTINGS_PATHS } from '@/modules/settings/shared/constants/settings.paths';
+import { MILL_TYPES_PERMISSIONS } from "@/modules/settings/mill-types/constants";
+import { PASS_GEOMETRY_TYPES_PERMISSIONS } from "@/modules/settings/pass-geometry-types/constants";
+import { PROFILE_TYPES_PERMISSIONS } from "@/modules/settings/profile-types/constants";
+import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
 
 type MenuItem = {
   title: string;
@@ -55,25 +62,25 @@ const MENU_SECTIONS: Record<string, MenuSection> = {
         icon: LayersIcon,
         title: "menu:general.calibrations",
         url: CALIBRATIONS_PATHS.LIST,
-        permissions: [AUTH_PERMISSIONS.CALIBRATIONS_READ],
+        permissions: [CALIBRATIONS_PERMISSIONS.READ],
       },
       rollingMills: {
         icon: LayersIcon,
         title: "menu:general.rollingMills",
         url: ROLLING_MILLS_PATHS.BASE_PATH,
-        permissions: [AUTH_PERMISSIONS.ROLLING_MILLS_READ],
+        permissions: [ROLLING_MILLS_PERMISSIONS.READ],
       },
       materialGrades: {
         icon: FlaskConicalIcon,
         title: "menu:general.materialGrades",
         url: MATERIAL_GRADES_PATHS.LIST,
-        permissions: [AUTH_PERMISSIONS.MATERIAL_GRADES_READ],
+        permissions: [MATERIAL_GRADES_PERMISSIONS.READ],
       },
       chemicalElements: {
         icon: FlaskConicalIcon,
         title: "menu:general.chemicalElements",
         url: CHEMICAL_ELEMENTS_PATHS.LIST,
-        permissions: [AUTH_PERMISSIONS.CHEMICAL_ELEMENTS_READ],
+        permissions: [CHEMICAL_ELEMENTS_PERMISSIONS.READ],
       },
     },
   },
@@ -86,19 +93,19 @@ const MENU_SECTIONS: Record<string, MenuSection> = {
         icon: SettingsIcon,
         title: "menu:settings.millTypes",
         url: SETTINGS_PATHS.MILL_TYPES,
-        permissions: [AUTH_PERMISSIONS.MILL_TYPES_READ],
+        permissions: [MILL_TYPES_PERMISSIONS.READ],
       },
       profileTypes: {
         icon: SettingsIcon,
         title: "menu:settings.profileTypes",
         url: SETTINGS_PATHS.PROFILE_TYPES,
-        permissions: [AUTH_PERMISSIONS.PROFILE_TYPES_READ],
+        permissions: [PROFILE_TYPES_PERMISSIONS.READ],
       },
       passGeometryTypes: {
         icon: SettingsIcon,
         title: "menu:settings.passGeometryTypes",
         url: SETTINGS_PATHS.PASS_GEOMETRY_TYPES,
-        permissions: [AUTH_PERMISSIONS.PASS_GEOMETRY_TYPES_READ],
+        permissions: [PASS_GEOMETRY_TYPES_PERMISSIONS.READ],
       },
     },
   },

@@ -1,19 +1,81 @@
 {
   "ADMIN": "Administrador",
-  "roles_create": "Crear Roles",
-  "roles_read": "Ver Roles",
-  "roles_update": "Actualizar Roles",
-  "roles_delete": "Eliminar Roles",
-  "users_create": "Crear Usuarios",
-  "users_read": "Ver Usuarios",
-  "users_update": "Actualizar Usuarios",
-  "users_delete": "Eliminar Usuarios",
-  "projects_create": "Crear Proyectos",
-  "projects_read": "Ver Proyectos",
-  "projects_update": "Actualizar Proyectos",
-  "projects_delete": "Eliminar Proyectos",
-  "issues_create": "Crear Incidencias",
-  "issues_read": "Ver Incidencias",
-  "issues_update": "Actualizar Incidencias",
-  "issues_delete": "Eliminar Incidencias"
+  "roles": {
+    "read": "Ver roles",
+    "create": "Crear roles",
+    "update": "Actualizar roles",
+    "delete": "Eliminar roles"
+  },
+  "users": {
+    "read": "Ver usuarios",
+    "create": "Crear usuarios",
+    "update": "Actualizar usuarios",
+    "delete": "Eliminar usuarios"
+  },
+  "calibrations": {
+    "read": "Ver calibraciones",
+    "create": "Crear calibraciones",
+    "update": "Actualizar calibraciones",
+    "delete": "Eliminar calibraciones"
+  },
+  "passes": {
+    "read": "Ver pases",
+    "create": "Crear pases",
+    "update": "Actualizar pases",
+    "delete": "Eliminar pases"
+  },
+  "rolling_mills": {
+    "read": "Ver laminadores",
+    "create": "Crear laminadores",
+    "update": "Actualizar laminadores",
+    "delete": "Eliminar laminadores"
+  },
+  "stands": {
+    "read": "Ver bastidores",
+    "create": "Crear bastidores",
+    "update": "Actualizar bastidores",
+    "delete": "Eliminar bastidores"
+  },
+  "material_grades": {
+    "read": "Ver grados de material",
+    "create": "Crear grados de material",
+    "update": "Actualizar grados de material",
+    "delete": "Eliminar grados de material"
+  },
+  "chemical_elements": {
+    "read": "Ver elementos químicos",
+    "create": "Crear elementos químicos",
+    "update": "Actualizar elementos químicos",
+    "delete": "Eliminar elementos químicos"
+  },
+  "material_compositions": {
+    "read": "Ver composiciones de material",
+    "create": "Crear composiciones de material",
+    "update": "Actualizar composiciones de material",
+    "delete": "Eliminar composiciones de material"
+  },
+  "files": {
+    "read": "Ver archivos",
+    "create": "Subir archivos",
+    "update": "Actualizar archivos",
+    "delete": "Eliminar archivos"
+  },
+  "mill_types": {
+    "read": "Ver tipos de laminador",
+    "create": "Crear tipos de laminador",
+    "update": "Actualizar tipos de laminador",
+    "delete": "Eliminar tipos de laminador"
+  },
+  "profile_types": {
+    "read": "Ver tipos de perfil",
+    "create": "Crear tipos de perfil",
+    "update": "Actualizar tipos de perfil",
+    "delete": "Eliminar tipos de perfil"
+  },
+  "pass_geometry_types": {
+    "read": "Ver tipos de geometría de pase",
+    "create": "Crear tipos de geometría de pase",
+    "update": "Actualizar tipos de geometría de pase",
+    "delete": "Eliminar tipos de geometría de pase"
+  }
 }

@@ -1,5 +1,6 @@
 import { FormProvider } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 import { useCalibrationWizardForm } from "@/modules/calibrations/hooks/use-calibration-wizard-form";
@@ -9,6 +10,7 @@ import { CALIBRATIONS_QUERIES } from "@/modules/calibrations/constants";
 import type { CalibrationInputPayload } from "@/modules/calibrations/schemas";
 
 const CalibrationWizardPage = () => {
+  const { t } = useTranslation("calibrations");
   const queryClient = useQueryClient();
   const form = useCalibrationWizardForm();
 
@@ -18,12 +20,15 @@ const CalibrationWizardPage = () => {
     mutationKey: CALIBRATIONS_QUERIES.calculate,
     onSuccess: (data) => {
       queryClient.setQueryData(CALIBRATIONS_QUERIES.calculate, data);
-      toast.success("Calibration calculated successfully", {
-        description: `Total passes: ${data.totalPasses}, Total power: ${data.totalPower} kW`,
+      toast.success(t("wizard.successCalculate"), {
+        description: t("wizard.successCalculateDescription", {
+          totalPasses: data.totalPasses,
+          totalPower: data.totalPower,
+        }),
       });
     },
     onError: (error) => {
-      toast.error("Failed to calculate calibration", {
+      toast.error(t("wizard.errorCalculate"), {
         description: error.message,
       });
     },

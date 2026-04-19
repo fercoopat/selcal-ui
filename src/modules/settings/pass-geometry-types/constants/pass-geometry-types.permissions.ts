@@ -1,11 +1,11 @@
-import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
-
 export const PASS_GEOMETRY_TYPES_PERMISSIONS = {
-  READ: AUTH_PERMISSIONS.PASS_GEOMETRY_TYPES_READ,
-  CREATE: AUTH_PERMISSIONS.PASS_GEOMETRY_TYPES_CREATE,
-  UPDATE: AUTH_PERMISSIONS.PASS_GEOMETRY_TYPES_UPDATE,
-  DELETE: AUTH_PERMISSIONS.PASS_GEOMETRY_TYPES_DELETE,
+  READ: "pass_geometry_types.read",
+  CREATE: "pass_geometry_types.create",
+  UPDATE: "pass_geometry_types.update",
+  DELETE: "pass_geometry_types.delete",
 } as const;
 
 export type PassGeometryTypesPermission =
   (typeof PASS_GEOMETRY_TYPES_PERMISSIONS)[keyof typeof PASS_GEOMETRY_TYPES_PERMISSIONS];
+
+export const PASS_GEOMETRY_TYPES_PERMISSIONS_VALUES = Object.values(PASS_GEOMETRY_TYPES_PERMISSIONS);

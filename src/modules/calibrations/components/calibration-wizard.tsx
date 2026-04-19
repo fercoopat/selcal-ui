@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
 import { LoadingButton } from "@/components/buttons";
 import { FormContainer, FormInputField, FormSelectField } from "@/components/forms";
 import type { FormContextProps } from "@/components/forms/form-container";
@@ -15,13 +16,13 @@ type Props = {
 } & FormContextProps;
 
 const CalibrationWizard = ({ className, isCalculating, calculationResult, ...props }: Props) => {
+  const { t } = useTranslation("calibrations");
+
   return (
     <div className={cn("flex flex-col gap-6", className)}>
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Calibration Wizard</h1>
-        <p className="text-muted-foreground">
-          Design steel rolling calibrations for simple profiles
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight">{t("wizard.title")}</h1>
+        <p className="text-muted-foreground">{t("wizard.description")}</p>
       </div>
 
       <Card>
@@ -29,8 +30,8 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
           <FormContainer {...props}>
             <div className="space-y-6">
               <div className="space-y-4">
-                <h2 className="text-lg font-semibold">Billet Data</h2>
-                
+                <h2 className="text-lg font-semibold">{t("wizard.billetData")}</h2>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormInputField
                     required
@@ -38,7 +39,7 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     name="billet.height"
                     type="number"
                     step="0.1"
-                    label="Initial Height (mm)"
+                    label={t("wizard.fields.initialHeight")}
                   />
 
                   <FormInputField
@@ -47,7 +48,7 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     name="billet.width"
                     type="number"
                     step="0.1"
-                    label="Initial Width (mm)"
+                    label={t("wizard.fields.initialWidth")}
                   />
 
                   <FormInputField
@@ -55,16 +56,16 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     disabled={isCalculating}
                     name="billet.temperature"
                     type="number"
-                    label="Initial Temperature (°C)"
+                    label={t("wizard.fields.initialTemperature")}
                   />
 
                   <FormSelectField
                     required
                     disabled={isCalculating}
                     name="billet.material"
-                    label="Steel Grade"
+                    label={t("wizard.fields.steelGrade")}
                     options={STEEL_GRADE_OPTIONS}
-                    placeholder="Select a steel grade"
+                    placeholder={t("wizard.fields.steelGradePlaceholder")}
                     getOptionValue={(option) => option?.value ?? ""}
                     renderOption={(option) => option?.label}
                   />
@@ -75,7 +76,7 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     name="billet.area"
                     type="number"
                     step="0.1"
-                    label="Initial Area (mm²)"
+                    label={t("wizard.fields.initialArea")}
                   />
 
                   <FormInputField
@@ -86,22 +87,22 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     step="0.1"
                     min="1"
                     max="2"
-                    label="Max Elongation per Pass"
+                    label={t("wizard.fields.maxElongation")}
                   />
                 </div>
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-lg font-semibold">Target Profile</h2>
-                
+                <h2 className="text-lg font-semibold">{t("wizard.targetProfile")}</h2>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormSelectField
                     required
                     disabled={isCalculating}
                     name="target.type"
-                    label="Profile Type"
+                    label={t("wizard.fields.profileType")}
                     options={PROFILE_TYPES}
-                    placeholder="Select profile type"
+                    placeholder={t("wizard.fields.profileTypePlaceholder")}
                     getOptionValue={(option) => option?.value ?? ""}
                     renderOption={(option) => option?.label}
                   />
@@ -112,7 +113,7 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     name="target.dimensions.diameter"
                     type="number"
                     step="0.1"
-                    label="Target Diameter (mm)"
+                    label={t("wizard.fields.targetDiameter")}
                   />
 
                   <FormInputField
@@ -120,7 +121,7 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     name="target.dimensions.side"
                     type="number"
                     step="0.1"
-                    label="Target Side (mm)"
+                    label={t("wizard.fields.targetSide")}
                   />
 
                   <FormInputField
@@ -128,7 +129,7 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     name="target.dimensions.flatDistance"
                     type="number"
                     step="0.1"
-                    label="Target Flat Distance (mm)"
+                    label={t("wizard.fields.targetFlatDistance")}
                   />
 
                   <FormInputField
@@ -136,14 +137,14 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
                     disabled={isCalculating}
                     name="target.temperature"
                     type="number"
-                    label="Final Temperature (°C)"
+                    label={t("wizard.fields.finalTemperature")}
                   />
                 </div>
               </div>
 
               <div className="flex justify-end">
                 <LoadingButton type="submit" isLoading={isCalculating}>
-                  Calculate Calibration
+                  {t("wizard.calculate")}
                 </LoadingButton>
               </div>
             </div>
@@ -154,23 +155,23 @@ const CalibrationWizard = ({ className, isCalculating, calculationResult, ...pro
       {calculationResult && (
         <Card>
           <CardContent className="pt-6">
-            <h2 className="text-lg font-semibold mb-4">Calculation Results</h2>
+            <h2 className="text-lg font-semibold mb-4">{t("wizard.results.title")}</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="p-4 rounded-lg border">
                 <div className="text-2xl font-bold">{calculationResult.totalPasses}</div>
-                <p className="text-sm text-muted-foreground">Total Passes</p>
+                <p className="text-sm text-muted-foreground">{t("wizard.results.totalPasses")}</p>
               </div>
               <div className="p-4 rounded-lg border">
                 <div className="text-2xl font-bold">{calculationResult.totalPower.toFixed(1)}</div>
-                <p className="text-sm text-muted-foreground">Total Power (kW)</p>
+                <p className="text-sm text-muted-foreground">{t("wizard.results.totalPower")}</p>
               </div>
               <div className="p-4 rounded-lg border">
                 <div className="text-2xl font-bold">{calculationResult.finalArea.toFixed(2)}</div>
-                <p className="text-sm text-muted-foreground">Final Area (mm²)</p>
+                <p className="text-sm text-muted-foreground">{t("wizard.results.finalArea")}</p>
               </div>
               <div className="p-4 rounded-lg border">
                 <div className="text-2xl font-bold">{calculationResult.totalElongation.toFixed(2)}</div>
-                <p className="text-sm text-muted-foreground">Total Elongation</p>
+                <p className="text-sm text-muted-foreground">{t("wizard.results.totalElongation")}</p>
               </div>
             </div>
           </CardContent>

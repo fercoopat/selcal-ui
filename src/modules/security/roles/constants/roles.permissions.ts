@@ -1,8 +1,8 @@
 export const ROLES_PERMISSIONS = {
-  CREATE: "roles_create",
-  READ: "roles_read",
-  UPDATE: "roles_update",
-  DELETE: "roles_delete",
+  READ: "roles.read",
+  CREATE: "roles.create",
+  UPDATE: "roles.update",
+  DELETE: "roles.delete",
 } as const;
 
 export type RolePermission =
