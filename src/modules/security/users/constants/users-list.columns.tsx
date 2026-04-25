@@ -7,7 +7,7 @@ import { USERS_PERMISSIONS } from "@/modules/security/users/constants/users.perm
 import type { User } from "@/modules/security/users/interfaces/user.interface";
 import { joinText } from "@/shared/utils/text.utils";
 
-export const usersListColumns: ColumnDef<User>[] = [
+export const usersListColumns: ColumnDef<User | undefined>[] = [
   {
     id: "email",
     accessorKey: "email",

@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "lucide-react";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
 
@@ -24,88 +24,90 @@ import { cn } from "@/lib/utils";
 
 const NavMain = () => {
   const { t } = useTranslation();
-
   const { pathname } = useLocation();
-
   const { sections } = useMenu();
   const { open, toggleSidebar } = useSidebar();
+  const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const handleClick = useCallback(() => {
     if (!open) return;
-
     toggleSidebar();
   }, [open, toggleSidebar]);
+
+  const isRouteActive = useCallback(
+    (route?: string) => {
+      if (!route) return false;
+      return pathname === route || pathname.startsWith(route + "/");
+    },
+    [pathname],
+  );
 
   return (
     <>
       {Object.entries(sections).map(([key, section]) => {
+        const hasSubItems = section.hasSubItems && section.subItems && Object.keys(section.subItems).length > 0;
+
         return (
           <SidebarGroup key={key}>
-            <SidebarGroupLabel>{t(section.title)}</SidebarGroupLabel>
-
+            <SidebarGroupLabel>{t(section.label)}</SidebarGroupLabel>
             <SidebarMenu>
-              {Object.entries(section.items).map(([key, item]) => {
-                if (!item?.items?.length) {
-                  return (
-                    <SidebarMenuItem key={key}>
-                      <SidebarMenuButton
-                        asChild
-                        tooltip={t(item.title)}
-                        onClick={handleClick}
-                        className={cn({
-                          "bg-primary/50 hover:bg-primary/20": item?.exact
-                            ? pathname === item.url
-                            : pathname.includes(item.url),
-                        })}
-                      >
-                        <Link to={item.url}>
-                          <item.icon />
-
-                          <span>{t(item.title)}</span>
-
-                          <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  );
-                }
-
-                return (
-                  <Collapsible
-                    key={key}
+              {!hasSubItems ? (
+                <SidebarMenuItem key={section.id}>
+                  <SidebarMenuButton
                     asChild
-                    defaultOpen={!!item?.defaultOpen}
-                    className="group/collapsible"
+                    tooltip={t(section.label)}
+                    onClick={handleClick}
+                    className={cn({
+                      "bg-primary/50 hover:bg-primary/20": isRouteActive(section.route),
+                    })}
                   >
-                    <SidebarMenuItem>
-                      <CollapsibleTrigger asChild>
-                        <SidebarMenuButton tooltip={item.title}>
-                          <item.icon />
+                    <Link to={section.route || "#"}>
+                      <section.icon />
+                      <span>{t(section.label)}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ) : (
+                <Collapsible
+                  key={section.id}
+                  asChild
+                  defaultOpen={activeItem === section.id}
+                  className="group/collapsible"
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton
+                        tooltip={t(section.label)}
+                        onClick={() =>
+                          setActiveItem(activeItem === section.id ? null : section.id)
+                        }
+                      >
+                        <section.icon />
+                        <span>{t(section.label)}</span>
+                        <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
 
-                          <span>{item.title}</span>
-
-                          <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                        </SidebarMenuButton>
-                      </CollapsibleTrigger>
-
-                      <CollapsibleContent>
-                        <SidebarMenuSub>
-                          {item.items?.map((subItem) => (
-                            <SidebarMenuSubItem key={subItem.title}>
-                              <SidebarMenuSubButton
-                                asChild
-                                onClick={handleClick}
-                              >
-                                <Link to={subItem.url}>{subItem.title}</Link>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      </CollapsibleContent>
-                    </SidebarMenuItem>
-                  </Collapsible>
-                );
-              })}
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {Object.entries(section.subItems || {}).map(([subKey, subItem]) => (
+                          <SidebarMenuSubItem key={subKey}>
+                            <SidebarMenuSubButton
+                              asChild
+                              onClick={handleClick}
+                              className={cn({
+                                "bg-primary/50 hover:bg-primary/20": isRouteActive(subItem.route),
+                              })}
+                            >
+                              <Link to={subItem.route || "#"}>{t(subItem.label)}</Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+              )}
             </SidebarMenu>
           </SidebarGroup>
         );

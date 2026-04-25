@@ -3,10 +3,9 @@ import type { RouteObject } from "react-router";
 
 import { MainLayout } from "@/components/layouts";
 import { PageLoader } from "@/components/loaders";
-import { calibrationRoutes } from "@/modules/calibrations/routes";
-import { chemicalElementsRoutes } from "@/modules/chemical-elements/routes";
-import { dashboardRoutes } from "@/modules/dashboard/routes";
-import { materialGradesRoutes } from "@/modules/material-grades/routes";
+import { CALIBRATION_ROUTES } from "@/modules/calibrations/routes";
+import { CHEMICAL_ELEMENTS_ROUTES } from "@/modules/chemical-elements/routes";
+import { DASHBOARD_ROUTES } from "@/modules/dashboard/routes";
 import { ROLLING_MILLS_ROUTES } from "@/modules/rolling-mills/routes";
 import { SECURITY_ROUTES } from "@/modules/security/shared/routes";
 import { SETTINGS_ROUTES } from "@/modules/settings/shared/routes";
@@ -19,11 +18,10 @@ export const mainRoutes: RouteObject[] = [
       </Suspense>
     ),
     children: [
-      ...dashboardRoutes,
-      ...calibrationRoutes,
+      ...DASHBOARD_ROUTES,
+      ...CALIBRATION_ROUTES,
       ...ROLLING_MILLS_ROUTES,
-      ...materialGradesRoutes,
-      ...chemicalElementsRoutes,
+      ...CHEMICAL_ELEMENTS_ROUTES,
       ...SECURITY_ROUTES,
       ...SETTINGS_ROUTES,
     ],

@@ -1,6 +1,6 @@
 import { CALIBRATIONS_PERMISSIONS_VALUES } from "@/modules/calibrations/constants";
 import { CHEMICAL_ELEMENTS_PERMISSIONS_VALUES } from "@/modules/chemical-elements/constants";
-import { MATERIAL_GRADES_PERMISSIONS_VALUES } from "@/modules/material-grades/constants";
+import { MATERIAL_GRADES_PERMISSIONS_VALUES } from "@/modules/settings/material-grades/constants";
 import {
   FILES_PERMISSIONS_VALUES,
   MATERIAL_COMPOSITIONS_PERMISSIONS_VALUES,

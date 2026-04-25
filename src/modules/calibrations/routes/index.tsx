@@ -4,7 +4,7 @@ import { CALIBRATIONS_PATHS } from "@/modules/calibrations/constants/calibration
 import { CalibrationDetailPage, CalibrationsListPage } from '@/modules/calibrations/pages';
 
 
-export const calibrationRoutes: RouteObject[] = [
+export const CALIBRATION_ROUTES: RouteObject[] = [
   {
     path: CALIBRATIONS_PATHS.LIST,
     children: [

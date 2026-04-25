@@ -43,10 +43,10 @@ export const useCreateUserForm = ({ onSuccess }: Params = {}) => {
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: USERS_QUERIES.findAll });
 
-      toast.success(t("users:successCreate"));
-
+      
       onSuccess?.();
-
+      
+      toast.success(t("users:successCreate"));
       form.reset();
     },
   });
@@ -59,9 +59,9 @@ export const useCreateUserForm = ({ onSuccess }: Params = {}) => {
   );
 
   return {
+    ...form,
     error,
     isLoading: isPending,
     onSubmit,
-    ...form,
   };
 };

@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-import { MATERIAL_GRADES_QUERIES } from "@/modules/material-grades/constants";
-import { MaterialGradesService } from "@/modules/material-grades/services";
-import type { CreateMaterialGradePayload } from "@/modules/material-grades/schemas";
+import { MATERIAL_GRADES_QUERIES } from "@/modules/settings/material-grades/constants";
+import { MaterialGradesService } from "@/modules/settings/material-grades/services";
+import type { CreateMaterialGradePayload } from "@/modules/settings/material-grades/schemas";
 
 export const useUpdateMaterialGrade = (id: string) => {
   const queryClient = useQueryClient();

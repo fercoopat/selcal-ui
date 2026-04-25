@@ -1,7 +1,10 @@
 import {
+  AnvilIcon,
   FlaskConicalIcon,
   LayersIcon,
   LayoutDashboardIcon,
+  LockKeyholeIcon,
+  Settings2Icon,
   SettingsIcon,
   ShieldIcon,
   UsersIcon,
@@ -16,113 +19,129 @@ import { CALIBRATIONS_PATHS } from "@/modules/calibrations/constants/calibration
 import { CHEMICAL_ELEMENTS_PERMISSIONS } from "@/modules/chemical-elements/constants";
 import { CHEMICAL_ELEMENTS_PATHS } from "@/modules/chemical-elements/constants/chemical-elements.paths";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
-import { MATERIAL_GRADES_PERMISSIONS } from "@/modules/material-grades/constants";
-import { MATERIAL_GRADES_PATHS } from "@/modules/material-grades/constants/material-grades.paths";
 import { ROLLING_MILLS_PERMISSIONS } from "@/modules/rolling-mills/constants";
 import { ROLLING_MILLS_PATHS } from "@/modules/rolling-mills/constants/rolling-mills.paths";
 import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
+import {
+  MATERIAL_GRADES_PATHS,
+  MATERIAL_GRADES_PERMISSIONS,
+} from "@/modules/settings/material-grades/constants";
 import { MILL_TYPES_PERMISSIONS } from "@/modules/settings/mill-types/constants";
 import { PASS_GEOMETRY_TYPES_PERMISSIONS } from "@/modules/settings/pass-geometry-types/constants";
 import { PROFILE_TYPES_PERMISSIONS } from "@/modules/settings/profile-types/constants";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
 
-type MenuItem = {
-  title: string;
-  url: string;
+export interface SidebarSubItem {
+  id: string;
+  label: string;
   icon: LucideIcon;
-  defaultOpen?: boolean;
+  description?: string;
+  route?: string;
   permissions?: string[];
-  exact?: boolean;
-  items?: Array<{
-    title: string;
-    url: string;
-    permissions?: string[];
-    exact?: boolean;
-  }>;
-};
+}
 
-type MenuSection = {
-  title: string;
-  items: Record<string, MenuItem>;
-  atLeastOne?: boolean;
+export interface SidebarItem {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  badge?: string;
+  hasSubItems?: boolean;
+  route?: string;
+  subItems?: Record<string, SidebarSubItem>;
   permissions?: string[];
-};
+}
 
-const MENU_SECTIONS: Record<string, MenuSection> = {
-  general: {
-    title: "menu:general.title",
-    items: {
-      dashboard: {
-        icon: LayoutDashboardIcon,
-        title: "menu:general.dashboard",
-        url: DASHBOARD_PATHS.BASE_PATH,
-        exact: true,
-      },
+const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
+  dashboard: {
+    id: "dashboard",
+    label: "menu:general.dashboard",
+    icon: LayoutDashboardIcon,
+    route: DASHBOARD_PATHS.BASE_PATH,
+  },
+  operations: {
+    id: "operations",
+    label: "menu:operations.title",
+    icon: Settings2Icon,
+    hasSubItems: true,
+    subItems: {
       calibrations: {
+        id: "operations-calibrations",
         icon: LayersIcon,
-        title: "menu:general.calibrations",
-        url: CALIBRATIONS_PATHS.LIST,
+        label: "menu:general.calibrations",
+        route: CALIBRATIONS_PATHS.LIST,
         permissions: [CALIBRATIONS_PERMISSIONS.READ],
       },
+
       rollingMills: {
+        id: "operations.rolling-mills",
         icon: LayersIcon,
-        title: "menu:general.rollingMills",
-        url: ROLLING_MILLS_PATHS.BASE_PATH,
+        label: "menu:general.rollingMills",
+        route: ROLLING_MILLS_PATHS.BASE_PATH,
         permissions: [ROLLING_MILLS_PERMISSIONS.READ],
       },
-      materialGrades: {
-        icon: FlaskConicalIcon,
-        title: "menu:general.materialGrades",
-        url: MATERIAL_GRADES_PATHS.LIST,
-        permissions: [MATERIAL_GRADES_PERMISSIONS.READ],
-      },
       chemicalElements: {
+        id: "operations.chemical-elements",
         icon: FlaskConicalIcon,
-        title: "menu:general.chemicalElements",
-        url: CHEMICAL_ELEMENTS_PATHS.LIST,
+        label: "menu:general.chemicalElements",
+        route: CHEMICAL_ELEMENTS_PATHS.LIST,
         permissions: [CHEMICAL_ELEMENTS_PERMISSIONS.READ],
       },
     },
   },
-
   settings: {
-    title: "menu:settings.title",
-    permissions: [AUTH_PERMISSIONS.ADMIN],
-    items: {
+    id: "settings",
+    icon: SettingsIcon,
+    label: "menu:settings.title",
+    hasSubItems: true,
+    subItems: {
+      materialGrades: {
+        id: "operations.material-grades",
+        icon: AnvilIcon,
+        label: "menu:general.materialGrades",
+        route: MATERIAL_GRADES_PATHS.LIST,
+        permissions: [MATERIAL_GRADES_PERMISSIONS.READ],
+      },
       millTypes: {
+        id: "settings.mill-types",
         icon: SettingsIcon,
-        title: "menu:settings.millTypes",
-        url: SETTINGS_PATHS.MILL_TYPES,
+        label: "menu:settings.millTypes",
+        route: SETTINGS_PATHS.MILL_TYPES,
         permissions: [MILL_TYPES_PERMISSIONS.READ],
       },
       profileTypes: {
+        id: "settings.profile-types",
         icon: SettingsIcon,
-        title: "menu:settings.profileTypes",
-        url: SETTINGS_PATHS.PROFILE_TYPES,
+        label: "menu:settings.profileTypes",
+        route: SETTINGS_PATHS.PROFILE_TYPES,
         permissions: [PROFILE_TYPES_PERMISSIONS.READ],
       },
       passGeometryTypes: {
+        id: "settings.pass-geometry-types",
         icon: SettingsIcon,
-        title: "menu:settings.passGeometryTypes",
-        url: SETTINGS_PATHS.PASS_GEOMETRY_TYPES,
+        label: "menu:settings.passGeometryTypes",
+        route: SETTINGS_PATHS.PASS_GEOMETRY_TYPES,
         permissions: [PASS_GEOMETRY_TYPES_PERMISSIONS.READ],
       },
     },
   },
-
   security: {
-    title: "menu:security.title",
+    id: "security",
+    icon: LockKeyholeIcon,
+    label: "menu:security.title",
     permissions: [AUTH_PERMISSIONS.ADMIN],
-    items: {
+    hasSubItems: true,
+    subItems: {
       roles: {
+        id: "security.roles",
         icon: ShieldIcon,
-        title: "menu:security.roles",
-        url: SECURITY_PATHS.rolesPath,
+        label: "menu:security.roles",
+        route: SECURITY_PATHS.rolesPath,
       },
       users: {
+        id: "security.users",
         icon: UsersIcon,
-        title: "menu:security.users",
-        url: SECURITY_PATHS.usersPath,
+        label: "menu:security.users",
+        route: SECURITY_PATHS.usersPath,
       },
     },
   },
@@ -132,28 +151,34 @@ export const useMenu = () => {
   const { hasPermission } = useAuth();
 
   const sections = useMemo(() => {
-    const filteredSections: Record<string, MenuSection> = {};
+    const filteredItems: Record<string, SidebarItem> = {};
 
-    Object.entries(MENU_SECTIONS).forEach(([sectionKey, section]) => {
-      if (!hasPermission(section?.permissions)) return;
+    Object.entries(SIDEBAR_ITEMS_MAP).forEach(([itemKey, item]) => {
+      if (!hasPermission(item?.permissions)) return;
 
-      const filteredItems: Record<string, MenuItem> = {};
+      let filteredSubItems: Record<string, SidebarSubItem> | undefined;
 
-      Object.entries(section.items).forEach(([itemKey, item]) => {
-        if (!hasPermission(item?.permissions)) return;
+      if (item.subItems && item.hasSubItems) {
+        filteredSubItems = {};
 
-        filteredItems[itemKey] = item;
-      });
+        Object.entries(item.subItems).forEach(([subItemKey, subItem]) => {
+          if (!hasPermission(subItem?.permissions)) return;
+          filteredSubItems![subItemKey] = subItem;
+        });
 
-      if (Object.keys(filteredItems).length > 0) {
-        filteredSections[sectionKey] = {
-          ...section,
-          items: filteredItems,
-        };
+        if (Object.keys(filteredSubItems).length === 0) {
+          filteredSubItems = undefined;
+        }
       }
+
+      filteredItems[itemKey] = {
+        ...item,
+        subItems: filteredSubItems,
+        hasSubItems: !!filteredSubItems,
+      };
     });
 
-    return filteredSections;
+    return filteredItems;
   }, [hasPermission]);
 
   return { sections };
