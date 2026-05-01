@@ -2,7 +2,5 @@
   "security": "Seguridad",
   "users": "Usuarios",
   "roles": "Roles",
-  "details": "Detalles",
-  "settings": "Configuración",
-  "material-grades": "Grados de Material"
+  "details": "Detalles"
 }

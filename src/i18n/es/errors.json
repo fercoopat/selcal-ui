@@ -3,7 +3,6 @@
   "min-1-char": "Debe tener al menos 1 caracter",
   "min-8-char": "Debe tener al menos 8 caracter",
   "min-0-num": "El valor mínimo es 0",
-  "min-001-dec": "El valor mínimo es 0.01",
   "required": "Requerido",
   "same-old-password": "La nueva contraseña debe ser diferente a la actual",
   "confirm-password": "Las contraseñas no coinciden",

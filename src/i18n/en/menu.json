@@ -1,12 +1,7 @@
 {
   "general": {
     "title": "General",
-    "dashboard": "Dashboard",
-    "calibrations": "Calibrations",
-    "rollingMills": "Rolling Mills",
-    "materialGrades": "Material Grades",
-    "chemicalElements": "Chemical Elements",
-    "passes": "Passes"
+    "dashboard": "Dashboard"
   },
   "security": {
     "title": "Security",
@@ -14,10 +9,6 @@
     "roles": "Roles"
   },
   "settings": {
-    "title": "Settings",
-    "millTypes": "Mill Types",
-    "profileTypes": "Profile Types",
-    "passGeometryTypes": "Pass Geometry Types",
-    "stands": "Stands"
+    "title": "Settings"
   }
 }

@@ -1,23 +1,14 @@
 {
   "general": {
     "title": "General",
-    "dashboard": "Dashboard",
-    "calibrations": "Calibraciones",
-    "rollingMills": "Laminadores",
-    "materialGrades": "Grados de Material",
-    "chemicalElements": "Elementos Químicos",
-    "passes": "Pases"
+    "dashboard": "Dashboard"
   },
   "security": {
-    "title": "Seguridad",
-    "users": "Usuarios",
+    "title": "Security",
+    "users": "Users",
     "roles": "Roles"
   },
   "settings": {
-    "title": "Configuración",
-    "millTypes": "Tipos de Laminador",
-    "profileTypes": "Tipos de Perfil",
-    "passGeometryTypes": "Tipos de Geometría de Pase",
-    "stands": "Cajas"
+    "title": "Settings"
   }
 }

@@ -2,7 +2,5 @@
   "security": "Seguridad",
   "users": "Usuarios",
   "roles": "Roles",
-  "details": "Detalles",
-  "projects": "Proyectos",
-  "issues": "Incidencias"
+  "details": "Detalles"
 }

@@ -1,7 +1,0 @@
-{
-  "fields": {
-    "name": "Nombre",
-    "position": "Posición",
-    "motorPower": "Potencia del Motor (kW)"
-  }
-}
