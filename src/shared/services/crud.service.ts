@@ -32,9 +32,9 @@ export class CrudService<TEntity, TPayload> extends ApiService {
     return data;
   }
 
-  async delete(id: string | undefined) {
+  async remove(id: string | undefined) {
     if (!id) {
-      throw new Error("Material Grade ID is required to delete");
+      throw new Error("Entity ID is required to remove");
     }
 
     const { data } = await ApiClient.delete<TEntity>(this.getPath(`/${id}`));
