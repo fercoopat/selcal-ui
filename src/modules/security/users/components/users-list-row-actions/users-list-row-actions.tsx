@@ -6,14 +6,14 @@ import { IconButton } from "@/components/buttons";
 import { ConfirmDialog } from "@/components/dialogs";
 import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 import { USERS_PATHS } from "@/modules/security/users/constants/users.paths";
-import { useDeactivateUser } from "@/modules/security/users/hooks/use-deactivate-user";
+import { useDeleteUser } from "@/modules/security/users/hooks/use-deactivate-user";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
 
 type Props = {
   user: User | undefined;
 };
 const UsersListRowActions = ({ user }: Props) => {
-  const { isLoading, deactivate } = useDeactivateUser({ user });
+  const { isLoading, delete: deleteUser } = useDeleteUser({ user });
 
   const isAdmin = useMemo<boolean>(
     () => user?.role?.permissions.includes(AUTH_PERMISSIONS.ADMIN) ?? false,
@@ -31,12 +31,12 @@ const UsersListRowActions = ({ user }: Props) => {
       </IconButton>
 
       <ConfirmDialog
-        message="users:deactivate.message"
-        title="users:deactivate.title"
-        onConfirm={deactivate}
+        message="users:delete.message"
+        title="users:delete.title"
+        onConfirm={deleteUser}
         isLoading={isLoading}
       >
-        <IconButton tooltip="common:deactivate">
+        <IconButton tooltip="common:delete">
           <TrashIcon />
         </IconButton>
       </ConfirmDialog>

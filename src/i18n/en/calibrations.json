@@ -1,5 +1,19 @@
 {
   "title": "Calibrations",
+  "actions": {
+    "create": "New Calibration",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "fields": {
+    "name": "Name",
+    "targetDimension": "Target Dimension (mm)",
+    "status": "Status"
+  },
+  "status": {
+    "draft": "Draft",
+    "approved": "Approved"
+  },
   "wizard": {
     "title": "Calibration Wizard",
     "description": "Design steel rolling calibrations for simple profiles",

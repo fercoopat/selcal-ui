@@ -5,7 +5,8 @@
     "calibrations": "Calibrations",
     "rollingMills": "Rolling Mills",
     "materialGrades": "Material Grades",
-    "chemicalElements": "Chemical Elements"
+    "chemicalElements": "Chemical Elements",
+    "passes": "Passes"
   },
   "security": {
     "title": "Security",
@@ -16,6 +17,7 @@
     "title": "Settings",
     "millTypes": "Mill Types",
     "profileTypes": "Profile Types",
-    "passGeometryTypes": "Pass Geometry Types"
+    "passGeometryTypes": "Pass Geometry Types",
+    "stands": "Stands"
   }
 }

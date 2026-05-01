@@ -5,7 +5,8 @@
     "calibrations": "Calibraciones",
     "rollingMills": "Laminadores",
     "materialGrades": "Grados de Material",
-    "chemicalElements": "Elementos Químicos"
+    "chemicalElements": "Elementos Químicos",
+    "passes": "Pases"
   },
   "security": {
     "title": "Seguridad",
@@ -16,6 +17,7 @@
     "title": "Configuración",
     "millTypes": "Tipos de Laminador",
     "profileTypes": "Tipos de Perfil",
-    "passGeometryTypes": "Tipos de Geometría de Pase"
+    "passGeometryTypes": "Tipos de Geometría de Pase",
+    "stands": "Cajas"
   }
 }

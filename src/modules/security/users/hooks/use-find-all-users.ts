@@ -15,16 +15,3 @@ export const useFindAllUsers = () => {
     isLoading,
   };
 };
-
-export const useFindNonAdminUsers = () => {
-  const { data, error, isLoading } = useQuery({
-    queryFn: () => UsersService.findNonAdminUsers(),
-    queryKey: USERS_QUERIES.findNonAdmins,
-  });
-
-  return {
-    users: data,
-    error,
-    isLoading,
-  };
-};

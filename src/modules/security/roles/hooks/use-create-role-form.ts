@@ -52,9 +52,11 @@ export const useCreateRoleForm = ({ role, onSuccess }: Params = {}) => {
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ROLES_QUERIES.findAll });
-      await queryClient.invalidateQueries({
-        queryKey: ROLES_QUERIES.findOne(role?.id),
-      });
+      if (role?.id) {
+        await queryClient.invalidateQueries({
+          queryKey: ROLES_QUERIES.findOne(role.id),
+        });
+      }
 
       toast.success(
         t(!role?.id ? "roles:successCreate" : "roles:successUpdate"),

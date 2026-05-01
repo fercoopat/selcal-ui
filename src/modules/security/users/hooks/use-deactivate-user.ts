@@ -11,21 +11,23 @@ type Params = {
   onSuccess?: () => void;
 };
 
-export const useDeactivateUser = ({ user, onSuccess }: Params) => {
+export const useDeleteUser = ({ user, onSuccess }: Params) => {
   const queryClient = useQueryClient();
 
   const { t } = useTranslation();
 
   const { error, isPending, mutate, reset } = useMutation({
-    mutationFn: () => UsersService.deactivate(user?.id),
+    mutationFn: () => UsersService.delete(user?.id),
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: USERS_QUERIES.findAll });
-      await queryClient.invalidateQueries({
-        queryKey: USERS_QUERIES.findOne(user?.id),
-      });
+      if (user?.id) {
+        await queryClient.invalidateQueries({
+          queryKey: USERS_QUERIES.findOne(user.id),
+        });
+      }
 
-      toast.success(t("users:successDeactivate"));
+      toast.success(t("users:successDelete"));
 
       onSuccess?.();
     },
@@ -34,7 +36,7 @@ export const useDeactivateUser = ({ user, onSuccess }: Params) => {
   return {
     error,
     isLoading: isPending,
-    deactivate: mutate,
+    delete: mutate,
     reset,
   };
 };

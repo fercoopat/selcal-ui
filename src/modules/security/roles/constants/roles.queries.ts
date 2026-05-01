@@ -1,7 +1,7 @@
 export const ROLES_QUERIES = {
-  findAll: ["roles:find-all"],
-
-  findOne: (roleId: string | undefined) => {
-    return [roleId, "roles:find-one"];
-  },
+  all: ["ROLES"] as const,
+  list: ["ROLES", "list"] as const,
+  detail: (id: string) => ["ROLES", "detail", id] as const,
+  findAll: ["ROLES", "list"] as const,
+  findOne: (id: string) => ["ROLES", "detail", id] as const,
 } as const;

@@ -1,5 +1,19 @@
 {
   "title": "Calibraciones",
+  "actions": {
+    "create": "Nueva Calibración",
+    "edit": "Editar",
+    "delete": "Eliminar"
+  },
+  "fields": {
+    "name": "Nombre",
+    "targetDimension": "Dimensión Objetivo (mm)",
+    "status": "Estado"
+  },
+  "status": {
+    "draft": "Borrador",
+    "approved": "Aprobado"
+  },
   "wizard": {
     "title": "Asistente de Calibración",
     "description": "Diseñe calibraciones de laminación de acero para perfiles simples",

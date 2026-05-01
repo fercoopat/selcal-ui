@@ -65,22 +65,6 @@ class UsersService extends ApiService {
 
     return data;
   }
-
-  async deactivate(userId: string | undefined) {
-    if (!userId) throw new Error("User ID is required to deactivate");
-
-    const { data } = await ApiClient.patch<User>(
-      this.getPath(`/${userId}/deactivate`),
-    );
-
-    return data;
-  }
-
-  async findNonAdminUsers() {
-    const { data } = await ApiClient.get<User[]>(this.getPath("/non-admins"));
-
-    return data;
-  }
 }
 
 export default new UsersService(USERS_SERVICE_BASE_PATH);

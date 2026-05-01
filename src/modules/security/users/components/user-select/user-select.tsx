@@ -6,7 +6,7 @@ import {
   MultiSelectItem,
 } from "@/components/ui/multi-select";
 import type { User } from "@/modules/security/users/interfaces/user.interface";
-import { useFindNonAdminUsers } from "@/modules/security/users/hooks/use-find-all-users";
+import { useFindAllUsers } from "@/modules/security/users/hooks/use-find-all-users";
 import { joinText } from "@/shared/utils/text.utils";
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 };
 
 const UserSelect = ({ multiple = false, ...props }: Props) => {
-  const { users, isLoading } = useFindNonAdminUsers();
+  const { users, isLoading } = useFindAllUsers();
 
   if (multiple) {
     return (
