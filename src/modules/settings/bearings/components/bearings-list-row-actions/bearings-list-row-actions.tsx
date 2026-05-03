@@ -1,7 +1,7 @@
+import { PencilIcon, TrashIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { MoreHorizontal } from "lucide-react";
 
-import { LoadingButton } from "@/components/buttons";
+import { IconButton, LoadingButton } from "@/components/buttons";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,16 +10,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useToggle } from "@/hooks/use-toggle";
 import { useDeactivateBearing } from "@/modules/settings/bearings/hooks/use-deactivate-bearing";
 import type { Bearing } from "@/modules/settings/bearings/interfaces/bearing.interface";
+import { useCallback } from "react";
+import { useSearchParams } from "react-router";
 
 type Props = {
   bearing: Bearing | undefined;
@@ -27,45 +23,68 @@ type Props = {
 
 const BearingsListRowActions = ({ bearing }: Props) => {
   const { t } = useTranslation();
-  const { deleteBearing, isLoading } = useDeactivateBearing({ onSuccess: () => {} });
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { isOpen: isOpenDelete, onToggle: onToggleDelete } = useToggle();
+
+  const handleEdit = useCallback(() => {
+    if (!bearing?.id) {
+      return;
+    }
+    searchParams.set("edit", bearing?.id);
+    setSearchParams(searchParams);
+  }, [bearing?.id, searchParams, setSearchParams]);
+
+  const { deleteBearing, isLoading } = useDeactivateBearing({
+    onSuccess: onToggleDelete,
+  });
+
+  const handleDeleteBearing = useCallback(() => {
+    deleteBearing(bearing?.id);
+  }, [bearing?.id, deleteBearing]);
 
   return (
-    <Dialog>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
-            <span className="sr-only">{t("common:openMenu")}</span>
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => {}}>
-            {t("common:edit")}
-          </DropdownMenuItem>
-          <DialogTrigger asChild>
-            <DropdownMenuItem>{t("common:delete")}</DropdownMenuItem>
-          </DialogTrigger>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{t("bearings:deleteTitle")}</DialogTitle>
-          <DialogDescription>
-            {t("bearings:deleteDescription", { name: bearing?.name })}
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <Button variant="outline">{t("common:cancel")}</Button>
-          <LoadingButton
-            variant="destructive"
-            isLoading={isLoading}
-            onClick={() => deleteBearing(bearing?.id)}
-          >
-            {t("common:delete")}
-          </LoadingButton>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <>
+      <div className="flex items-center justify-end gap-2">
+        <IconButton tooltip="common:edit" onClick={handleEdit}>
+          <PencilIcon />
+        </IconButton>
+
+        <IconButton
+          tooltip="common:delete"
+          onClick={onToggleDelete}
+          variant={"destructive"}
+        >
+          <TrashIcon />
+        </IconButton>
+      </div>
+
+      <Dialog open={isOpenDelete} onOpenChange={onToggleDelete}>
+        <DialogContent showCloseButton>
+          <DialogHeader>
+            <DialogTitle>{t("bearings:deleteTitle")}</DialogTitle>
+            <DialogDescription>
+              {t("bearings:deleteDescription", { name: bearing?.name })}
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={onToggleDelete}>
+              {t("common:cancel")}
+            </Button>
+
+            <LoadingButton
+              variant="destructive"
+              isLoading={isLoading}
+              onClick={handleDeleteBearing}
+            >
+              {t("common:delete")}
+            </LoadingButton>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

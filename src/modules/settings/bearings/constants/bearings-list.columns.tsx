@@ -1,5 +1,4 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import { t } from "i18next";
 
 import { PermissionsCheck } from "@/components/security";
 import { BearingsListRowActions } from "@/modules/settings/bearings/components/bearings-list-row-actions";
@@ -10,21 +9,29 @@ export const bearingsListColumns: ColumnDef<Bearing | undefined>[] = [
   {
     id: "name",
     accessorKey: "name",
-    header: t("bearings:fields.name"),
+    header: "bearings:fields.name",
   },
   {
     id: "description",
     accessorKey: "description",
-    header: t("bearings:fields.description"),
+    header: "bearings:fields.description",
   },
   {
     id: "actions",
+    header: "common:actions",
     enableHiding: false,
+    meta: {
+      headerClassName: "text-right",
+      cellClassName: "text-right",
+    },
     cell: ({ row }) => {
       const bearing = row.original;
       return (
         <PermissionsCheck
-          permissions={[BEARINGS_PERMISSIONS.UPDATE, BEARINGS_PERMISSIONS.DELETE]}
+          permissions={[
+            BEARINGS_PERMISSIONS.UPDATE,
+            BEARINGS_PERMISSIONS.DELETE,
+          ]}
         >
           <BearingsListRowActions bearing={bearing} />
         </PermissionsCheck>

@@ -46,7 +46,6 @@ Create `src/modules/reports/services/reports.service.ts`:
 import { ApiClient } from "@/lib/api-client";
 import type { Report } from "@/modules/reports/interfaces/reports.interface";
 import type { CreateReportPayload } from "@/modules/reports/schemas/reports-create.schema";
-import type { UpdateReportPayload } from "@/modules/reports/schemas/reports-update.schema";
 import { ApiService } from "@/shared/services/api.service";
 
 const REPORTS_SERVICE_BASE_PATH = "/reports" as const;
@@ -101,8 +100,8 @@ Create `src/modules/reports/schemas/reports-create.schema.ts`:
 import z from "zod";
 
 export const createReportSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  description: z.string().optional(),
+  name: z.string({ error: "invalidValue" }).min(1, "required"),
+  description: z.string({ error: "invalidValue" }).optional(),
 });
 
 export type CreateReportPayload = z.infer<typeof createReportSchema>;
@@ -111,12 +110,9 @@ export type CreateReportPayload = z.infer<typeof createReportSchema>;
 Create `src/modules/reports/schemas/reports-update.schema.ts`:
 
 ```typescript
-import z from "zod";
+import { createReportSchema } from "./reports-create.schema";
 
-export const updateReportSchema = z.object({
-  name: z.string().min(1, "Name is required").optional(),
-  description: z.string().optional(),
-});
+export const updateReportSchema = createReportSchema.partial();
 
 export type UpdateReportPayload = z.infer<typeof updateReportSchema>;
 ```
@@ -137,11 +133,10 @@ Create `src/modules/reports/constants/reports.paths.ts`:
 ```typescript
 const BASE_PATH = "/reports";
 
-export const REPORTS_BASE_PATH = `/reports${BASE_PATH}`;
+export const REPORTS_BASE_PATH = BASE_PATH;
 
 export const REPORTS_PATHS = {
-  BASE_PATH: REPORTS_BASE_PATH,
-  listPath: () => REPORTS_BASE_PATH,
+  LIST: REPORTS_BASE_PATH,
 } as const;
 ```
 
@@ -240,6 +235,28 @@ export const useFindAllReports = () => {
 
   return {
     reports: data,
+    error,
+    isLoading,
+  };
+};
+
+Create `src/modules/reports/hooks/use-find-one-report.ts`:
+
+```typescript
+import { useQuery } from "@tanstack/react-query";
+
+import { REPORTS_QUERIES } from "@/modules/reports/constants/reports.queries";
+import { ReportsService } from "@/modules/reports/services";
+
+export const useFindOneReport = (reportId: string | undefined) => {
+  const { data, error, isLoading } = useQuery({
+    queryFn: () => ReportsService.findOne(reportId),
+    queryKey: REPORTS_QUERIES.findOne(reportId),
+    enabled: !!reportId,
+  });
+
+  return {
+    report: data,
     error,
     isLoading,
   };
@@ -400,6 +417,7 @@ Create `src/modules/reports/hooks/index.ts`:
 ```typescript
 export { useCreateReportForm } from "./use-create-report-form";
 export { useFindAllReports } from "./use-find-all-reports";
+export { useFindOneReport } from "./use-find-one-report";
 export { useUpdateReportForm } from "./use-update-report-form";
 export { useDeactivateReport } from "./use-deactivate-report";
 ```
@@ -455,10 +473,10 @@ import { ReportsListPage } from "@/modules/reports/pages";
 
 export const REPORTS_ROUTES: RouteObject[] = [
   {
-    path: REPORTS_PATHS.BASE_PATH,
+    path: REPORTS_PATHS.LIST,
     children: [
       {
-        path: REPORTS_PATHS.BASE_PATH,
+        path: REPORTS_PATHS.LIST,
         Component: ReportsListPage,
       },
     ],
@@ -500,6 +518,7 @@ type Props = {
   defaultOpen?: boolean;
   isLoadingReport?: boolean;
   open?: boolean;
+  title?: string;
   onToggle?: () => void;
 } & FormContextProps;
 
@@ -510,6 +529,7 @@ const ReportFormDialog = ({
   defaultOpen = false,
   isLoadingReport = false,
   open,
+  title,
   onToggle,
   ...props
 }: Props) => {
@@ -520,7 +540,7 @@ const ReportFormDialog = ({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className={cn("sm:max-w-106.25", className)}>
         <DialogHeader>
-          <DialogTitle>{t("reports:add")}</DialogTitle>
+          <DialogTitle>{title ? t(title) : t("reports:add")}</DialogTitle>
           <DialogDescription />
         </DialogHeader>
         <div className="py-4">
@@ -574,17 +594,28 @@ Create `src/modules/reports/components/reports-list-toolbar/reports-list-toolbar
 import { PlusIcon } from "lucide-react";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { ReportFormDialog } from "@/modules/reports/components/report-form-dialog";
 import { useCreateReportForm } from "@/modules/reports/hooks/use-create-report-form";
+import { useFindOneReport } from "@/modules/reports/hooks/use-find-one-report";
 
 const ReportsListToolbar = () => {
   const { t } = useTranslation();
   const { isOpen, onToggle } = useToggle();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const editValue = searchParams.get("edit");
+
+  const isFormModalOpen = !!editValue || isOpen;
+
+  const { isLoading: isLoadingReportToEdit, report: reportToEdit } =
+    useFindOneReport(editValue || "");
+
   const { reset: resetForm, ...formProps } = useCreateReportForm({
+    report: reportToEdit,
     onSuccess: onToggle,
   });
 
@@ -604,7 +635,9 @@ const ReportsListToolbar = () => {
       <ReportFormDialog
         {...formProps}
         reset={resetForm}
-        open={isOpen}
+        open={isFormModalOpen}
+        title={editValue ? "reports:edit" : undefined}
+        isLoadingReport={isLoadingReportToEdit}
         onToggle={handleToggle}
       />
     </>
@@ -623,11 +656,12 @@ export { default as ReportsListToolbar } from "./reports-list-toolbar";
 Create `src/modules/reports/components/reports-list-row-actions/reports-list-row-actions.tsx`:
 
 ```typescript
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { MoreHorizontal } from "lucide-react";
+import { PencilIcon, TrashIcon } from "lucide-react";
+import { useSearchParams } from "react-router";
 
-import { LoadingButton } from "@/components/buttons";
-import { Button } from "@/components/ui/button";
+import { IconButton, LoadingButton } from "@/components/buttons";
 import {
   Dialog,
   DialogContent,
@@ -635,14 +669,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useToggle } from "@/hooks/use-toggle";
 import { useDeactivateReport } from "@/modules/reports/hooks/use-deactivate-report";
 import type { Report } from "@/modules/reports/interfaces/report.interface";
 
@@ -652,45 +680,50 @@ type Props = {
 
 const ReportsListRowActions = ({ report }: Props) => {
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { isOpen: isOpenDelete, onToggle: onToggleDelete } = useToggle();
   const { deleteReport, isLoading } = useDeactivateReport({ onSuccess: () => {} });
 
+  const handleEdit = useCallback(() => {
+    searchParams.set("edit", report?.id ?? "");
+    setSearchParams(searchParams);
+  }, [report?.id, searchParams, setSearchParams]);
+
   return (
-    <Dialog>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
-            <span className="sr-only">{t("common:openMenu")}</span>
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => {}}>
-            {t("common:edit")}
-          </DropdownMenuItem>
-          <DialogTrigger asChild>
-            <DropdownMenuItem>{t("common:delete")}</DropdownMenuItem>
-          </DialogTrigger>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{t("reports:deleteTitle")}</DialogTitle>
-          <DialogDescription>
-            {t("reports:deleteDescription", { name: report?.name })}
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <Button variant="outline">{t("common:cancel")}</Button>
-          <LoadingButton
-            variant="destructive"
-            isLoading={isLoading}
-            onClick={() => deleteReport(report?.id)}
-          >
-            {t("common:delete")}
-          </LoadingButton>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <>
+      <div className="flex items-center justify-end gap-2">
+        <IconButton tooltip="common:edit" onClick={handleEdit}>
+          <PencilIcon />
+        </IconButton>
+        <IconButton
+          tooltip="common:delete"
+          variant="destructive"
+          onClick={onToggleDelete}
+        >
+          <TrashIcon />
+        </IconButton>
+      </div>
+      <Dialog open={isOpenDelete} onOpenChange={onToggleDelete}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("reports:deleteTitle")}</DialogTitle>
+            <DialogDescription>
+              {t("reports:deleteDescription", { name: report?.name })}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline">{t("common:cancel")}</Button>
+            <LoadingButton
+              variant="destructive"
+              isLoading={isLoading}
+              onClick={() => deleteReport(report?.id)}
+            >
+              {t("common:delete")}
+            </LoadingButton>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
@@ -705,18 +738,18 @@ export { default as ReportsListRowActions } from "./reports-list-row-actions";
 
 ### Step 10: Final Integration Steps
 
-1. **Add to main routes**: Update `src/components/router/main-routes.tsx`
-2. **Add translations**: Create `i18n/en/reports.json` and `i18n/es/reports.json`
-3. **Update i18n index**: Add exports in `i18n/en/index.ts` and `i18n/es/index.ts`
-4. **Update menu**: Add menu item in `src/hooks/use-menu.ts`
-5. **Add menu translations**: Update `i18n/en/menu.json` and `i18n/es/menu.json`
-6. **Build and verify**: Run `npm run build`
+1. **Add to main routes**: Update `src/components/router/main-routes.tsx` (for flat modules) or parent module routes (for submodules)
+2. **Add translations**: Create `src/i18n/en/reports.json` and `src/i18n/es/reports.json`
+3. **Update i18n index**: Add exports in `src/i18n/en/index.ts` and `src/i18n/es/index.ts`
+4. **Update menu**: Add menu item in `src/hooks/use-menu.ts` (if applicable)
+5. **Add menu translations**: Update `src/i18n/en/menu.json` and `src/i18n/es/menu.json`
+6. **Build and verify**: Run `npm run build` and `npm run lint`
 
 ---
 
 ## Creating a Submodule
 
-Example: Adding `grades` submodule to `settings` module.
+Example: Adding `materials` submodule to `settings` module (follow the existing `src/modules/settings/materials/` as reference).
 
 ### Follow Steps 1-10 Above, Plus:
 
@@ -728,7 +761,7 @@ Update `src/modules/settings/shared/routes/index.tsx`:
 import { type RouteObject } from "react-router";
 import { ModuleLayout } from "@/components/layouts";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
-import { GRADES_ROUTES } from "@/modules/settings/grades/routes";
+import { MATERIALS_ROUTES } from "@/modules/settings/materials/routes";
 
 export const SETTINGS_ROUTES: RouteObject[] = [
   {
@@ -736,11 +769,11 @@ export const SETTINGS_ROUTES: RouteObject[] = [
     element: (
       <ModuleLayout
         path={SETTINGS_PATHS.BASE}
-        notFoundRedirectTo={SETTINGS_PATHS.GRADES}
+        notFoundRedirectTo={SETTINGS_PATHS.MATERIALS}
       />
     ),
     children: [
-      ...GRADES_ROUTES,
+      ...MATERIALS_ROUTES,
       // ...other submodule routes
     ],
   },
@@ -752,12 +785,13 @@ export const SETTINGS_ROUTES: RouteObject[] = [
 Update `src/modules/settings/shared/constants/settings.paths.ts`:
 
 ```typescript
+import { MATERIALS_PATHS } from "@/modules/settings/materials/constants";
+
 const BASE_PATH = "/settings";
 
 export const SETTINGS_PATHS = {
   BASE: BASE_PATH,
-  GRADES: `${BASE_PATH}/grades`,
-  MATERIALS: `${BASE_PATH}/materials`,
+  MATERIALS: MATERIALS_PATHS.LIST,
 } as const;
 ```
 
@@ -768,7 +802,7 @@ Update `src/hooks/use-menu.ts`:
 ```typescript
 import { AnvilIcon } from "lucide-react";
 // ... other imports
-import { GRADES_PERMISSIONS } from "@/modules/settings/grades/constants/grades.permissions";
+import { MATERIALS_PERMISSIONS } from "@/modules/settings/materials/constants/materials.permissions";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
 
 // In SIDEBAR_ITEMS_MAP:
@@ -778,12 +812,12 @@ settings: {
   label: "menu:settings.title",
   hasSubItems: true,
   subItems: {
-    grades: {
-      id: "settings-grades",
+    materials: {
+      id: "settings-materials",
       icon: AnvilIcon,
-      label: "menu:settings.grades",
-      route: SETTINGS_PATHS.GRADES,
-      permissions: [GRADES_PERMISSIONS.READ],
+      label: "menu:settings.materials",
+      route: SETTINGS_PATHS.MATERIALS,
+      permissions: [MATERIALS_PERMISSIONS.READ],
     },
     // ...other submodules
   },
@@ -797,12 +831,19 @@ settings: {
 - [ ] All directories created with `index.ts` barrel exports
 - [ ] Interface extends `CommonFields` from `shared/interfaces/common.interface.ts`
 - [ ] Service extends `ApiService` from `shared/services/api.service`
+- [ ] Zod schemas use `z.string({ error: "invalidValue" })` pattern
+- [ ] Update schema uses `createSchema.partial()` pattern
+- [ ] Paths use `LIST` property (not `listPath` function)
 - [ ] Routes use `{{MODULE}}_PATHS` constants
 - [ ] Hooks use `{{MODULE}}_QUERIES` for React Query keys
-- [ ] Translations added to `i18n/en/` and `i18n/es/`
-- [ ] Translations exported in `i18n/{lang}/index.ts`
+- [ ] `use-find-one-{{module}}` hook created for edit mode
+- [ ] Components use `IconButton` for row actions (not DropdownMenu)
+- [ ] Toolbar uses URL search params (`?edit=id`) for edit mode
+- [ ] Form dialog supports `title` prop for add/edit modes
+- [ ] Translations added to `src/i18n/en/` and `src/i18n/es/`
+- [ ] Translations exported in `src/i18n/{lang}/index.ts`
 - [ ] Menu updated in `src/hooks/use-menu.ts` (if applicable)
-- [ ] Menu translations added to `i18n/{en,es}/menu.json`
+- [ ] Menu translations added to `src/i18n/{en,es}/menu.json`
 - [ ] Build passes: `npm run build`
 - [ ] Lint passes: `npm run lint`
 

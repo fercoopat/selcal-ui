@@ -102,7 +102,7 @@ const AppSidebar = () => {
                     <SidebarMenuItem key={item.id}>
                       <SidebarMenuButton
                         isActive={isRouteActive(item.route)}
-                        className="h-10 w-full px-3"
+                        className="h-10 w-full cursor-pointer px-3"
                         tooltip={t(item.label)}
                         onClick={() => handleItemClick(item)}
                       >
@@ -132,9 +132,8 @@ const AppSidebar = () => {
           <SidebarHeader className="flex flex-row items-center justify-between border-b px-4">
             <h3 className="font-medium">{t(activeParentData.label)}</h3>
             <IconButton
-              tooltip=""
               onClick={handleCloseDrawer}
-              className="hover:bg-sidebar-accent flex h-6 w-6 items-center justify-center rounded-md p-0"
+              className="hover:bg-sidebar-accent flex h-6 w-6 items-center justify-center rounded-full p-0"
             >
               <XIcon className="h-4 w-4" />
             </IconButton>

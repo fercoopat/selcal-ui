@@ -1,6 +1,8 @@
+import type { Bearing } from "@/modules/settings/bearings/interfaces/bearing.interface";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -12,18 +14,22 @@ import {
 } from "@/modules/settings/bearings/schemas/bearings-create.schema";
 import { BearingsService } from "@/modules/settings/bearings/services";
 
-const defaultValues: CreateBearingPayload = {
-  name: "",
-  description: "",
-};
-
 type Params = {
+  bearing?: Bearing;
   onSuccess?: () => void;
 };
 
-export const useCreateBearingForm = ({ onSuccess }: Params = {}) => {
+export const useCreateBearingForm = ({ bearing, onSuccess }: Params = {}) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
+
+  const defaultValues = useMemo<CreateBearingPayload>(
+    () => ({
+      name: bearing?.name || "",
+      description: bearing?.description || "",
+    }),
+    [bearing?.description, bearing?.name],
+  );
 
   const form = useForm({
     resolver: zodResolver(createBearingSchema),
@@ -36,10 +42,12 @@ export const useCreateBearingForm = ({ onSuccess }: Params = {}) => {
       return BearingsService.create(payload);
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: BEARINGS_QUERIES.findAll });
+      await queryClient.invalidateQueries({
+        queryKey: BEARINGS_QUERIES.findAll,
+      });
       onSuccess?.();
-      toast.success(t("bearings:successCreate"));
       form.reset();
+      toast.success(t("bearings:successCreate"));
     },
   });
 

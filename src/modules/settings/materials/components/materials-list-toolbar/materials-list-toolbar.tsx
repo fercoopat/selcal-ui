@@ -57,7 +57,7 @@ const MaterialsListToolbar = () => {
         reset={resetForm}
         open={isFormModalOpen}
         onToggle={handleToggle}
-        title="materials:edit"
+        title={!editValue ? undefined : "materials:edit"}
       />
     </>
   );

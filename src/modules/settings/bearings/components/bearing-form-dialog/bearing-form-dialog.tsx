@@ -27,6 +27,7 @@ type Props = {
   defaultOpen?: boolean;
   isLoadingBearing?: boolean;
   open?: boolean;
+  title?: string;
   onToggle?: () => void;
 } & FormContextProps;
 
@@ -37,6 +38,7 @@ const BearingFormDialog = ({
   defaultOpen = false,
   isLoadingBearing = false,
   open,
+  title,
   onToggle,
   ...props
 }: Props) => {
@@ -47,7 +49,7 @@ const BearingFormDialog = ({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className={cn("sm:max-w-106.25", className)}>
         <DialogHeader>
-          <DialogTitle>{t("bearings:add")}</DialogTitle>
+          <DialogTitle>{title ? t(title) : t("bearings:add")}</DialogTitle>
           <DialogDescription />
         </DialogHeader>
         <div className="py-4">
