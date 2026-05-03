@@ -1,4 +1,5 @@
 export { default as auth } from "./auth.json";
+export { default as bearings } from "./bearings.json";
 export { default as breadcrumbs } from "./breadcrumbs.json";
 export { default as common } from "./common.json";
 export { default as errors } from "./errors.json";

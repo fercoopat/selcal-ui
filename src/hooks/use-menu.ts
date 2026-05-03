@@ -1,5 +1,6 @@
 import {
   AnvilIcon,
+  DiscIcon,
   LayoutDashboardIcon,
   LockKeyholeIcon,
   Settings2Icon,
@@ -13,6 +14,7 @@ import { useMemo } from "react";
 import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
+import { BEARINGS_PERMISSIONS } from "@/modules/settings/bearings/constants/bearings.permissions";
 import { MATERIALS_PERMISSIONS } from "@/modules/settings/materials/constants/materials.permissions";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
 import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
@@ -86,6 +88,13 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
         label: "menu:settings.materials",
         route: SETTINGS_PATHS.MATERIALS,
         permissions: [MATERIALS_PERMISSIONS.READ],
+      },
+      bearings: {
+        id: "settings-bearings",
+        icon: DiscIcon,
+        label: "menu:settings.bearings",
+        route: SETTINGS_PATHS.BEARINGS,
+        permissions: [BEARINGS_PERMISSIONS.READ],
       },
       // millTypes: {
       //   id: "settings.mill-types",

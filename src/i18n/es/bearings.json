@@ -1,0 +1,12 @@
+{
+  "fields": {
+    "name": "Nombre",
+    "description": "Descripción"
+  },
+  "add": "Agregar rodamiento",
+  "successCreate": "Rodamiento agregado exitosamente",
+  "successUpdate": "Rodamiento actualizado exitosamente",
+  "successDelete": "Rodamiento eliminado exitosamente",
+  "deleteTitle": "Eliminar rodamiento",
+  "deleteDescription": "¿Está seguro que desea eliminar el rodamiento {{name}}?"
+}

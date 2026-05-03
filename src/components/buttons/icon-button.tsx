@@ -1,31 +1,39 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import type { VariantProps } from "class-variance-authority";
-import { buttonVariants } from "@/components/ui/button";
 
 type Props = {
   children: React.ReactNode;
-  tooltip: string;
+  tooltip?: string;
   asChild?: boolean;
 } & React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants>;
 const IconButton = ({ children, tooltip, asChild = true, ...props }: Props) => {
   const { t } = useTranslation();
 
+  const btnContent = useMemo(
+    () => (
+      <Button variant="outline" size="icon" {...props}>
+        {children}
+      </Button>
+    ),
+    [children, props],
+  );
+
+  if (!tooltip) {
+    return btnContent;
+  }
+
   return (
     <Tooltip>
-      <TooltipTrigger asChild={asChild}>
-        <Button variant="outline" size="icon" {...props}>
-          {children}
-        </Button>
-      </TooltipTrigger>
+      <TooltipTrigger asChild={asChild}>{btnContent}</TooltipTrigger>
 
       <TooltipContent>{t(tooltip)}</TooltipContent>
     </Tooltip>

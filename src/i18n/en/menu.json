@@ -10,6 +10,7 @@
   },
   "settings": {
     "title": "Settings",
-    "materials": "Materials"
+    "materials": "Materials",
+    "bearings": "Bearings"
   }
 }

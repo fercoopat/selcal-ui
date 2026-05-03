@@ -1,9 +1,10 @@
 import { XIcon } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 
 import NavUser from "@/components/app-sidebar/nav-user";
+import { IconButton } from "@/components/buttons";
 import { AppLogoIcon } from "@/components/icons";
 import {
   Sidebar,
@@ -15,6 +16,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSubButton,
 } from "@/components/ui/sidebar";
 import {
   useMenu,
@@ -27,42 +29,58 @@ const AppSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { sections } = useMenu();
-  const [activeItem, setActiveItem] = useState<string | null>("");
-  const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
+  const [activeParent, setActiveParent] = useState<string | null>(null);
 
-  const sidebarItems = Object.values(sections);
-  const activeItemData = sidebarItems.find((item) => item.id === activeItem);
+  const sidebarItems = useMemo(() => Object.values(sections), [sections]);
+  const activeParentData = useMemo(
+    () => sidebarItems.find((item) => item.id === activeParent),
+    [activeParent, sidebarItems],
+  );
 
-  const handleItemClick = (item: SidebarItem) => {
-    if (item.hasSubItems && item.subItems) {
-      const isActive = activeItem === item.id;
-      setActiveItem(isActive ? null : item.id);
-      if (isActive) {
-        setSelectedSubItem(null);
+  const isRouteActive = useCallback(
+    (route?: string) => {
+      if (!route) return false;
+      return (
+        location.pathname === route || location.pathname.startsWith(route + "/")
+      );
+    },
+    [location.pathname],
+  );
+
+  const handleItemClick = useCallback(
+    (item: SidebarItem) => {
+      if (item.hasSubItems && item.subItems) {
+        const isActive = activeParent === item.id;
+
+        if (isActive) {
+          setActiveParent(null);
+          return;
+        }
+
+        setActiveParent(item.id);
+      } else if (item.route) {
+        navigate(item.route);
+        setActiveParent(null);
       }
-    } else if (item.route) {
-      navigate(item.route);
-      setActiveItem(null);
-      setSelectedSubItem(null);
-    }
-  };
+    },
+    [activeParent, navigate],
+  );
 
-  const handleSubItemClick = (subItem: SidebarSubItem) => {
-    setSelectedSubItem(selectedSubItem === subItem.id ? null : subItem.id);
-    if (subItem.route) {
-      navigate(subItem.route);
-    }
-  };
+  const handleSubItemClick = useCallback(
+    (subItem: SidebarSubItem) => {
+      if (subItem.route) {
+        navigate(subItem.route);
+      }
+    },
+    [navigate],
+  );
 
-  const isRouteActive = (route?: string) => {
-    if (!route) return false;
-    return (
-      location.pathname === route || location.pathname.startsWith(route + "/")
-    );
-  };
+  const handleCloseDrawer = useCallback(() => {
+    setActiveParent(null);
+  }, [setActiveParent]);
 
   return (
-    <div className="bg-background flex h-dvh">
+    <div className="flex h-dvh">
       <Sidebar
         side="left"
         variant="sidebar"
@@ -79,7 +97,6 @@ const AppSidebar = () => {
               <SidebarMenu>
                 {sidebarItems.map((item) => {
                   const Icon = item.icon;
-                  // const isActive = activeItem === item.id;
 
                   return (
                     <SidebarMenuItem key={item.id}>
@@ -89,9 +106,8 @@ const AppSidebar = () => {
                         tooltip={t(item.label)}
                         onClick={() => handleItemClick(item)}
                       >
-                        <div className="flex min-w-0 flex-1 items-center gap-3">
-                          <Icon className="h-4 w-4 shrink-0" />
-                        </div>
+                        <Icon className="h-4 w-4 shrink-0" />
+                        <span>{t(item.label)}</span>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   );
@@ -106,7 +122,7 @@ const AppSidebar = () => {
         </SidebarFooter>
       </Sidebar>
 
-      {activeItem && activeItemData?.subItems && (
+      {activeParent && activeParentData?.subItems && (
         <Sidebar
           side="left"
           variant="sidebar"
@@ -114,45 +130,32 @@ const AppSidebar = () => {
           className="animate-in slide-in-from-left-5 w-72 border-r duration-200"
         >
           <SidebarHeader className="flex flex-row items-center justify-between border-b px-4">
-            <h3 className="font-medium">{t(activeItemData.label)}</h3>
-            <button
-              onClick={() => setActiveItem(null)}
+            <h3 className="font-medium">{t(activeParentData.label)}</h3>
+            <IconButton
+              tooltip=""
+              onClick={handleCloseDrawer}
               className="hover:bg-sidebar-accent flex h-6 w-6 items-center justify-center rounded-md p-0"
             >
               <XIcon className="h-4 w-4" />
-            </button>
+            </IconButton>
           </SidebarHeader>
 
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {Object.values(activeItemData.subItems).map((subItem) => {
-                    const SubIcon = subItem.icon;
-
-                    return (
-                      <SidebarMenuItem key={subItem.id}>
-                        <SidebarMenuButton
-                          isActive={isRouteActive(subItem.route)}
-                          className="h-auto w-full justify-start gap-3 px-3 py-2"
-                          onClick={() => handleSubItemClick(subItem)}
-                        >
-                          <SubIcon className="mt-0.5 h-5 w-5 shrink-0 self-start" />
-
-                          <div className="min-w-0 flex-1 text-left">
-                            <div className="font-medium">
-                              {t(subItem.label)}
-                            </div>
-                            {subItem.description && (
-                              <div className="text-muted-foreground mt-0.5 text-xs">
-                                {subItem.description}
-                              </div>
-                            )}
-                          </div>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    );
-                  })}
+                  {Object.values(activeParentData.subItems).map((subItem) => (
+                    <SidebarMenuItem key={subItem.id}>
+                      <SidebarMenuSubButton
+                        className="cursor-pointer"
+                        isActive={isRouteActive(subItem.route)}
+                        onClick={() => handleSubItemClick(subItem)}
+                      >
+                        <subItem.icon className="h-4 w-4" />
+                        <span>{t(subItem.label)}</span>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuItem>
+                  ))}
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
