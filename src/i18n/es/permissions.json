@@ -1,15 +1,15 @@
 {
-  "ADMIN": "Administrator",
+  "ADMIN": "Administrador",
   "roles": {
-    "read": "View roles",
-    "create": "Create roles",
-    "update": "Update roles",
-    "delete": "Delete roles"
+    "read": "Ver roles",
+    "create": "Crear roles",
+    "update": "Actualizar roles",
+    "delete": "Eliminar roles"
   },
   "users": {
-    "read": "View users",
-    "create": "Create users",
-    "update": "Update users",
-    "delete": "Delete users"
+    "read": "Ver usuarios",
+    "create": "Crear usuarios",
+    "update": "Actualizar usuarios",
+    "delete": "Eliminar usuarios"
   }
 }

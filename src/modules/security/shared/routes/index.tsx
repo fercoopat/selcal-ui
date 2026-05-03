@@ -11,7 +11,7 @@ export const SECURITY_ROUTES: RouteObject[] = [
     element: (
       <ModuleLayout
         path={SECURITY_PATHS.BASE_PATH}
-        notFoundRedirectTo={SECURITY_PATHS.usersPath}
+        notFoundRedirectTo={SECURITY_PATHS.USERS}
       />
     ),
     children: [...ROLES_ROUTES, ...USERS_ROUTES],

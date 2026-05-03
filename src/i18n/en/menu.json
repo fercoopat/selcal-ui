@@ -9,6 +9,7 @@
     "roles": "Roles"
   },
   "settings": {
-    "title": "Settings"
+    "title": "Settings",
+    "materials": "Materials"
   }
 }

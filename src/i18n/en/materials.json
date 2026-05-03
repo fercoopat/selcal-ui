@@ -1,0 +1,13 @@
+{
+  "fields": {
+    "coefficient": "Coefficient",
+    "name": "Name",
+    "description": "Description"
+  },
+  "add": "Add material",
+  "successCreate": "Material added successfully",
+  "successUpdate": "Material updated successfully",
+  "successDelete": "Material deleted successfully",
+  "deleteTitle": "Delete material",
+  "deleteDescription": "Are you sure you want to delete the material {{name}}?"
+}

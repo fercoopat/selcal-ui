@@ -19,12 +19,12 @@ export type UserDetailsTab =
   (typeof USER_DETAILS_TAB)[keyof typeof USER_DETAILS_TAB];
 
 export const USERS_PATHS = {
-  BASE_PATH: SECURITY_USERS_BASE_PATH,
+  LIST: SECURITY_USERS_BASE_PATH,
 
-  listTabPath: (tab: UserListTab = USER_LIST_TAB.ALL) =>
+  LIST_TAB: (tab: UserListTab = USER_LIST_TAB.ALL) =>
     `${SECURITY_USERS_BASE_PATH}/${tab}`,
 
-  detailsPath: (userId: string | undefined, tab?: UserDetailsTab) => {
+  DETAILS: (userId: string | undefined, tab?: UserDetailsTab) => {
     if (!userId) return "#";
 
     const end = !tab ? "" : `/${tab}`;

@@ -1,14 +1,15 @@
 {
   "general": {
     "title": "General",
-    "dashboard": "Dashboard"
+    "dashboard": "Panel"
   },
   "security": {
-    "title": "Security",
-    "users": "Users",
+    "title": "Seguridad",
+    "users": "Usuarios",
     "roles": "Roles"
   },
   "settings": {
-    "title": "Settings"
+    "title": "Configuración",
+    "materials": "Materiales"
   }
 }

@@ -45,7 +45,9 @@ const NavUserInfo = () => {
     <>
       <Avatar className="h-8 w-8 rounded-lg">
         <AvatarImage src={user?.avatar} alt={fullName} />
-        <AvatarFallback className="rounded-lg">{avatarFallback}</AvatarFallback>
+        <AvatarFallback className="bg-primary text-primary-foreground rounded-lg">
+          {avatarFallback}
+        </AvatarFallback>
       </Avatar>
 
       <div className="grid flex-1 text-left text-sm leading-tight">
@@ -105,7 +107,7 @@ const NavUser = () => {
 
               <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
-                  <Link to={USERS_PATHS.detailsPath(user?.id)}>
+                  <Link to={USERS_PATHS.DETAILS(user?.id)}>
                     <BadgeCheckIcon />
                     {t("users:account")}
                   </Link>

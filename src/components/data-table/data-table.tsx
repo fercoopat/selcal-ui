@@ -50,12 +50,12 @@ const DataTable = ({
     getCoreRowModel: getCoreRowModel(),
   });
 
-  if (error) {
-    return <DataTableError error={error} onRetry={onRetry} />;
-  }
-
   if (isLoading) {
     return <DataTableSkeleton columnCount={columns.length} />;
+  }
+
+  if (error) {
+    return <DataTableError error={error} onRetry={onRetry} />;
   }
 
   return (
@@ -65,14 +65,21 @@ const DataTable = ({
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
+                const headerContent = header.isPlaceholder
+                  ? null
+                  : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    );
+
                 return (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
+                  <TableHead
+                    key={header.id}
+                    className={header.column.columnDef.meta?.headerClassName}
+                  >
+                    {typeof headerContent === "string"
+                      ? t(headerContent)
+                      : headerContent}
                   </TableHead>
                 );
               })}
@@ -87,7 +94,10 @@ const DataTable = ({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell
+                    key={cell.id}
+                    className={cell.column.columnDef.meta?.cellClassName}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

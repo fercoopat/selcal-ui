@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "coefficient": "Coeficiente",
+    "name": "Nombre",
+    "description": "Descripción"
+  },
+  "add": "Añadir material",
+  "edit": "Editar material",
+  "successCreate": "Material añadido satisfactoriamente",
+  "successUpdate": "Se ha actualizado el material satisfactoriamente",
+  "successDelete": "Material eliminado satisfactoriamente",
+  "deleteTitle": "Eliminar material",
+  "deleteDescription": "¿Está seguro que desea eliminar el material {{name}}?"
+}

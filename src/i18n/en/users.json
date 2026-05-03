@@ -1,38 +1,38 @@
 {
   "fields": {
-    "email": "Correo electrónico",
-    "firstName": "Nombre(s)",
-    "lastName": "Apellido(s)",
-    "fullName": "Nombre",
-    "role": "Rol",
-    "password": "Contraseña",
+    "email": "Email",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "fullName": "Full name",
+    "role": "Role",
+    "password": "Password",
     "avatar": "Avatar",
-    "currentPassword": "Contraseña actual",
-    "newPassword": "Nueva contraseña",
-    "confirmPassword": "Confirmar contraseña"
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password"
   },
-  "add": "Añadir usuario",
-  "successCreate": "Usuario añadido satisfactoriamente",
+  "add": "Add user",
+  "successCreate": "User added successfully",
   "deactivate": {
-    "title": "Desactivar usuario",
-    "message": "¿Está seguro que desea desactivar el usuario seleccionado?"
+    "title": "Deactivate user",
+    "message": "Are you sure you want to deactivate the selected user?"
   },
-  "successUpdate": "Se ha actualizado el usuario satisfactoriamente",
-  "successPasswordUpdate": "Se ha actualizado la contraseña satisfactoriamente",
-  "successDeactivate": "El usuario se ha desactivado satisfactoriamente",
+  "successUpdate": "User updated successfully",
+  "successPasswordUpdate": "Password updated successfully",
+  "successDeactivate": "User deactivated successfully",
   "editRole": {
-    "title": "Editar rol"
+    "title": "Edit role"
   },
   "tabs": {
     "general": {
       "title": "General"
     },
     "security": {
-      "title": "Seguridad"
+      "title": "Security"
     }
   },
-  "account": "Perfil",
+  "account": "Profile",
   "notifications": {
-    "subtitle": "Aquí se listan todas las notificaciones del usuario"
+    "subtitle": "Here all user notifications are listed"
   }
 }

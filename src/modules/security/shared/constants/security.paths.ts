@@ -6,7 +6,7 @@ const BASE_PATH = "/security";
 export const SECURITY_PATHS = {
   BASE_PATH: BASE_PATH,
 
-  rolesPath: ROLES_PATHS.LIST,
+  ROLES: ROLES_PATHS.LIST,
 
-  usersPath: USERS_PATHS.BASE_PATH,
+  USERS: USERS_PATHS.LIST,
 } as const;

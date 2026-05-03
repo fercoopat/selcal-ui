@@ -1,6 +1,7 @@
 {
-  "security": "Seguridad",
-  "users": "Usuarios",
+  "security": "Security",
+  "users": "Users",
   "roles": "Roles",
-  "details": "Detalles"
+  "materials": "Materials",
+  "details": "Details"
 }

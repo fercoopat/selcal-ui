@@ -23,9 +23,9 @@ const UsersListRowActions = ({ user }: Props) => {
   if (isAdmin) return null;
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center justify-end gap-2">
       <IconButton asChild tooltip="common:details">
-        <Link to={USERS_PATHS.detailsPath(user?.id)}>
+        <Link to={USERS_PATHS.DETAILS(user?.id)}>
           <InfoIcon />
         </Link>
       </IconButton>

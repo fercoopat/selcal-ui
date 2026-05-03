@@ -14,7 +14,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
           <Suspense fallback={<PageLoader size="screen" />}>
             {children}
           </Suspense>
-          <Toaster position="top-center" richColors />
+          <Toaster position="top-center" richColors theme="light" closeButton />
         </ThemeProvider>
       </QueryProvider>
     </BrowserRouter>

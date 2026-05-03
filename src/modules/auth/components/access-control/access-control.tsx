@@ -4,6 +4,11 @@ import { PageLoader } from "@/components/loaders";
 import { AUTH_PATHS } from "@/modules/auth/constants/auth.paths";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
+import {
+  saveRedirectPath,
+  getSavedRedirectPath,
+  clearSavedRedirectPath,
+} from "@/hooks/use-preserve-route";
 
 const AUTH_ROUTES: string[] = [AUTH_PATHS.SIGNIN, AUTH_PATHS.SIGNUP];
 const PUBLIC_ROUTES: string[] = [];
@@ -21,7 +26,9 @@ const AccessControl = () => {
 
   if (isAuthRoute) {
     if (isAuthenticated) {
-      return <Navigate to={DASHBOARD_PATHS.BASE_PATH} replace />;
+      const savedPath = getSavedRedirectPath();
+      clearSavedRedirectPath();
+      return <Navigate to={savedPath || DASHBOARD_PATHS.BASE_PATH} replace />;
     }
 
     return <Outlet />;
@@ -35,11 +42,11 @@ const AccessControl = () => {
     return <Outlet />;
   }
 
+  saveRedirectPath(pathname);
   return (
     <Navigate
       to={AUTH_PATHS.SIGNIN}
       replace
-      state={{ redirect: pathname }}
     />
   );
 };

@@ -1,8 +1,10 @@
-import { CircleIcon, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 
+import NavUser from "@/components/app-sidebar/nav-user";
+import { AppLogoIcon } from "@/components/icons";
 import {
   Sidebar,
   SidebarContent,
@@ -68,7 +70,7 @@ const AppSidebar = () => {
         className="w-64 border-r"
       >
         <SidebarHeader>
-          <CircleIcon />
+          <AppLogoIcon className="mx-auto mt-2 size-6" />
         </SidebarHeader>
 
         <SidebarContent>
@@ -100,7 +102,7 @@ const AppSidebar = () => {
         </SidebarContent>
 
         <SidebarFooter>
-          <div />
+          <NavUser />
         </SidebarFooter>
       </Sidebar>
 

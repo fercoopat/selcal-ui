@@ -9,12 +9,12 @@ export const rolesListColumns: ColumnDef<Role>[] = [
   {
     id: "name",
     accessorKey: "name",
-    header: t("roles:fields.name"),
+    header: "roles:fields.name",
   },
 
   {
     id: "description",
-    header: t("roles:fields.description"),
+    header: "roles:fields.description",
     cell: ({ row }) => {
       const role = row.original;
 
@@ -28,7 +28,7 @@ export const rolesListColumns: ColumnDef<Role>[] = [
 
   {
     id: "permissions",
-    header: t("roles:fields.permissions"),
+    header: "roles:fields.permissions",
     cell: ({ row }) => {
       const role = row.original;
 
@@ -44,7 +44,12 @@ export const rolesListColumns: ColumnDef<Role>[] = [
 
   {
     id: "actions",
+    header: "common:actions",
     enableHiding: false,
+    meta: {
+      headerClassName: "text-right",
+      cellClassName: "text-right",
+    },
     cell: ({ row }) => {
       const role = row.original;
 

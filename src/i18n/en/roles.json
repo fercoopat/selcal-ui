@@ -1,18 +1,18 @@
 {
   "fields": {
-    "name": "Nombre",
-    "description": "Descripción",
-    "permissions": "Permisos"
+    "name": "Name",
+    "description": "Description",
+    "permissions": "Permissions"
   },
   "deactivate": {
-    "title": "Desactivar rol",
-    "message": "¿Está seguro que desea desactivar el rol seleccionado?"
+    "title": "Deactivate role",
+    "message": "Are you sure you want to deactivate the selected role?"
   },
-  "successCreate": "Se ha añadido un nuevo rol satisfactoriamente",
-  "successUpdate": "Se ha actualizado el rol satisfactoriamente",
-  "successDeactivate": "El rol se ha desactivado satisfactoriamente",
-  "add": "Adicionar rol",
+  "successCreate": "New role added successfully",
+  "successUpdate": "Role updated successfully",
+  "successDeactivate": "Role deactivated successfully",
+  "add": "Add role",
   "newRole": {
-    "title": "Adicionar nuevo rol"
+    "title": "Add new role"
   }
 }

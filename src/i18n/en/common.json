@@ -1,32 +1,33 @@
 {
-  "noResults": "Sin resultados",
+  "noResults": "No results",
   "menu": {
-    "open": "Abrir menú"
+    "open": "Open menu"
   },
-  "actions": "Acciones",
-  "search": "Buscar",
-  "deactivate": "Desactivar",
-  "cancel": "Cancelar",
-  "confirm": "Confirmar",
-  "accept": "Aceptar",
-  "edit": "Editar",
-  "details": "Detalles",
+  "actions": "Actions",
+  "search": "Search",
+  "deactivate": "Deactivate",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "accept": "Accept",
+  "edit": "Edit",
+  "details": "Details",
   "isActive": {
-    "true": "Activo",
-    "false": "Inactivo"
+    "true": "Active",
+    "false": "Inactive"
   },
-  "reset": "Restablecer",
-  "add": "Añadir",
-  "retry": "Reintentar",
-  "remove": "Remover",
+  "reset": "Reset",
+  "add": "Add",
+  "retry": "Retry",
+  "remove": "Remove",
   "dropFiles": {
-    "selectedFiles": "Archivos seleccionados",
-    "dropHelper": "Suelta los archivos aquí",
-    "cleanAll": "Limpiar todos"
+    "selectedFiles": "Selected files",
+    "dropHelper": "Drop files here",
+    "cleanAll": "Clear all"
   },
-  "max": "Máximo",
-  "min": "Mínimo",
-  "files": "Archivos",
-  "eachOne": "Cada uno",
-  "notifications": "Notificaciones"
+  "max": "Maximum",
+  "min": "Minimum",
+  "files": "Files",
+  "eachOne": "Each",
+  "notifications": "Notifications"
 }

@@ -1,12 +1,12 @@
 import { LoaderCircleIcon } from "lucide-react";
-import { memo } from "react";
-import type { ButtonProps } from "react-day-picker";
+import { type ComponentProps, memo } from "react";
 
 import { Button } from "@/components/ui/button";
 
 type Props = {
-  isLoading: boolean;
-} & ButtonProps;
+  isLoading?: boolean;
+} & ComponentProps<typeof Button>;
+
 const LoadingButton = ({ children, isLoading = false, ...props }: Props) => {
   return (
     <Button {...props} disabled={isLoading ?? props?.disabled}>

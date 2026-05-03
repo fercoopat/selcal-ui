@@ -1,4 +1,5 @@
 import {
+  AnvilIcon,
   LayoutDashboardIcon,
   LockKeyholeIcon,
   Settings2Icon,
@@ -12,6 +13,8 @@ import { useMemo } from "react";
 import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
+import { MATERIALS_PERMISSIONS } from "@/modules/settings/materials/constants/materials.permissions";
+import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
 import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
 
 export interface SidebarSubItem {
@@ -77,13 +80,13 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
     label: "menu:settings.title",
     hasSubItems: true,
     subItems: {
-      // materials: {
-      //   id: "settings-materials",
-      //   icon: AnvilIcon,
-      //   label: "menu:settings.materials",
-      //   route: MATERIAL_GRADES_PATHS.LIST,
-      //   permissions: [MATERIAL_GRADES_PERMISSIONS.READ],
-      // },
+      materials: {
+        id: "settings-materials",
+        icon: AnvilIcon,
+        label: "menu:settings.materials",
+        route: SETTINGS_PATHS.MATERIALS,
+        permissions: [MATERIALS_PERMISSIONS.READ],
+      },
       // millTypes: {
       //   id: "settings.mill-types",
       //   icon: SettingsIcon,
@@ -118,13 +121,13 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
         id: "security.roles",
         icon: ShieldIcon,
         label: "menu:security.roles",
-        route: SECURITY_PATHS.rolesPath,
+        route: SECURITY_PATHS.ROLES,
       },
       users: {
         id: "security.users",
         icon: UsersIcon,
         label: "menu:security.users",
-        route: SECURITY_PATHS.usersPath,
+        route: SECURITY_PATHS.USERS,
       },
     },
   },

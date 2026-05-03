@@ -2,5 +2,7 @@
   "security": "Seguridad",
   "users": "Usuarios",
   "roles": "Roles",
-  "details": "Detalles"
+  "materials": "Materiales",
+  "details": "Detalles",
+  "settings": "Configuración"
 }

@@ -16,7 +16,7 @@ type Props = {
   asChild?: boolean;
 } & React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants>;
-const IconButton = ({ children, tooltip, asChild, ...props }: Props) => {
+const IconButton = ({ children, tooltip, asChild = true, ...props }: Props) => {
   const { t } = useTranslation();
 
   return (
