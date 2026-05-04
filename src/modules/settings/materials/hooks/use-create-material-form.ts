@@ -24,6 +24,8 @@ export const useCreateMaterialForm = ({ material, onSuccess }: Params = {}) => {
 
   const { t } = useTranslation();
 
+  const isEdit = !!material?.id;
+
   const defaultValues = useMemo<CreateMaterialPayload>(
     () => ({
       coefficient: material?.coefficient || 1.0,
@@ -41,7 +43,10 @@ export const useCreateMaterialForm = ({ material, onSuccess }: Params = {}) => {
 
   const { error, isPending, mutate } = useMutation({
     mutationFn: (payload: CreateMaterialPayload) => {
-      return MaterialsService.create(payload);
+      if (!isEdit) {
+        return MaterialsService.create(payload);
+      }
+      return MaterialsService.update(material.id, payload);
     },
 
     onSuccess: async () => {
@@ -51,7 +56,9 @@ export const useCreateMaterialForm = ({ material, onSuccess }: Params = {}) => {
 
       onSuccess?.();
       form.reset();
-      toast.success(t("materials:successCreate"));
+      toast.success(
+        t(!isEdit ? "materials:successCreate" : "materials:successUpdate"),
+      );
     },
   });
 

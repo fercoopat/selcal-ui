@@ -6,11 +6,13 @@ import { useSearchParams } from "react-router";
 import { DataTableToolbar } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
-import { MaterialFormDialog } from "@/modules/settings/materials/components/material-form-dialog";
-import { useFindOneMaterial } from "@/modules/settings/materials/hooks";
-import { useCreateMaterialForm } from "@/modules/settings/materials/hooks/use-create-material-form";
+import { MillTypeFormDialog } from "@/modules/settings/mill-types/components/mill-type-form-dialog";
+import {
+  useCreateMillTypeForm,
+  useFindOneMillType,
+} from "@/modules/settings/mill-types/hooks";
 
-const MaterialsListToolbar = () => {
+const MillTypesListToolbar = () => {
   const { t } = useTranslation();
 
   const { isOpen, onToggle } = useToggle();
@@ -31,11 +33,11 @@ const MaterialsListToolbar = () => {
     }
   }, [editValue, onToggle, searchParams, setSearchParams]);
 
-  const { isLoading: isLoadingMaterialToEdit, material: materialToEdit } =
-    useFindOneMaterial(editValue || "");
+  const { isLoading: isLoadingMillTypeToEdit, millType: millTypeToEdit } =
+    useFindOneMillType(editValue || "");
 
-  const { reset: resetForm, ...formProps } = useCreateMaterialForm({
-    material: materialToEdit,
+  const { reset: resetForm, ...formProps } = useCreateMillTypeForm({
+    millType: millTypeToEdit,
     onSuccess: onCloseEdit,
   });
 
@@ -54,15 +56,15 @@ const MaterialsListToolbar = () => {
         </Button>
       </DataTableToolbar>
 
-      <MaterialFormDialog
+      <MillTypeFormDialog
         {...formProps}
-        isLoadingMaterial={isLoadingMaterialToEdit}
+        isLoadingMillType={isLoadingMillTypeToEdit}
         reset={resetForm}
         open={isFormModalOpen}
         onToggle={handleToggle}
-        title={!editValue ? undefined : "materials:edit"}
+        title={!editValue ? undefined : "millTypes:edit"}
       />
     </>
   );
 };
-export default MaterialsListToolbar;
+export default MillTypesListToolbar;

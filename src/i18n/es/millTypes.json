@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "name": "Nombre",
+    "tempInitial": "Temperatura inicial",
+    "tempVariation": "Temperatura en variación"
+  },
+  "add": "Añadir tipo de tren",
+  "edit": "Editar tipo de tren",
+  "successCreate": "Tipo de tren añadido satisfactoriamente",
+  "successUpdate": "Se ha actualizado el tipo de tren satisfactoriamente",
+  "successDelete": "Tipo de tren eliminado satisfactoriamente",
+  "deleteTitle": "Eliminar tipo de tren",
+  "deleteDescription": "¿Está seguro que desea eliminar el tipo de tren {{name}}?"
+}

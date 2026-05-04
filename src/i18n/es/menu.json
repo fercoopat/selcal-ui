@@ -11,6 +11,7 @@
   "settings": {
     "title": "Configuración",
     "materials": "Materiales",
-    "bearings": "Cojinetes"
+    "bearings": "Cojinetes",
+    "millTypes": "Tipos de trenes"
   }
 }

@@ -6,18 +6,20 @@ import {
   Settings2Icon,
   SettingsIcon,
   ShieldIcon,
+  TrainTrackIcon,
   UsersIcon,
-  type LucideIcon
+  type LucideIcon,
 } from "lucide-react";
 import { useMemo } from "react";
 
 import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
+import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
 import { BEARINGS_PERMISSIONS } from "@/modules/settings/bearings/constants/bearings.permissions";
 import { MATERIALS_PERMISSIONS } from "@/modules/settings/materials/constants/materials.permissions";
+import { MILL_TYPES_PERMISSIONS } from "@/modules/settings/mill-types/constants";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
-import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
 
 export interface SidebarSubItem {
   id: string;
@@ -59,7 +61,6 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
       //   route: CALIBRATIONS_PATHS.LIST,
       //   permissions: [CALIBRATIONS_PERMISSIONS.READ],
       // },
-
       // rollingMills: {
       //   id: "operations.rolling-mills",
       //   icon: LayersIcon,
@@ -95,6 +96,13 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
         label: "menu:settings.bearings",
         route: SETTINGS_PATHS.BEARINGS,
         permissions: [BEARINGS_PERMISSIONS.READ],
+      },
+      millTypes: {
+        id: "settings-mill-types",
+        icon: TrainTrackIcon,
+        label: "menu:settings.millTypes",
+        route: SETTINGS_PATHS.MILL_TYPES,
+        permissions: [MILL_TYPES_PERMISSIONS.READ],
       },
       // millTypes: {
       //   id: "settings.mill-types",

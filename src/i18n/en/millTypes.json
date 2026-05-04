@@ -1,0 +1,13 @@
+{
+  "fields": {
+    "name": "Name",
+    "tempInitial": "Temperature Initial",
+    "tempVariation": "Temperature Variation"
+  },
+  "add": "Add mill type",
+  "successCreate": "Material added successfully",
+  "successUpdate": "Material updated successfully",
+  "successDelete": "Material deleted successfully",
+  "deleteTitle": "Delete mill type",
+  "deleteDescription": "Are you sure you want to delete the mill type {{name}}?"
+}
