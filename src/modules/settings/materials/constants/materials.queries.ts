@@ -1,7 +1,6 @@
 export const MATERIALS_QUERIES = {
-  all: ["MATERIALS"] as const,
-  list: ["MATERIALS", "list"] as const,
-  detail: (id: string | undefined) => ["MATERIALS", "detail", id] as const,
-  findAll: ["MATERIALS", "list"] as const,
-  findOne: (id: string | undefined) => ["MATERIALS", "detail", id] as const,
+  ALL: ["MATERIALS"] as const,
+  LIST: ["MATERIALS", "list"] as const,
+  DETAILS: (id: string | undefined) => ["MATERIALS", "detail", id] as const,
+  FIND_ONE: (id: string | undefined) => ["MATERIALS", "detail", id] as const,
 } as const;

@@ -6,7 +6,7 @@ import { MaterialsService } from "@/modules/settings/materials/services";
 export const useFindAllMaterials = () => {
   const { data, error, isLoading } = useQuery({
     queryFn: () => MaterialsService.findAll(),
-    queryKey: MATERIALS_QUERIES.findAll,
+    queryKey: MATERIALS_QUERIES.LIST,
   });
 
   return {

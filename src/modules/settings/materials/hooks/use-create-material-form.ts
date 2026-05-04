@@ -51,7 +51,7 @@ export const useCreateMaterialForm = ({ material, onSuccess }: Params = {}) => {
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: MATERIALS_QUERIES.findAll,
+        queryKey: MATERIALS_QUERIES.LIST,
       });
 
       onSuccess?.();

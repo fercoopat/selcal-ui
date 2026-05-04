@@ -6,7 +6,7 @@ import { MaterialsService } from "@/modules/settings/materials/services";
 export const useFindOneMaterial = (materialId: string | undefined) => {
   const { data, error, isLoading } = useQuery({
     queryFn: () => MaterialsService.findOne(materialId),
-    queryKey: MATERIALS_QUERIES.findOne(materialId),
+    queryKey: MATERIALS_QUERIES.FIND_ONE(materialId),
     enabled: !!materialId,
   });
 
