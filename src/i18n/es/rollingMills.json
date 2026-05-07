@@ -1,0 +1,23 @@
+{
+  "fields": {
+    "name": "Nombre",
+    "distOvenStand": "Distancia al Soporte del Horno",
+    "millType": "Tipo de Laminador",
+    "millTypePlaceholder": "Seleccione un tipo de laminador"
+  },
+  "actions": {
+    "create": "Agregar laminador"
+  },
+  "dialog": {
+    "createTitle": "Crear Laminador",
+    "createDescription": "Ingrese los detalles para crear un nuevo laminador."
+  },
+  "toast": {
+    "created": "Laminador creado exitosamente",
+    "updated": "Laminador actualizado exitosamente",
+    "deleted": "Laminador eliminado exitosamente"
+  },
+  "deleteTitle": "Eliminar Laminador",
+  "deleteDescription": "¿Está seguro que desea eliminar el laminador {{name}}?",
+  "edit": "Editar Laminador"
+}

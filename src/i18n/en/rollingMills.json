@@ -1,0 +1,23 @@
+{
+  "fields": {
+    "name": "Name",
+    "distOvenStand": "Oven Stand Distance",
+    "millType": "Mill Type",
+    "millTypePlaceholder": "Select a mill type"
+  },
+  "actions": {
+    "create": "Add rolling mill"
+  },
+  "dialog": {
+    "createTitle": "Create Rolling Mill",
+    "createDescription": "Enter the details to create a new rolling mill."
+  },
+  "toast": {
+    "created": "Rolling mill created successfully",
+    "updated": "Rolling mill updated successfully",
+    "deleted": "Rolling mill deleted successfully"
+  },
+  "deleteTitle": "Delete Rolling Mill",
+  "deleteDescription": "Are you sure you want to delete the rolling mill {{name}}?",
+  "edit": "Edit Rolling Mill"
+}

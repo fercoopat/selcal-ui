@@ -1,12 +1,12 @@
 import {
+  AlignVerticalDistributeCenterIcon,
   AnvilIcon,
   DiscIcon,
   LayoutDashboardIcon,
   LockKeyholeIcon,
-  Settings2Icon,
   SettingsIcon,
   ShieldIcon,
-  TrainTrackIcon,
+  StretchHorizontalIcon,
   UsersIcon,
   type LucideIcon,
 } from "lucide-react";
@@ -19,6 +19,7 @@ import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.pat
 import { BEARINGS_PERMISSIONS } from "@/modules/settings/bearings/constants/bearings.permissions";
 import { MATERIALS_PERMISSIONS } from "@/modules/settings/materials/constants/materials.permissions";
 import { MILL_TYPES_PERMISSIONS } from "@/modules/settings/mill-types/constants";
+import { ROLLING_MILLS_PERMISSIONS } from "@/modules/settings/rolling-mills/constants";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
 
 export interface SidebarSubItem {
@@ -48,35 +49,35 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
     icon: LayoutDashboardIcon,
     route: DASHBOARD_PATHS.BASE_PATH,
   },
-  operations: {
-    id: "operations",
-    label: "menu:operations.title",
-    icon: Settings2Icon,
-    hasSubItems: true,
-    subItems: {
-      // calibrations: {
-      //   id: "operations-calibrations",
-      //   icon: LayersIcon,
-      //   label: "menu:general.calibrations",
-      //   route: CALIBRATIONS_PATHS.LIST,
-      //   permissions: [CALIBRATIONS_PERMISSIONS.READ],
-      // },
-      // rollingMills: {
-      //   id: "operations.rolling-mills",
-      //   icon: LayersIcon,
-      //   label: "menu:general.rollingMills",
-      //   route: ROLLING_MILLS_PATHS.BASE_PATH,
-      //   permissions: [ROLLING_MILLS_PERMISSIONS.READ],
-      // },
-      // chemicalElements: {
-      //   id: "operations.chemical-elements",
-      //   icon: FlaskConicalIcon,
-      //   label: "menu:general.chemicalElements",
-      //   route: CHEMICAL_ELEMENTS_PATHS.LIST,
-      //   permissions: [CHEMICAL_ELEMENTS_PERMISSIONS.READ],
-      // },
-    },
-  },
+  // operations: {
+  //   id: "operations",
+  //   label: "menu:operations.title",
+  //   icon: Settings2Icon,
+  //   hasSubItems: true,
+  //   subItems: {
+  // calibrations: {
+  //   id: "operations-calibrations",
+  //   icon: LayersIcon,
+  //   label: "menu:general.calibrations",
+  //   route: CALIBRATIONS_PATHS.LIST,
+  //   permissions: [CALIBRATIONS_PERMISSIONS.READ],
+  // },
+  // rollingMills: {
+  //   id: "operations.rolling-mills",
+  //   icon: LayersIcon,
+  //   label: "menu:general.rollingMills",
+  //   route: ROLLING_MILLS_PATHS.BASE_PATH,
+  //   permissions: [ROLLING_MILLS_PERMISSIONS.READ],
+  // },
+  // chemicalElements: {
+  //   id: "operations.chemical-elements",
+  //   icon: FlaskConicalIcon,
+  //   label: "menu:general.chemicalElements",
+  //   route: CHEMICAL_ELEMENTS_PATHS.LIST,
+  //   permissions: [CHEMICAL_ELEMENTS_PERMISSIONS.READ],
+  // },
+  //   },
+  // },
   settings: {
     id: "settings",
     icon: SettingsIcon,
@@ -99,32 +100,18 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
       },
       millTypes: {
         id: "settings-mill-types",
-        icon: TrainTrackIcon,
+        icon: AlignVerticalDistributeCenterIcon,
         label: "menu:settings.millTypes",
         route: SETTINGS_PATHS.MILL_TYPES,
         permissions: [MILL_TYPES_PERMISSIONS.READ],
       },
-      // millTypes: {
-      //   id: "settings.mill-types",
-      //   icon: SettingsIcon,
-      //   label: "menu:settings.millTypes",
-      //   route: SETTINGS_PATHS.MILL_TYPES,
-      //   permissions: [MILL_TYPES_PERMISSIONS.READ],
-      // },
-      // profileTypes: {
-      //   id: "settings.profile-types",
-      //   icon: SettingsIcon,
-      //   label: "menu:settings.profileTypes",
-      //   route: SETTINGS_PATHS.PROFILE_TYPES,
-      //   permissions: [PROFILE_TYPES_PERMISSIONS.READ],
-      // },
-      // passGeometryTypes: {
-      //   id: "settings.pass-geometry-types",
-      //   icon: SettingsIcon,
-      //   label: "menu:settings.passGeometryTypes",
-      //   route: SETTINGS_PATHS.PASS_GEOMETRY_TYPES,
-      //   permissions: [PASS_GEOMETRY_TYPES_PERMISSIONS.READ],
-      // },
+      rollingMills: {
+        id: "settings-rolling-mills",
+        icon: StretchHorizontalIcon,
+        label: "menu:settings.rollingMills",
+        route: SETTINGS_PATHS.ROLLING_MILLS,
+        permissions: [ROLLING_MILLS_PERMISSIONS.READ],
+      },
     },
   },
   security: {

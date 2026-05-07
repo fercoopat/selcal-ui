@@ -4,6 +4,7 @@ import { ModuleLayout } from "@/components/layouts";
 import { BEARINGS_ROUTES } from "@/modules/settings/bearings/routes";
 import { MATERIALS_ROUTES } from "@/modules/settings/materials/routes";
 import { MILL_TYPES_ROUTES } from "@/modules/settings/mill-types/routes";
+import { ROLLING_MILLS_ROUTES } from "@/modules/settings/rolling-mills/routes";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
 
 export const SETTINGS_ROUTES: RouteObject[] = [
@@ -15,6 +16,6 @@ export const SETTINGS_ROUTES: RouteObject[] = [
         notFoundRedirectTo={SETTINGS_PATHS.MATERIALS}
       />
     ),
-    children: [...MATERIALS_ROUTES, ...BEARINGS_ROUTES, ...MILL_TYPES_ROUTES],
+    children: [...MATERIALS_ROUTES, ...BEARINGS_ROUTES, ...MILL_TYPES_ROUTES, ...ROLLING_MILLS_ROUTES],
   },
 ];
