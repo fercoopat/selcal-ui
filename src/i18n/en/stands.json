@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "position": "Position",
+    "isHorizontal": "Is Horizontal",
+    "distanceToNextStand": "Distance to Next Stand",
+    "rollingMill": "Rolling Mill",
+    "rollingMillPlaceholder": "Select a rolling mill"
+  },
+  "actions": {
+    "create": "Add stand"
+  },
+  "dialog": {
+    "createTitle": "Create Stand",
+    "createDescription": "Enter the details to create a new stand."
+  },
+  "toast": {
+    "created": "Stand created successfully",
+    "updated": "Stand updated successfully",
+    "deleted": "Stand deleted successfully"
+  },
+  "deleteTitle": "Delete Stand",
+  "deleteDescription": "Are you sure you want to delete the stand {{name}}?",
+  "edit": "Edit Stand"
+}

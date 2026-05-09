@@ -9,4 +9,5 @@ export { default as millTypes } from "./millTypes.json";
 export { default as permissions } from "./permissions.json";
 export { default as rollingMills } from "./rollingMills.json";
 export { default as roles } from "./roles.json";
+export { default as stands } from "./stands.json";
 export { default as users } from "./users.json";

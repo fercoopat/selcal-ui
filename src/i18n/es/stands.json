@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "position": "Posición",
+    "isHorizontal": "Es Horizontal",
+    "distanceToNextStand": "Distancia al Siguiente Castillo",
+    "rollingMill": "Molino Laminador",
+    "rollingMillPlaceholder": "Seleccione un molino laminador"
+  },
+  "actions": {
+    "create": "Agregar castillo"
+  },
+  "dialog": {
+    "createTitle": "Crear Castillo",
+    "createDescription": "Ingrese los detalles para crear una nueva castillo."
+  },
+  "toast": {
+    "created": "Castillo creado exitosamente",
+    "updated": "Castillo actualizado exitosamente",
+    "deleted": "Castillo eliminado exitosamente"
+  },
+  "deleteTitle": "Eliminar Castillo",
+  "deleteDescription": "¿Está seguro de que desea eliminar el castillo {{name}}?",
+  "edit": "Editar Castillo"
+}

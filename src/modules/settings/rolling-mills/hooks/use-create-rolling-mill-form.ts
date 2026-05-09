@@ -2,7 +2,7 @@ import type { RollingMill } from "@/modules/settings/rolling-mills/interfaces";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -19,7 +19,10 @@ type Params = {
   onSuccess?: () => void;
 };
 
-export const useCreateRollingMillForm = ({ rollingMill, onSuccess }: Params = {}) => {
+export const useCreateRollingMillForm = ({
+  rollingMill,
+  onSuccess,
+}: Params = {}) => {
   const queryClient = useQueryClient();
 
   const { t } = useTranslation();
@@ -38,17 +41,8 @@ export const useCreateRollingMillForm = ({ rollingMill, onSuccess }: Params = {}
   const form = useForm({
     resolver: zodResolver(createRollingMillSchema),
     defaultValues,
+    values: defaultValues,
   });
-
-  useEffect(() => {
-    if (rollingMill?.id) {
-      form.reset({
-        name: rollingMill?.name || "",
-        distOvenStand: rollingMill?.distOvenStand || 1,
-        millTypeId: rollingMill?.millType?.id || "",
-      });
-    }
-  }, [rollingMill?.id, rollingMill?.name, rollingMill?.distOvenStand, rollingMill?.millType?.id, form]);
 
   const { error, isPending, mutate } = useMutation({
     mutationFn: (payload: CreateRollingMillPayload) => {
@@ -66,7 +60,9 @@ export const useCreateRollingMillForm = ({ rollingMill, onSuccess }: Params = {}
       onSuccess?.();
       form.reset();
       toast.success(
-        t(!isEdit ? "rollingMills:toast.created" : "rollingMills:toast.updated"),
+        t(
+          !isEdit ? "rollingMills:toast.created" : "rollingMills:toast.updated",
+        ),
       );
     },
   });

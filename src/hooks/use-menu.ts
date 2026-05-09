@@ -1,6 +1,7 @@
 import {
   AlignVerticalDistributeCenterIcon,
   AnvilIcon,
+  ChessRookIcon,
   DiscIcon,
   LayoutDashboardIcon,
   LockKeyholeIcon,
@@ -21,6 +22,7 @@ import { MATERIALS_PERMISSIONS } from "@/modules/settings/materials/constants/ma
 import { MILL_TYPES_PERMISSIONS } from "@/modules/settings/mill-types/constants";
 import { ROLLING_MILLS_PERMISSIONS } from "@/modules/settings/rolling-mills/constants";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
+import { STANDS_PERMISSIONS } from "@/modules/settings/stands/constants";
 
 export interface SidebarSubItem {
   id: string;
@@ -111,6 +113,13 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
         label: "menu:settings.rollingMills",
         route: SETTINGS_PATHS.ROLLING_MILLS,
         permissions: [ROLLING_MILLS_PERMISSIONS.READ],
+      },
+      stands: {
+        id: "settings-stands",
+        icon: ChessRookIcon,
+        label: "menu:settings.stands",
+        route: SETTINGS_PATHS.STANDS,
+        permissions: [STANDS_PERMISSIONS.READ],
       },
     },
   },

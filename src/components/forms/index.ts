@@ -6,5 +6,6 @@ export { default as FormInputField } from "./form-input-field";
 export { default as FormMultiselectField } from "./form-multiselect-field";
 export { default as FormSectionSeparator } from "./form-section-separator";
 export { default as FormSelectField } from "./form-select-field";
+export { default as FormSwitchField } from "./form-switch-field";
 export { default as FormTextareaField } from "./form-textarea-field";
 
