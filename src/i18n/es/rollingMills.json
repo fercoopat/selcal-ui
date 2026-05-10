@@ -20,9 +20,9 @@
   "deleteTitle": "Eliminar Laminador",
   "deleteDescription": "¿Está seguro que desea eliminar el laminador {{name}}?",
   "edit": "Editar Laminador",
-  "infoDialog": {
-    "title": "Gestión de Infraestructura del Tren",
-    "subtitle": "Este módulo constituye la raíz de la configuración física de la planta. Un Tren de Laminación se define como el conjunto de equipos y mecanismos destinados a garantizar la deformación plástica del metal entre cilindros giratorios.",
-    "description": "Aquí debe registrar la descripción del tren y la distancia del horno al primer castillo, dato esencial para iniciar el cálculo del Régimen de Temperatura y determinar el enfriamiento inicial del lingote."
+"infoDialog": {
+    "title": "Gestión de Trenes de Laminación",
+    "subtitle": "Configuración de la infraestructura base de la planta",
+    "description": "El Tren de Laminación es el conjunto de equipos destinados a la deformación plástica del metal entre cilindors giratorios. En este módulo se define la descripción del tren y la distancia del horno al primer castillo, dato fundamental para iniciar el algoritmo de Régimen de Temperatura y determinar el enfriamiento inicial del lingote."
   }
 }

@@ -11,5 +11,10 @@
   "successUpdate": "Cojinete actualizado exitosamente",
   "successDelete": "Cojinete eliminado exitosamente",
   "deleteTitle": "Eliminar cojinete",
-  "deleteDescription": "¿Está seguro que desea eliminar el cojinete {{name}}?"
+  "deleteDescription": "¿Está seguro que desea eliminar el cojinete {{name}}?",
+  "infoDialog": {
+    "title": "Gestión de Cojinetes",
+    "subtitle": "Soporte y mantenimiento de los cuellos del cilindro",
+    "description": "Los cojinetes son los elementos de soporte donde descansan los cuellos de los cilindors de laminación. Su correcta gestión en el sistema asegura la integridad de la infraestructura física del castillo, permitiendo asociar a cada cilindro el tipo de apoyo técnico que garantiza una rotación estable bajo las cargas de presión media."
+  }
 }

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { RollerFormDialog } from "@/modules/settings/rollers/components/roller-form-dialog";
@@ -49,6 +50,12 @@ const RollersListToolbar = () => {
           <PlusIcon />
           <span>{t("common:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="rollers:infoDialog.description"
+          title="rollers:infoDialog.title"
+          subtitle="rollers:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <RollerFormDialog

@@ -20,5 +20,10 @@
   },
   "deleteTitle": "Delete Stand",
   "deleteDescription": "Are you sure you want to delete the stand {{name}}?",
-  "edit": "Edit Stand"
+  "edit": "Edit Stand",
+  "infoDialog": {
+    "title": "Gestión de Castillos",
+    "subtitle": "Organización secuencial de los passes de laminación",
+    "description": "El Castillo es la unidad estructural donde se realiza la laminación. Aquí se define su posición física (orden de los passes) y su disposición (Horizontal o Vertical), lo que asegura la estabilidad del palastro según el sistema de calibres (ej. Rombo-Cuadrado). La distancia al próximo castillo es crítica para calcular la pérdida de calor entre etapas."
+  }
 }

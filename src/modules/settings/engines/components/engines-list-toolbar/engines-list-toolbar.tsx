@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { EngineFormDialog } from "@/modules/settings/engines/components/engine-form-dialog";
@@ -49,6 +50,12 @@ const EnginesListToolbar = () => {
           <PlusIcon />
           <span>{t("common:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="engines:infoDialog.description"
+          title="engines:infoDialog.title"
+          subtitle="engines:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <EngineFormDialog

@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { UserFormDialog } from "@/modules/security/users/components/user-form-dialog";
@@ -30,6 +31,12 @@ const UsersListToolbar = () => {
 
           <span>{t("users:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="users:infoDialog.description"
+          title="users:infoDialog.title"
+          subtitle="users:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <UserFormDialog

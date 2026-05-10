@@ -14,5 +14,10 @@
   "add": "Adicionar rol",
   "newRole": {
     "title": "Adicionar nuevo rol"
+  },
+  "infoDialog": {
+    "title": "Gestión de Roles y Permisos",
+    "subtitle": "Niveles de acceso y seguridad del sistema",
+    "description": "Define los niveles de autorización en el sistema: Administrador (gestión total y nomencladores), Especialista (cálculo de calibraciones e infraestructura) y Jefe de Taller (acceso a reportes e informes). Esta jerarquía protege la integridad de los algoritmos y asegura el cumplimiento del Control de Trazas."
   }
 }

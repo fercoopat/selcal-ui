@@ -9,5 +9,10 @@
   "successUpdate": "Material updated successfully",
   "successDelete": "Material deleted successfully",
   "deleteTitle": "Delete mill type",
-  "deleteDescription": "Are you sure you want to delete the mill type {{name}}?"
+  "deleteDescription": "Are you sure you want to delete the mill type {{name}}?",
+  "infoDialog": {
+    "title": "Nomenclador de Tipos de Tren",
+    "subtitle": "Clasificación técnica de la planta de laminado",
+    "description": "Permite clasificar el tren según su configuración operativa, como continuos, reversibles o tríos. Esta clasificación ayuda a organizar la lógica de los reportes y define parámetros térmicos iniciales, como la temperatura inicial y su variación, según las características generales de ese tipo de instalación."
+  }
 }

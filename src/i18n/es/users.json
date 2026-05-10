@@ -34,5 +34,10 @@
   "account": "Perfil",
   "notifications": {
     "subtitle": "Aquí se listan todas las notificaciones del usuario"
+  },
+  "infoDialog": {
+    "title": "Gestión de Usuarios",
+    "subtitle": "Control de acceso y personalización del sistema",
+    "description": "Permite administrar las cuentas de las personas autorizadas para interactuar con SELCAL. Cada usuario está vinculado a un nombre real y un nombre de usuario único, garantizando que cada cálculo de calibración o modificación de infraestructura sea atribuible a un responsable específico dentro de la organización."
   }
 }

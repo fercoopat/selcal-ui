@@ -17,5 +17,10 @@
   "successUpdate": "Engine updated successfully",
   "successDelete": "Engine deleted successfully",
   "deleteTitle": "Delete engine",
-  "deleteDescription": "Are you sure you want to delete the engine {{name}}?"
+  "deleteDescription": "Are you sure you want to delete the engine {{name}}?",
+  "infoDialog": {
+    "title": "Gestión de Motores",
+    "subtitle": "Control de la capacidad de fuerza y energía",
+    "description": "Los motores imprimen la rotación a los cilindors. En este módulo se registran la potencia nominal, la velocidad y la relación de transmisión (L_up). Estos datos permiten al sistema validar que la Potencia de Laminación (P_L) calculada no sobrecargue el equipo, garantizando una carga uniforme en el tren."
+  }
 }

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { MillTypeFormDialog } from "@/modules/settings/mill-types/components/mill-type-form-dialog";
@@ -54,6 +55,12 @@ const MillTypesListToolbar = () => {
 
           <span>{t("common:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="millTypes:infoDialog.description"
+          title="millTypes:infoDialog.title"
+          subtitle="millTypes:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <MillTypeFormDialog

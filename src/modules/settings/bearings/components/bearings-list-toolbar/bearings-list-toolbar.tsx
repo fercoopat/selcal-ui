@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { BearingFormDialog } from "@/modules/settings/bearings/components/bearing-form-dialog";
@@ -49,6 +50,12 @@ const BearingsListToolbar = () => {
           <PlusIcon />
           <span>{t("common:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="bearings:infoDialog.description"
+          title="bearings:infoDialog.title"
+          subtitle="bearings:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <BearingFormDialog

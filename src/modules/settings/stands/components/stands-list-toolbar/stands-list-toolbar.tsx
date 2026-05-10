@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { StandFormDialog } from "@/modules/settings/stands/components/stand-form-dialog";
@@ -54,6 +55,12 @@ const StandsListToolbar = () => {
 
           <span>{t("common:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="stands:infoDialog.description"
+          title="stands:infoDialog.title"
+          subtitle="stands:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <StandFormDialog

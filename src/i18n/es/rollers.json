@@ -20,5 +20,10 @@
   "successUpdate": "Rodillo actualizado exitosamente",
   "successDelete": "Rodillo eliminado exitosamente",
   "deleteTitle": "Eliminar rodillo",
-  "deleteDescription": "¿Está seguro que desea eliminar el rodillo {{name}}?"
+  "deleteDescription": "¿Está seguro que desea eliminar el rodillo {{name}}?",
+  "infoDialog": {
+    "title": "Gestión de Cilindros",
+    "subtitle": "Configuración de las herramientas de deformación",
+    "description": "El cilindro es la matriz principal para transformar el metal. Se compone de la tabla (zona de deformación) y los cuellos (apoyo en cojinetes). El diámetro del cilindro es vital para determinar el diámetro de trabajo (D_ti) y el ángulo de agarre, factores que aseguran una fluencia correcta del metal en los calibres."
+  }
 }

@@ -10,5 +10,10 @@
   "successUpdate": "Se ha actualizado el tipo de tren satisfactoriamente",
   "successDelete": "Tipo de tren eliminado satisfactoriamente",
   "deleteTitle": "Eliminar tipo de tren",
-  "deleteDescription": "¿Está seguro que desea eliminar el tipo de tren {{name}}?"
+  "deleteDescription": "¿Está seguro que desea eliminar el tipo de tren {{name}}?",
+  "infoDialog": {
+    "title": "Nomenclador de Tipos de Tren",
+    "subtitle": "Clasificación técnica de la planta de laminado",
+    "description": "Permite clasificar el tren según su configuración operativa, como continuos, reversibles o tríos. Esta clasificación ayuda a organizar la lógica de los reportes y define parámetros térmicos iniciales, como la temperatura inicial y su variación, según las características generales de ese tipo de instalación."
+  }
 }

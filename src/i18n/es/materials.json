@@ -14,6 +14,8 @@
   "deleteTitle": "Eliminar material",
   "deleteDescription": "¿Está seguro que desea eliminar el material {{name}}?",
   "infoDialog": {
-    "description": ""
+    "title": "Gestión de Materiales",
+    "subtitle": "Propiedades fisicoquímicas y coeficientes técnicos",
+    "description": "Define las constantes para cilindors y aceros a procesar. Para los cilindors, determina el coeficiente técnico (k) (hierro o acero) necesario para calcular la fricción (μ). Para el acero, sus componentes (Carbono, Manganeso, Cromo) definen la resistencia a la conformación (k_f), insumo base para el cálculo de la Presión Media."
   }
 }

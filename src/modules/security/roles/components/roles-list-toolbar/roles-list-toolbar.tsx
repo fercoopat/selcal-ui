@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { RoleFormDialog } from "@/modules/security/roles/components/role-form-dialog";
 import { useCreateRoleForm } from "@/modules/security/roles/hooks/use-create-role-form";
@@ -39,6 +40,12 @@ const RolesListToolbar = () => {
 
           <span>{t("roles:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="roles:infoDialog.description"
+          title="roles:infoDialog.title"
+          subtitle="roles:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <RoleFormDialog
