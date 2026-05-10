@@ -3,10 +3,12 @@
 ## TypeScript Standards
 
 ### Interfaces
+
 - Use `CommonFields` from `shared/interfaces/common.interface.ts` for entities:
+
   ```typescript
   import type { CommonFields } from "@/shared/interfaces/common.interface";
-  
+
   export interface User extends CommonFields {
     email: string;
     name: string;
@@ -14,6 +16,7 @@
   ```
 
 - Use `type` exports in barrel files (not inline type definitions)
+
   ```typescript
   // interfaces/index.ts
   export type { User } from "./user.interface";
@@ -22,6 +25,7 @@
 - Avoid `any` type - use `unknown` or proper types
 
 ### Imports
+
 - Use absolute imports with `@/` alias:
   ```typescript
   import { UsersService } from "@/modules/security/users/services";
@@ -33,16 +37,18 @@
 ## React Patterns
 
 ### Component Definition
+
 - Use functional components with hooks
 - Wrap pure components with `memo`:
   ```typescript
-  const MyComponent = memo(({ prop1 }: Props) => {
+  const MyComponent = ({ prop1 }: Props) => {
     return <div>{prop1}</div>;
-  });
-  export default MyComponent;
+  };
+  export default memo(MyComponent);
   ```
 
 ### Event Handlers
+
 - Use `useCallback` for handlers passed to children:
   ```typescript
   const handleClick = useCallback(() => {
@@ -51,13 +57,15 @@
   ```
 
 ### Lazy Loading Pages
+
 - Always lazy load page components:
+
   ```typescript
   // pages/index.ts
   import { lazy } from "react";
-  
+
   export const UsersListPage = lazy(
-    () => import("@/modules/security/users/pages/users-list-page")
+    () => import("@/modules/security/users/pages/users-list-page"),
   );
   ```
 
@@ -66,6 +74,7 @@
 ## Form Handling
 
 ### Pattern
+
 - Use `react-hook-form` with `zodResolver`
 - Dialogs use `useToggle` hook for open/close state
 - Reset form on success callback
@@ -100,8 +109,10 @@ const MyFormDialog = () => {
 ## Data Fetching
 
 ### React Query Pattern
+
 - Use `@tanstack/react-query` with custom hooks
 - Define query keys in `*.queries.ts` constants:
+
   ```typescript
   // constants/users.queries.ts
   export const USERS_QUERIES = {
@@ -112,6 +123,7 @@ const MyFormDialog = () => {
   ```
 
 - Create custom hooks for data fetching:
+
   ```typescript
   export const useFindAllUsers = () => {
     const { data, error, isLoading } = useQuery({
@@ -133,15 +145,18 @@ const MyFormDialog = () => {
 ## Styling
 
 ### Tailwind CSS
+
 - Use Tailwind CSS utility classes
 - Use `cn()` utility for conditional classes:
+
   ```typescript
   import { cn } from "@/lib/utils";
-  
+
   <div className={cn("base-class", condition && "conditional-class")} />
   ```
 
 ### Component Patterns
+
 - Follow existing patterns in `components/ui/`
 - Use shadcn/ui components when available
 
@@ -150,6 +165,7 @@ const MyFormDialog = () => {
 ## API Service Pattern
 
 ### Service Definition
+
 - Extend `ApiService` from `shared/services/api.service`
 - Use `ApiClient` for HTTP requests
 
@@ -190,6 +206,7 @@ export default new UsersService(USERS_SERVICE_BASE_PATH);
 ```
 
 ### Standard Methods
+
 - `findAll()` - GET collection
 - `findOne(id)` - GET single item
 - `create(payload)` - POST new item
@@ -201,6 +218,7 @@ export default new UsersService(USERS_SERVICE_BASE_PATH);
 ## Translation Management
 
 ### Adding Translations
+
 - Add keys to both `i18n/en/` and `i18n/es/` directories
 - Export in `i18n/{lang}/index.ts`
 - Use `useTranslation()` hook with namespace:
@@ -215,6 +233,7 @@ const MyComponent = () => {
 ```
 
 ### Menu Translations
+
 - Update `hooks/use-menu.ts` for sidebar items
 - Add entries to `i18n/{en,es}/menu.json`
 - Add permissions check in `subItems`
