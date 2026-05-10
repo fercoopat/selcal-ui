@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { RollingMillFormDialog } from "@/modules/settings/rolling-mills/components/rolling-mill-form-dialog";
@@ -33,8 +34,10 @@ const RollingMillsListToolbar = () => {
     }
   }, [editValue, onToggle, searchParams, setSearchParams]);
 
-  const { isLoading: isLoadingRollingMillToEdit, rollingMill: rollingMillToEdit } =
-    useFindOneRollingMill(editValue || "");
+  const {
+    isLoading: isLoadingRollingMillToEdit,
+    rollingMill: rollingMillToEdit,
+  } = useFindOneRollingMill(editValue || "");
 
   const { reset: resetForm, ...formProps } = useCreateRollingMillForm({
     rollingMill: rollingMillToEdit,
@@ -54,6 +57,12 @@ const RollingMillsListToolbar = () => {
 
           <span>{t("common:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="rollingMills:infoDialog.description"
+          title="rollingMills:infoDialog.title"
+          subtitle="rollingMills:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <RollingMillFormDialog

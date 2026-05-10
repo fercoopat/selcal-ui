@@ -31,7 +31,7 @@ const DataTableToolbar = ({ children, className }: Props) => {
   return (
     <div
       className={cn(
-        "flex w-full items-center justify-between gap-4 py-4",
+        "flex w-full items-center justify-between gap-2 py-4",
         className,
       )}
     >

@@ -29,5 +29,6 @@
   "min": "Minimum",
   "files": "Files",
   "eachOne": "Each",
-  "notifications": "Notifications"
+  "notifications": "Notifications",
+  "moduleInformation": "Module Information"
 }

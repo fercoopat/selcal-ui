@@ -29,5 +29,7 @@
   "min": "Mínimo",
   "files": "Archivos",
   "eachOne": "Cada uno",
-  "notifications": "Notificaciones"
+  "notifications": "Notificaciones",
+  "moduleInformation": "Información del Módulo",
+  "important": "Importante"
 }

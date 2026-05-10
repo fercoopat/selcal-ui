@@ -12,5 +12,8 @@
   "successUpdate": "Se ha actualizado el material satisfactoriamente",
   "successDelete": "Material eliminado satisfactoriamente",
   "deleteTitle": "Eliminar material",
-  "deleteDescription": "¿Está seguro que desea eliminar el material {{name}}?"
+  "deleteDescription": "¿Está seguro que desea eliminar el material {{name}}?",
+  "infoDialog": {
+    "description": ""
+  }
 }

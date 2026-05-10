@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router";
 
 import { DataTableToolbar } from "@/components/data-table";
+import { InfoDialog } from "@/components/dialogs";
 import { Button } from "@/components/ui/button";
 import { useToggle } from "@/hooks/use-toggle";
 import { MaterialFormDialog } from "@/modules/settings/materials/components/material-form-dialog";
@@ -52,6 +53,12 @@ const MaterialsListToolbar = () => {
 
           <span>{t("common:add")}</span>
         </Button>
+
+        <InfoDialog
+          description="materials:infoDialog.description"
+          title="materials:infoDialog.title"
+          subtitle="materials:infoDialog.subtitle"
+        />
       </DataTableToolbar>
 
       <MaterialFormDialog
