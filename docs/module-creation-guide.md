@@ -212,7 +212,10 @@ Create `src/modules/reports/constants/index.ts`:
 ```typescript
 export { REPORTS_BASE_PATH, REPORTS_PATHS } from "./reports.paths";
 export { REPORTS_QUERIES } from "./reports.queries";
-export { REPORTS_PERMISSIONS, REPORTS_PERMISSIONS_VALUES } from "./reports.permissions";
+export {
+  REPORTS_PERMISSIONS,
+  REPORTS_PERMISSIONS_VALUES,
+} from "./reports.permissions";
 export type { ReportsPermission } from "./reports.permissions";
 export { reportsListColumns } from "./reports-list.columns";
 ```
@@ -221,7 +224,7 @@ export { reportsListColumns } from "./reports-list.columns";
 
 Create `src/modules/reports/hooks/use-find-all-reports.ts`:
 
-```typescript
+````typescript
 import { useQuery } from "@tanstack/react-query";
 
 import { REPORTS_QUERIES } from "@/modules/reports/constants/reports.queries";
@@ -261,7 +264,7 @@ export const useFindOneReport = (reportId: string | undefined) => {
     isLoading,
   };
 };
-```
+````
 
 Create `src/modules/reports/hooks/use-create-report-form.ts`:
 
@@ -304,7 +307,9 @@ export const useCreateReportForm = ({ onSuccess }: Params = {}) => {
       return ReportsService.create(payload);
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: REPORTS_QUERIES.findAll });
+      await queryClient.invalidateQueries({
+        queryKey: REPORTS_QUERIES.findAll,
+      });
       onSuccess?.();
       toast.success(t("reports:successCreate"));
       form.reset();
@@ -313,65 +318,6 @@ export const useCreateReportForm = ({ onSuccess }: Params = {}) => {
 
   const onSubmit = useCallback(
     (payload: CreateReportPayload) => mutate(payload),
-    [mutate],
-  );
-
-  return { ...form, error, isLoading: isPending, onSubmit };
-};
-```
-
-Create `src/modules/reports/hooks/use-update-report-form.ts`:
-
-```typescript
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useCallback } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { toast } from "sonner";
-
-import { REPORTS_QUERIES } from "@/modules/reports/constants/reports.queries";
-import {
-  updateReportSchema,
-  type UpdateReportPayload,
-} from "@/modules/reports/schemas/reports-update.schema";
-import { ReportsService } from "@/modules/reports/services";
-
-const defaultValues: UpdateReportPayload = {
-  name: "",
-  description: "",
-};
-
-type Params = {
-  reportId?: string;
-  onSuccess?: () => void;
-};
-
-export const useUpdateReportForm = ({ reportId, onSuccess }: Params = {}) => {
-  const queryClient = useQueryClient();
-  const { t } = useTranslation();
-
-  const form = useForm({
-    resolver: zodResolver(updateReportSchema),
-    defaultValues,
-  });
-
-  const { error, isPending, mutate } = useMutation({
-    mutationFn: (payload: UpdateReportPayload) => {
-      return ReportsService.update(reportId, payload);
-    },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: REPORTS_QUERIES.findAll });
-      await queryClient.invalidateQueries({
-        queryKey: REPORTS_QUERIES.findOne(reportId ?? ""),
-      });
-      onSuccess?.();
-      toast.success(t("reports:successUpdate"));
-    },
-  });
-
-  const onSubmit = useCallback(
-    (payload: UpdateReportPayload) => mutate(payload),
     [mutate],
   );
 
@@ -402,7 +348,9 @@ export const useDeactivateReport = ({ onSuccess }: Params = {}) => {
       return ReportsService.delete(reportId);
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: REPORTS_QUERIES.findAll });
+      await queryClient.invalidateQueries({
+        queryKey: REPORTS_QUERIES.findAll,
+      });
       onSuccess?.();
       toast.success(t("reports:successDelete"));
     },
