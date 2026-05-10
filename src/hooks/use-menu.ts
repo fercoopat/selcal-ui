@@ -5,9 +5,11 @@ import {
   DiscIcon,
   LayoutDashboardIcon,
   LockKeyholeIcon,
+  PaintRollerIcon,
   SettingsIcon,
   ShieldIcon,
   StretchHorizontalIcon,
+  ToolboxIcon,
   UsersIcon,
   type LucideIcon,
 } from "lucide-react";
@@ -18,8 +20,10 @@ import { useAuth } from "@/modules/auth/contexts/auth-context";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
 import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
 import { BEARINGS_PERMISSIONS } from "@/modules/settings/bearings/constants/bearings.permissions";
+import { ENGINES_PERMISSIONS } from "@/modules/settings/engines/constants";
 import { MATERIALS_PERMISSIONS } from "@/modules/settings/materials/constants/materials.permissions";
 import { MILL_TYPES_PERMISSIONS } from "@/modules/settings/mill-types/constants";
+import { ROLLERS_PERMISSIONS } from "@/modules/settings/rollers/constants";
 import { ROLLING_MILLS_PERMISSIONS } from "@/modules/settings/rolling-mills/constants";
 import { SETTINGS_PATHS } from "@/modules/settings/shared/constants/settings.paths";
 import { STANDS_PERMISSIONS } from "@/modules/settings/stands/constants";
@@ -120,6 +124,21 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
         label: "menu:settings.stands",
         route: SETTINGS_PATHS.STANDS,
         permissions: [STANDS_PERMISSIONS.READ],
+      },
+      engines: {
+        id: "settings-engines",
+        icon: ToolboxIcon,
+        label: "menu:settings.engines",
+        route: SETTINGS_PATHS.ENGINES,
+        permissions: [ENGINES_PERMISSIONS.READ],
+      },
+
+      rollers: {
+        id: "settings-rollers",
+        icon: PaintRollerIcon,
+        label: "menu:settings.rollers",
+        route: SETTINGS_PATHS.ROLLERS,
+        permissions: [ROLLERS_PERMISSIONS.READ],
       },
     },
   },

@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "name": "Name",
+    "diameter": "Diameter",
+    "diameterNeck": "Neck Diameter",
+    "length": "Length",
+    "lengthNeck": "Neck Length",
+    "stand": "Stand",
+    "standPlaceholder": "Select a stand",
+    "material": "Material",
+    "materialPlaceholder": "Select a material",
+    "bearing": "Bearing",
+    "bearingPlaceholder": "Select a bearing"
+  },
+  "title": "Rollers",
+  "add": "Add roller",
+  "edit": "Edit roller",
+  "empty": "No rollers found",
+  "successCreate": "Roller added successfully",
+  "successUpdate": "Roller updated successfully",
+  "successDelete": "Roller deleted successfully",
+  "deleteTitle": "Delete roller",
+  "deleteDescription": "Are you sure you want to delete the roller {{name}}?"
+}

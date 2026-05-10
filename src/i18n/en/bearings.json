@@ -3,7 +3,10 @@
     "name": "Name",
     "description": "Description"
   },
+  "title": "Bearings",
   "add": "Add bearing",
+  "edit": "Edit bearing",
+  "empty": "No bearings found",
   "successCreate": "Bearing added successfully",
   "successUpdate": "Bearing updated successfully",
   "successDelete": "Bearing deleted successfully",

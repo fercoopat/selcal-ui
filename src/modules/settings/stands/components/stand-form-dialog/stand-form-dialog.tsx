@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { FieldGroup } from "@/components/ui/field";
 import { cn } from "@/lib/utils";
-import { FormRollingMillSelectField } from "@/modules/settings/stands/components/rolling-mill-select-field";
+import { FormRollingMillSelectField } from "@/modules/settings/rolling-mills/components/rolling-mill-select-field";
 
 const STAND_FORM_ID = "stand-form" as const;
 

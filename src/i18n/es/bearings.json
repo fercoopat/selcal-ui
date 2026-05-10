@@ -3,8 +3,10 @@
     "name": "Nombre",
     "description": "Descripción"
   },
+  "title": "Cojinetes",
   "add": "Agregar cojinete",
   "edit": "Editar cojinete",
+  "empty": "No se encontraron cojinetes",
   "successCreate": "Cojinete agregado exitosamente",
   "successUpdate": "Cojinete actualizado exitosamente",
   "successDelete": "Cojinete eliminado exitosamente",

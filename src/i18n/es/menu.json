@@ -14,6 +14,8 @@
     "bearings": "Cojinetes",
     "millTypes": "Tipos de trenes",
     "rollingMills": "Trenes de laminación",
-    "stands": "Castillos"
+    "stands": "Castillos",
+    "rollers": "Cilindros",
+    "engines": "Motores"
   }
 }

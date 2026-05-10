@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "name": "Nombre",
+    "power": "Potencia",
+    "speed": "Velocidad",
+    "transmission": "Transmisión",
+    "revMax": "RPM Máx",
+    "revMin": "RPM Mín",
+    "stand": "Stand",
+    "standPlaceholder": "Seleccionar stand"
+  },
+  "title": "Motores",
+  "add": "Agregar motor",
+  "edit": "Editar motor",
+  "empty": "No se encontraron motores",
+  "successCreate": "Motor agregado exitosamente",
+  "successUpdate": "Motor actualizado exitosamente",
+  "successDelete": "Motor eliminado exitosamente",
+  "deleteTitle": "Eliminar motor",
+  "deleteDescription": "¿Está seguro que desea eliminar el motor {{name}}?"
+}

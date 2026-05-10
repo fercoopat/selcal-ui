@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "name": "Nombre",
+    "diameter": "Diámetro",
+    "diameterNeck": "Diámetro Cuello",
+    "length": "Longitud",
+    "lengthNeck": "Longitud Cuello",
+    "stand": "Stand",
+    "standPlaceholder": "Seleccionar stand",
+    "material": "Material",
+    "materialPlaceholder": "Seleccionar material",
+    "bearing": "Cojinete",
+    "bearingPlaceholder": "Seleccionar cojinete"
+  },
+  "title": "Rodillos",
+  "add": "Agregar rodillo",
+  "edit": "Editar rodillo",
+  "empty": "No se encontraron rodillos",
+  "successCreate": "Rodillo agregado exitosamente",
+  "successUpdate": "Rodillo actualizado exitosamente",
+  "successDelete": "Rodillo eliminado exitosamente",
+  "deleteTitle": "Eliminar rodillo",
+  "deleteDescription": "¿Está seguro que desea eliminar el rodillo {{name}}?"
+}

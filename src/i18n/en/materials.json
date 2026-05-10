@@ -4,7 +4,10 @@
     "name": "Name",
     "description": "Description"
   },
+  "title": "Materials",
   "add": "Add material",
+  "edit": "Edit material",
+  "empty": "No materials found",
   "successCreate": "Material added successfully",
   "successUpdate": "Material updated successfully",
   "successDelete": "Material deleted successfully",

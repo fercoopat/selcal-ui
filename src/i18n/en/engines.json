@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "name": "Name",
+    "power": "Power",
+    "speed": "Speed",
+    "transmission": "Transmission",
+    "revMax": "Max RPM",
+    "revMin": "Min RPM",
+    "stand": "Stand",
+    "standPlaceholder": "Select a stand"
+  },
+  "title": "Engines",
+  "add": "Add engine",
+  "edit": "Edit engine",
+  "empty": "No engines found",
+  "successCreate": "Engine added successfully",
+  "successUpdate": "Engine updated successfully",
+  "successDelete": "Engine deleted successfully",
+  "deleteTitle": "Delete engine",
+  "deleteDescription": "Are you sure you want to delete the engine {{name}}?"
+}
