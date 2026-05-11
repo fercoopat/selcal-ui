@@ -25,6 +25,9 @@ export const useCurrentUser = () => {
     queryKey: [PROFILE_KEY],
 
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
+    refetchOnMount: true,
 
     enabled: !!token,
 

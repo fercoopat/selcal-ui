@@ -11,6 +11,10 @@ import {
 } from "@/modules/auth/schemas/auth-login.schema";
 import { AuthService } from "@/modules/auth/services";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
+import {
+  clearSavedRedirectPath,
+  getSafeRedirectPath,
+} from "@/hooks/use-preserve-route";
 
 const defaultValues: LoginPayload = {
   email: "",
@@ -31,7 +35,9 @@ export const useLoginForm = () => {
 
     onSuccess: async () => {
       await refetchUser();
-      navigate(DASHBOARD_PATHS.BASE_PATH, { replace: true });
+      const redirectPath = getSafeRedirectPath(DASHBOARD_PATHS.BASE_PATH);
+      clearSavedRedirectPath();
+      navigate(redirectPath, { replace: true });
     },
   });
 

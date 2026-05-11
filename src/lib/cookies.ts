@@ -97,7 +97,7 @@ class Service {
   setAuthToken(token: string, rememberMe = false): void {
     this.set("accessToken", token, {
       expires: rememberMe ? 30 : 1, // 30 days if rememberMe, 1 day if not
-      secure: true,
+      secure: !isDevelopment,
       sameSite: "strict",
     });
   }

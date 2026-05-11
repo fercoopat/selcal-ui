@@ -5,9 +5,9 @@ import { AUTH_PATHS } from "@/modules/auth/constants/auth.paths";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
 import {
-  saveRedirectPath,
-  getSavedRedirectPath,
   clearSavedRedirectPath,
+  getSafeRedirectPath,
+  saveRedirectPath,
 } from "@/hooks/use-preserve-route";
 
 const AUTH_ROUTES: string[] = [AUTH_PATHS.SIGNIN, AUTH_PATHS.SIGNUP];
@@ -26,9 +26,16 @@ const AccessControl = () => {
 
   if (isAuthRoute) {
     if (isAuthenticated) {
-      const savedPath = getSavedRedirectPath();
-      clearSavedRedirectPath();
-      return <Navigate to={savedPath || DASHBOARD_PATHS.BASE_PATH} replace />;
+      const redirectPath = getSafeRedirectPath(
+        DASHBOARD_PATHS.BASE_PATH,
+        pathname,
+      );
+
+      if (redirectPath !== DASHBOARD_PATHS.BASE_PATH) {
+        clearSavedRedirectPath();
+      }
+
+      return <Navigate to={redirectPath} replace />;
     }
 
     return <Outlet />;

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router";
 
 const REDIRECT_KEY = "auth_redirect_path";
+const AUTH_PATHS = ["/auth/signin", "/auth/signup"] as const;
 
 export const saveRedirectPath = (path: string) => {
   sessionStorage.setItem(REDIRECT_KEY, path);
@@ -15,13 +16,28 @@ export const clearSavedRedirectPath = (): void => {
   sessionStorage.removeItem(REDIRECT_KEY);
 };
 
+const isAuthPath = (pathname: string) => AUTH_PATHS.includes(pathname as (typeof AUTH_PATHS)[number]);
+
+export const getSafeRedirectPath = (
+  fallbackPath: string,
+  currentPathname?: string,
+): string => {
+  const savedPath = getSavedRedirectPath();
+
+  if (!savedPath) return fallbackPath;
+  if (!savedPath.startsWith("/")) return fallbackPath;
+  if (savedPath.startsWith("/auth")) return fallbackPath;
+  if (currentPathname && savedPath === currentPathname) return fallbackPath;
+
+  return savedPath;
+};
+
 export const usePreserveRoute = () => {
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
 
   useEffect(() => {
-    const authPaths = ["/auth/signin", "/auth/signup"];
-    if (!authPaths.includes(pathname)) {
-      sessionStorage.setItem(REDIRECT_KEY, pathname);
+    if (!isAuthPath(pathname)) {
+      saveRedirectPath(`${pathname}${search}${hash}`);
     }
-  }, [pathname]);
+  }, [pathname, search, hash]);
 };

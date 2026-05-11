@@ -14,6 +14,39 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.includes("node_modules/react") || id.includes("react-router")) {
+              return "vendor-react";
+            }
+
+            if (id.includes("@tanstack/react-query")) {
+              return "vendor-query";
+            }
+
+            if (id.includes("@radix-ui")) {
+              return "vendor-ui";
+            }
+
+            if (
+              id.includes("react-hook-form") ||
+              id.includes("@hookform/resolvers") ||
+              id.includes("/zod/")
+            ) {
+              return "vendor-forms";
+            }
+
+            if (id.includes("lucide-react")) {
+              return "vendor-icons";
+            }
+
+            return undefined;
+          },
+        },
+      },
+    },
     server: {
       proxy: {
         "/api": {
