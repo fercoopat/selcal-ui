@@ -3,5 +3,7 @@
   "users": "Users",
   "roles": "Roles",
   "materials": "Materials",
-  "details": "Details"
+  "details": "Details",
+  "operations": "Operations",
+  "calibrations": "Calibrations"
 }

@@ -20,5 +20,10 @@
   "deleteDescription": "¿Está seguro que desea eliminar la calibración {{description}}?",
   "successCreate": "Calibración creada exitosamente",
   "successUpdate": "Calibración actualizada exitosamente",
-  "successDelete": "Calibración eliminada exitosamente"
+  "successDelete": "Calibración eliminada exitosamente",
+  "profileTypes": {
+    "ROUND": "Redondo",
+    "SQUARE": "Cuadrado",
+    "HEXAGONAL": "Hexagonal"
+  }
 }

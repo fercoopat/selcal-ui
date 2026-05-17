@@ -9,7 +9,9 @@ export const useCurrentUser = () => {
 
   const { data, error, isLoading, refetch } = useQuery({
     queryFn: async () => {
-      if (!token) {
+      const currentToken = CookiesService.getAuthToken();
+
+      if (!currentToken) {
         throw new Error("No authentication token found");
       }
 

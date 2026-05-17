@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { LoadingButton } from "@/components/buttons";
 import { FormContainer, FormInputField } from "@/components/forms";
 import type { FormContextProps } from "@/components/forms/form-container";
+import { AlertError } from "@/components/ui/alert-error";
 import {
   Card,
   CardContent,
@@ -19,7 +20,7 @@ type Props = {
   error: unknown;
   isLoading: boolean;
 } & FormContextProps;
-const LoginForm = ({ className, isLoading, ...props }: Props) => {
+const LoginForm = ({ className, isLoading, error, ...props }: Props) => {
   const { t } = useTranslation();
 
   return (
@@ -32,6 +33,8 @@ const LoginForm = ({ className, isLoading, ...props }: Props) => {
         </CardHeader>
 
         <CardContent>
+          <AlertError error={error} className="mb-4" />
+
           <FormContainer {...props}>
             <FieldGroup>
               <FormInputField

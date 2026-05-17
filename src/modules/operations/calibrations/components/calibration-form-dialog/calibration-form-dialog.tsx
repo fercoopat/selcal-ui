@@ -81,7 +81,9 @@ const CalibrationFormDialog = ({
                 label={t("calibrations:fields.profileType")}
                 options={PROFILE_TYPE_OPTIONS}
                 getOptionValue={(o) => o ?? ""}
-                renderOption={(o) => o ?? ""}
+                renderOption={(o) =>
+                  o ? t(`calibrations:profileTypes.${o}`) : ""
+                }
                 placeholder={t("calibrations:fields.profileTypePlaceholder")}
               />
               <FormInputField

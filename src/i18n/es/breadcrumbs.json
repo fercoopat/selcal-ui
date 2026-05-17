@@ -10,5 +10,7 @@
   "rolling-mills": "Trenes de laminación",
   "stands": "Castillos",
   "engines": "Motores",
-  "rollers": "Cilindros"
+  "rollers": "Cilindros",
+  "operations": "Operaciones",
+  "calibrations": "Calibraciones"
 }

@@ -1,4 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
+import i18n from "i18next";
 
 import { PermissionsCheck } from "@/components/security";
 import { CALIBRATIONS_PERMISSIONS } from "@/modules/operations/calibrations/constants/calibrations.permissions";
@@ -15,6 +16,10 @@ export const calibrationsListColumns: ColumnDef<Calibration | undefined>[] = [
     id: "profileType",
     accessorKey: "profileType",
     header: "calibrations:fields.profileType",
+    cell: ({ getValue }) => {
+      const value = getValue<string>();
+      return value ? i18n.t(`calibrations:profileTypes.${value}`) : "";
+    },
   },
   {
     id: "rollingMill",
