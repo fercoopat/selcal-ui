@@ -25,5 +25,12 @@
     "ROUND": "Round",
     "SQUARE": "Square",
     "HEXAGONAL": "Hexagonal"
-  }
+  },
+  "steps": {
+    "general": "General",
+    "process": "Process Parameters",
+    "steel": "Steel Composition"
+  },
+  "next": "Next",
+  "previous": "Previous"
 }

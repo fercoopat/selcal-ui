@@ -25,5 +25,12 @@
     "ROUND": "Redondo",
     "SQUARE": "Cuadrado",
     "HEXAGONAL": "Hexagonal"
-  }
+  },
+  "steps": {
+    "general": "General",
+    "process": "Parámetros del Proceso",
+    "steel": "Composición del Acero"
+  },
+  "next": "Siguiente",
+  "previous": "Anterior"
 }
