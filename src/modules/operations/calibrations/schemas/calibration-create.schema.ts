@@ -12,7 +12,7 @@ export const createCalibrationSchema = z.object({
   initialWidth: z.coerce.number({ error: "invalidValue" }),
   totalPasses: z.coerce.number({ error: "invalidValue" }),
   finishingPasses: z.coerce.number({ error: "invalidValue" }),
-  profileType: z.nativeEnum(PROFILE_TYPE, { error: "invalidValue" }),
+  profileType: z.enum(PROFILE_TYPE, { error: "invalidValue" }),
   finalDimension: z.coerce.number({ error: "invalidValue" }),
   rollingMillId: z.string({ error: "invalidValue" }).min(1, "required"),
 });

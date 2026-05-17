@@ -2,7 +2,11 @@ import { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { LoadingButton } from "@/components/buttons";
-import { FormContainer, FormInputField, FormSelectField } from "@/components/forms";
+import {
+  FormContainer,
+  FormInputField,
+  FormSelectField,
+} from "@/components/forms";
 import type { FormContextProps } from "@/components/forms/form-container";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,7 +36,14 @@ const STEPS: Step[] = [
 
 const STEP_FIELDS = [
   ["description", "rollingMillId", "profileType"],
-  ["initialTemp", "initialHeight", "initialWidth", "totalPasses", "finishingPasses", "finalDimension"],
+  [
+    "initialTemp",
+    "initialHeight",
+    "initialWidth",
+    "totalPasses",
+    "finishingPasses",
+    "finalDimension",
+  ],
   ["steelCarbon", "steelManganese", "steelChromium"],
 ];
 
@@ -87,9 +98,7 @@ const CalibrationFormDialog = ({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className={cn("sm:max-w-2xl", className)}>
         <DialogHeader>
-          <DialogTitle>
-            {title ? t(title) : t("calibrations:add")}
-          </DialogTitle>
+          <DialogTitle>{title ? t(title) : t("calibrations:add")}</DialogTitle>
           <DialogDescription />
         </DialogHeader>
 
@@ -122,7 +131,9 @@ const CalibrationFormDialog = ({
                     renderOption={(o) =>
                       o ? t(`calibrations:profileTypes.${o}`) : ""
                     }
-                    placeholder={t("calibrations:fields.profileTypePlaceholder")}
+                    placeholder={t(
+                      "calibrations:fields.profileTypePlaceholder",
+                    )}
                   />
                 </>
               )}

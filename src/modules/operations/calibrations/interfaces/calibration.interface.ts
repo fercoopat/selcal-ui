@@ -1,6 +1,6 @@
-import type { CommonFields } from "@/shared/interfaces/common.interface";
+import type { ProfileType } from "@/modules/operations/calibrations/constants/profile-type.enum";
 import type { RollingMill } from "@/modules/settings/rolling-mills/interfaces/rolling-mill.interface";
-import type { PROFILE_TYPE } from "@/modules/operations/calibrations/constants/profile-type.enum";
+import type { CommonFields } from "@/shared/interfaces/common.interface";
 
 export interface Calibration extends CommonFields {
   description: string;
@@ -12,7 +12,7 @@ export interface Calibration extends CommonFields {
   initialWidth: number;
   totalPasses: number;
   finishingPasses: number;
-  profileType: PROFILE_TYPE;
+  profileType: ProfileType;
   finalDimension: number;
   rollingMill: RollingMill;
 }

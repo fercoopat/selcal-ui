@@ -27,9 +27,10 @@ const CalibrationsListRowActions = ({ calibration }: Props) => {
   const { isOpen: isOpenDelete, onToggle: onToggleDelete } = useToggle();
 
   const handleEdit = useCallback(() => {
-    if (!calibration?.id) return;
-    searchParams.set("edit", calibration.id);
-    setSearchParams(searchParams);
+    if (calibration?.id) {
+      searchParams.set("edit", calibration?.id);
+      setSearchParams(searchParams);
+    }
   }, [calibration?.id, searchParams, setSearchParams]);
 
   const { deleteCalibration, isLoading } = useDeactivateCalibration({
