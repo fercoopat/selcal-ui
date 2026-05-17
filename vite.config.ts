@@ -18,7 +18,10 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            if (id.includes("node_modules/react") || id.includes("react-router")) {
+            if (
+              id.includes("node_modules/react") ||
+              id.includes("react-router")
+            ) {
               return "vendor-react";
             }
 

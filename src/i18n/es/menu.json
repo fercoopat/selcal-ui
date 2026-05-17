@@ -3,6 +3,10 @@
     "title": "General",
     "dashboard": "Panel"
   },
+  "operations": {
+    "title": "Operaciones",
+    "calibrations": "Calibraciones"
+  },
   "security": {
     "title": "Seguridad",
     "users": "Usuarios",

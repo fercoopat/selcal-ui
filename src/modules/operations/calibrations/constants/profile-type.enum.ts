@@ -1,0 +1,5 @@
+export enum PROFILE_TYPE {
+  ROUND = "ROUND",
+  SQUARE = "SQUARE",
+  HEXAGONAL = "HEXAGONAL",
+}

@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "description": "Descripción",
+    "profileType": "Tipo de Perfil",
+    "profileTypePlaceholder": "Seleccione un tipo de perfil",
+    "rollingMill": "Tren de Laminación",
+    "totalPasses": "Pases Totales",
+    "finishingPasses": "Pases de Acabado",
+    "initialTemp": "Temperatura Inicial",
+    "initialHeight": "Altura Inicial",
+    "initialWidth": "Ancho Inicial",
+    "finalDimension": "Dimensión Final",
+    "steelCarbon": "Carbono del Acero",
+    "steelManganese": "Manganeso del Acero",
+    "steelChromium": "Cromo del Acero"
+  },
+  "add": "Agregar calibración",
+  "edit": "Editar calibración",
+  "deleteTitle": "Eliminar Calibración",
+  "deleteDescription": "¿Está seguro que desea eliminar la calibración {{description}}?",
+  "successCreate": "Calibración creada exitosamente",
+  "successUpdate": "Calibración actualizada exitosamente",
+  "successDelete": "Calibración eliminada exitosamente"
+}

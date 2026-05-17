@@ -4,8 +4,10 @@ import {
   ChessRookIcon,
   DiscIcon,
   LayoutDashboardIcon,
+  LayersIcon,
   LockKeyholeIcon,
   PaintRollerIcon,
+  Settings2Icon,
   SettingsIcon,
   ShieldIcon,
   StretchHorizontalIcon,
@@ -18,6 +20,8 @@ import { useMemo } from "react";
 import { AUTH_PERMISSIONS } from "@/modules/auth/constants/auth.permissions";
 import { useAuth } from "@/modules/auth/contexts/auth-context";
 import { DASHBOARD_PATHS } from "@/modules/dashboard/constants/dashboard.paths";
+import { CALIBRATIONS_PERMISSIONS } from "@/modules/operations/calibrations/constants/calibrations.permissions";
+import { OPERATIONS_PATHS } from "@/modules/operations/shared/constants/operations.paths";
 import { SECURITY_PATHS } from "@/modules/security/shared/constants/security.paths";
 import { BEARINGS_PERMISSIONS } from "@/modules/settings/bearings/constants/bearings.permissions";
 import { ENGINES_PERMISSIONS } from "@/modules/settings/engines/constants";
@@ -55,35 +59,21 @@ const SIDEBAR_ITEMS_MAP: Record<string, SidebarItem> = {
     icon: LayoutDashboardIcon,
     route: DASHBOARD_PATHS.BASE_PATH,
   },
-  // operations: {
-  //   id: "operations",
-  //   label: "menu:operations.title",
-  //   icon: Settings2Icon,
-  //   hasSubItems: true,
-  //   subItems: {
-  // calibrations: {
-  //   id: "operations-calibrations",
-  //   icon: LayersIcon,
-  //   label: "menu:general.calibrations",
-  //   route: CALIBRATIONS_PATHS.LIST,
-  //   permissions: [CALIBRATIONS_PERMISSIONS.READ],
-  // },
-  // rollingMills: {
-  //   id: "operations.rolling-mills",
-  //   icon: LayersIcon,
-  //   label: "menu:general.rollingMills",
-  //   route: ROLLING_MILLS_PATHS.BASE_PATH,
-  //   permissions: [ROLLING_MILLS_PERMISSIONS.READ],
-  // },
-  // chemicalElements: {
-  //   id: "operations.chemical-elements",
-  //   icon: FlaskConicalIcon,
-  //   label: "menu:general.chemicalElements",
-  //   route: CHEMICAL_ELEMENTS_PATHS.LIST,
-  //   permissions: [CHEMICAL_ELEMENTS_PERMISSIONS.READ],
-  // },
-  //   },
-  // },
+  operations: {
+    id: "operations",
+    label: "menu:operations.title",
+    icon: Settings2Icon,
+    hasSubItems: true,
+    subItems: {
+      calibrations: {
+        id: "operations-calibrations",
+        icon: LayersIcon,
+        label: "menu:operations.calibrations",
+        route: OPERATIONS_PATHS.CALIBRATIONS,
+        permissions: [CALIBRATIONS_PERMISSIONS.READ],
+      },
+    },
+  },
   settings: {
     id: "settings",
     icon: SettingsIcon,

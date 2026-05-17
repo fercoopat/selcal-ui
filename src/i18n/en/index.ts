@@ -1,6 +1,7 @@
 export { default as auth } from "./auth.json";
 export { default as bearings } from "./bearings.json";
 export { default as breadcrumbs } from "./breadcrumbs.json";
+export { default as calibrations } from "./calibrations.json";
 export { default as common } from "./common.json";
 export { default as engines } from "./engines.json";
 export { default as errors } from "./errors.json";

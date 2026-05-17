@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "description": "Description",
+    "profileType": "Profile Type",
+    "profileTypePlaceholder": "Select a profile type",
+    "rollingMill": "Rolling Mill",
+    "totalPasses": "Total Passes",
+    "finishingPasses": "Finishing Passes",
+    "initialTemp": "Initial Temperature",
+    "initialHeight": "Initial Height",
+    "initialWidth": "Initial Width",
+    "finalDimension": "Final Dimension",
+    "steelCarbon": "Steel Carbon",
+    "steelManganese": "Steel Manganese",
+    "steelChromium": "Steel Chromium"
+  },
+  "add": "Add calibration",
+  "edit": "Edit calibration",
+  "deleteTitle": "Delete Calibration",
+  "deleteDescription": "Are you sure you want to delete the calibration {{description}}?",
+  "successCreate": "Calibration created successfully",
+  "successUpdate": "Calibration updated successfully",
+  "successDelete": "Calibration deleted successfully"
+}
